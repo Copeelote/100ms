@@ -117,7 +117,7 @@ const AddMenu = () => {
   return (
     <>
       <Text variant="caption" css={{ c: '$on_surface_medium', mb: '$md' }}>
-        Select the type you want to continue with
+        Sélectionnez le type avec lequel vous souhaitez continuer
       </Text>
       <Flex css={{ w: '100%', gap: '$10', mb: '$md' }}>
         <InteractionSelectionCard
@@ -134,11 +134,11 @@ const AddMenu = () => {
         />
       </Flex>
       <Flex direction="column" css={{ mb: '$10' }}>
-        <Text variant="body2" css={{ mb: '$4' }}>{`Name this ${interactionType.toLowerCase()}`}</Text>
+        <Text variant="body2" css={{ mb: '$4' }}>{`Nommez ce ${interactionType.toLowerCase()}`}</Text>
         <Input
           ref={inputRef}
           type="text"
-          placeholder="Enter a name to continue"
+          placeholder="Entrez un nom pour continuer"
           value={title}
           onChange={event => setTitle(event.target.value.trimStart())}
           css={{
@@ -149,7 +149,7 @@ const AddMenu = () => {
         <Flex align="center" css={{ mt: '$10' }}>
           <Switch onCheckedChange={value => setHideVoteCount(value)} css={{ mr: '$6' }} />
           <Text variant="body2" css={{ c: '$on_surface_medium' }}>
-            Hide Vote Count
+            Masquer le nombre de votes
           </Text>
         </Flex>
 

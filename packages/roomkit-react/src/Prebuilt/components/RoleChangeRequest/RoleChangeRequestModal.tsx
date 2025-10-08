@@ -51,7 +51,7 @@ export const RoleChangeRequestModal = () => {
           '@md': { textAlign: 'left', borderBottom: '1px solid $border_bright', pb: '$4', px: '$8' },
         }}
       >
-        Setup your audio and video before joining
+        Configurez votre audio et vidéo avant de rejoindre
       </Text>
       <Flex
         align="center"
@@ -72,7 +72,7 @@ export const RoleChangeRequestModal = () => {
 
   return (
     <RequestPrompt
-      title="You're invited to join the stage"
+      title="Vous êtes invité à rejoindre la scène"
       onOpenChange={async value => {
         if (!value) {
           hmsActions.rejectChangeRole(roleChangeRequest);
@@ -87,7 +87,7 @@ export const RoleChangeRequestModal = () => {
         await updateMetaData({ prevRole: currentRole });
         await hmsActions.lowerLocalPeerHand();
       }}
-      actionText="Accept"
+      actionText="Accepter"
       disableActions={!isPreview}
     />
   );

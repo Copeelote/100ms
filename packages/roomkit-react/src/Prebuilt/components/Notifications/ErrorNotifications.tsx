@@ -19,11 +19,11 @@ export const ErrorNotifications = () => {
     if (isTerminal && action !== 'INIT') {
       if ([500, 6008].includes(code)) {
         ToastManager.addToast({
-          title: `Error: ${message}`,
+          title: `Erreur : ${message}`,
         });
       } else if (message === 'role limit reached') {
         ToastManager.addToast({
-          title: 'The room is currently full, try joining later',
+          title: 'La salle est actuellement pleine, essayez de rejoindre plus tard',
           close: true,
           icon: (
             <Box css={{ color: '$alert_error_default' }}>
@@ -33,7 +33,7 @@ export const ErrorNotifications = () => {
         });
       } else {
         ToastManager.addToast({
-          title: message || 'We couldn’t reconnect you. When you’re back online, try joining the room.',
+          title: message || 'Nous n\'avons pas pu vous reconnecter. Quand vous serez de nouveau en ligne, essayez de rejoindre la salle.',
           close: false,
         });
       }
@@ -48,7 +48,7 @@ export const ErrorNotifications = () => {
     }
     if (!subscribedNotifications.ERROR) return;
     ToastManager.addToast({
-      title: `Error: ${message} - ${description}`,
+      title: `Erreur : ${message} - ${description}`,
     });
   }, [notification, subscribedNotifications.ERROR]);
 

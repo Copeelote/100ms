@@ -39,13 +39,13 @@ export const PermissionErrorModal = ({ error }: { error?: HMSException }) => {
     const hasAudioVideo = errorTrackExceptionType === HMSTrackExceptionTrackType.AUDIO_VIDEO;
     const hasScreen = errorTrackExceptionType === HMSTrackExceptionTrackType.SCREEN;
     if (hasAudioVideo) {
-      setDeviceType('camera and microphone');
+      setDeviceType('caméra et microphone');
     } else if (hasAudio) {
       setDeviceType('microphone');
     } else if (hasVideo) {
-      setDeviceType('camera');
+      setDeviceType('caméra');
     } else if (hasScreen) {
-      setDeviceType('screen');
+      setDeviceType('écran');
     }
     setIsSystemError(error.code === 3011);
   }, [error]);
@@ -80,30 +80,30 @@ export const PermissionErrorModal = ({ error }: { error?: HMSException }) => {
               />
             ) : null}
 
-            <Text variant="h6">We can't access your {deviceType}</Text>
+            <Text variant="h6">Nous ne pouvons pas accéder à votre {deviceType}</Text>
           </Dialog.Title>
 
           <Text variant="sm" css={{ pt: '$4', pb: '$10', color: '$on_surface_medium' }}>
             {/* IOS prompt text */}
             {isMobile && isIOS
-              ? 'Enable permissions by reloading this page and clicking "Allow" on the pop-up, or change settings from the address bar.'
+              ? 'Activez les permissions en rechargeant cette page et en cliquant sur "Autoriser" dans la pop-up, ou modifiez les paramètres depuis la barre d\'adresse.'
               : null}
 
             {/* Prompt for android devices */}
             {isMobile && isAndroid
-              ? `To allow other users to see and hear you, click the blocked camera icon in your browser's address bar.`
+              ? `Pour permettre aux autres utilisateurs de vous voir et vous entendre, cliquez sur l'icône de caméra bloquée dans la barre d'adresse de votre navigateur.`
               : null}
 
             {/* Prompt for desktops */}
-            {!isMobile ? `Access to ${deviceType} is required. ` : null}
+            {!isMobile ? `L'accès à ${deviceType} est requis. ` : null}
 
             {isSystemError && !isMobile
-              ? `Enable permissions for ${deviceType}${deviceType === 'screen' ? 'share' : ''} from sytem settings`
+              ? `Activez les permissions pour ${deviceType}${deviceType === 'écran' ? 'partage' : ''} depuis les paramètres système`
               : null}
             {!isSystemError && !isMobile
-              ? `Enable permissions for ${deviceType}${
-                  deviceType === 'screen' ? 'share' : ''
-                } from address bar or browser settings.`
+              ? `Activez les permissions pour ${deviceType}${
+                  deviceType === 'écran' ? 'partage' : ''
+                } depuis la barre d'adresse ou les paramètres du navigateur.`
               : null}
           </Text>
 
@@ -111,10 +111,10 @@ export const PermissionErrorModal = ({ error }: { error?: HMSException }) => {
           {isMobile && isIOS ? (
             <>
               <Button onClick={() => window.location.reload()} css={{ w: '100%', mb: '$6' }}>
-                Reload
+                Recharger
               </Button>
               <Button outlined variant="standard" onClick={() => setDeviceType('')} css={{ w: '100%' }}>
-                Continue anyway
+                Continuer quand même
               </Button>
             </>
           ) : null}
@@ -122,10 +122,10 @@ export const PermissionErrorModal = ({ error }: { error?: HMSException }) => {
           {isMobile && isAndroid ? (
             <>
               <Button onClick={() => setDeviceType('')} css={{ w: '100%', mb: '$6' }}>
-                I've allowed access
+                J'ai autorisé l'accès
               </Button>
               <Button outlined variant="standard" onClick={() => setDeviceType('')} css={{ w: '100%' }}>
-                Continue anyway
+                Continuer quand même
               </Button>
             </>
           ) : null}
@@ -133,7 +133,7 @@ export const PermissionErrorModal = ({ error }: { error?: HMSException }) => {
           {!isMobile ? (
             <Flex justify="end" css={{ w: '100%' }}>
               <Button outlined variant="standard" onClick={() => setDeviceType('')}>
-                Dismiss
+                Ignorer
               </Button>
             </Flex>
           ) : null}

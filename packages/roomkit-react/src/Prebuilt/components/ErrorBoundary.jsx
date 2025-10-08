@@ -45,17 +45,17 @@ export class ErrorBoundary extends Component {
               }}
             >
               <div style={{ margin: '1.5rem', width: '100%' }}>
-                <Text>Something went wrong</Text>
-                <Text>Message: ${this.state.error}</Text>
+                <Text>Quelque chose s'est mal passé</Text>
+                <Text>Message : ${this.state.error}</Text>
                 <br />
-                Please reload to see if it works. If you think this is a mistake on our side, please reach out to us
-                on&nbsp;
+                Veuillez recharger pour voir si cela fonctionne. Si vous pensez que c'est une erreur de notre côté, contactez-nous
+                sur&nbsp;
                 <a href="https://dashboard.100ms.live/dashboard" target="_blank" rel="noreferrer">
                   Dashboard
                 </a>
               </div>
               <Flex>
-                <Tooltip title="Reload page">
+                <Tooltip title="Recharger la page">
                   <Button
                     onClick={() => {
                       window.location.reload();
@@ -63,10 +63,10 @@ export class ErrorBoundary extends Component {
                     css={{ mx: '$8' }}
                     data-testid="join_again_btn"
                   >
-                    Reload
+                    Recharger
                   </Button>
                 </Tooltip>
-                <Tooltip title="Copy error details to clipboard">
+                <Tooltip title="Copier les détails de l'erreur dans le presse-papiers">
                   <Button
                     onClick={() => {
                       const { error, errorInfo } = this.state;
@@ -81,7 +81,7 @@ export class ErrorBoundary extends Component {
                     css={{ mx: '$8' }}
                     data-testid="join_again_btn"
                   >
-                    <CopyIcon /> {this.state.isErrorCopied ? 'Copied' : 'Copy Details'}
+                    <CopyIcon /> {this.state.isErrorCopied ? 'Copié' : 'Copier les détails'}
                   </Button>
                 </Tooltip>
               </Flex>

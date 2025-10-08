@@ -108,8 +108,8 @@ export const VideoStreamingSection = ({
             isNotAllowedToPublish && !hasSubscribedRolePublishing,
           () => (
             <WaitingView
-              title="Waiting for Host to join"
-              subtitle="Sit back and relax"
+              title="En attente de l'hôte pour rejoindre"
+              subtitle="Détendez-vous et attendez"
               icon={<PeopleAddIcon width="56px" height="56px" style={{ color: 'white' }} />}
             />
           ),
@@ -119,8 +119,8 @@ export const VideoStreamingSection = ({
             isScreenOnlyPublishParams && !isSharingScreen && !hasSubscribedRolePublishing,
           () => (
             <WaitingView
-              title="Ready to present"
-              subtitle="Select the Screenshare button to start presenting"
+              title="Prêt à présenter"
+              subtitle="Sélectionnez le bouton Partage d'écran pour commencer la présentation"
               icon={<ShareScreenIcon width="56px" height="56px" style={{ color: 'white' }} />}
             />
           ),

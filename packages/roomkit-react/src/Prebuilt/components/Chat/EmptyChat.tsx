@@ -42,14 +42,14 @@ export const EmptyChat = () => {
         </Box>
 
         <Text variant="h5" css={{ mt: '$8', c: '$on_surface_high' }}>
-          {canSendMessages ? 'Start a conversation' : 'No messages yet'}
+          {canSendMessages ? 'Commencer une conversation' : 'Aucun message pour le moment'}
         </Text>
         {canSendMessages ? (
           <Text
             variant="sm"
             css={{ mt: '$4', maxWidth: '80%', textAlign: 'center', mx: 'auto', c: '$on_surface_medium' }}
           >
-            There are no messages here yet. Start a conversation by sending a message.
+            Il n'y a pas encore de messages ici. Commencez une conversation en envoyant un message.
           </Text>
         ) : null}
       </Box>

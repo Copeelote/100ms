@@ -54,7 +54,7 @@ const PreviewForm = ({
           css={{ w: '100%', boxSizing: 'border-box' }}
           value={name}
           onChange={e => onChange(e.target.value.trimStart())}
-          placeholder="Enter name"
+          placeholder="Entrez votre nom"
           autoFocus
           autoComplete="name"
           onKeyDown={e => {
@@ -73,7 +73,7 @@ const PreviewForm = ({
       <Button type="submit" icon disabled={!name || !enableJoin} onClick={onJoin}>
         {/* Conditions to show go live: The first broadcaster joins a streaming kit that is not live */}
         {showGoLive ? <GoLiveIcon height={18} width={18} /> : null}
-        {showGoLive ? joinForm.go_live_btn_label : joinForm.join_btn_label}
+        {showGoLive ? ( 'Diffuser en direct') : ( 'Rejoindre maintenant')}
       </Button>
     </Form>
   );

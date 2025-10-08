@@ -139,14 +139,14 @@ export const ToastConfig = {
   NEW_MESSAGE: {
     single: notification => {
       return {
-        title: `New message from ${notification.data?.senderName}`,
+        title: `Nouveau message de ${notification.data?.senderName}`,
         icon: <ChatUnreadIcon />,
         action: <ChatAction />,
       };
     },
     multiple: notifications => {
       return {
-        title: `${notifications.length} new messages`,
+        title: `${notifications.length} nouveaux messages`,
         icon: <ChatUnreadIcon />,
         action: <ChatAction />,
       };
@@ -155,7 +155,7 @@ export const ToastConfig = {
   RECONNECTED: {
     single: online => {
       return {
-        title: `You are now ${online ? 'online' : 'connected'}`,
+        title: `Vous êtes maintenant ${online ? 'en ligne' : 'connecté'}`,
         icon: <ConnectivityIcon />,
         variant: 'success',
         duration: 3000,
@@ -165,8 +165,8 @@ export const ToastConfig = {
   RECONNECTING: {
     single: message => {
       return {
-        title: `You are offline for now. while we try to reconnect, please check
-        your internet connection. ${message}.
+        title: `Vous êtes hors ligne pour le moment. Pendant que nous essayons de vous reconnecter, veuillez vérifier
+        votre connexion internet. ${message}.
       `,
         icon: <PoorConnectivityIcon />,
         variant: 'warning',

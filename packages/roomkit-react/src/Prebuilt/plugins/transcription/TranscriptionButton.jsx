@@ -123,7 +123,7 @@ export function TranscriptionButton() {
         </Text>
       </Box>
       {isAllowedToPublish.audio && (
-        <Tooltip title={`Turn ${!isTranscriptionEnabled ? 'on' : 'off'} transcription`}>
+        <Tooltip title={`${!isTranscriptionEnabled ? 'Activer' : 'Désactiver'} la transcription`}>
           <IconButton
             active={!isTranscriptionEnabled}
             onClick={toggleTranscriptionState}

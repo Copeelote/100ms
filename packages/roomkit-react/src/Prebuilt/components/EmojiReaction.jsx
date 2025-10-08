@@ -81,7 +81,7 @@ export const EmojiReaction = ({ showCard = false }) => {
             isMobile || isLandscape ? { bg: '$surface_default', r: '$round', border: '1px solid $border_bright' } : {}
           }
         >
-          <Tooltip title="Emoji reaction">
+          <Tooltip title="Réaction emoji">
             <Box>
               <EmojiIcon />
             </Box>

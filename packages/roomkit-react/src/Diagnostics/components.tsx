@@ -49,7 +49,7 @@ export const TestFooter = ({
         '@lg': { flexDirection: 'column', gap: '$8' },
       }}
     >
-      <Box>{error && <Text css={{ c: '$alert_error_default' }}>Error: {error.message}</Text>}</Box>
+      <Box>{error && <Text css={{ c: '$alert_error_default' }}>Erreur : {error.message}</Text>}</Box>
       {children ? (
         children
       ) : (
@@ -57,10 +57,10 @@ export const TestFooter = ({
           <Text css={{ c: '$on_primary_medium' }}>{ctaText}</Text>
           <Flex align="center" gap="4">
             <Button onClick={onNextStep} variant="standard" outlined={true}>
-              Skip
+              Ignorer
             </Button>
             <Button disabled={!!error} onClick={onNextStep}>
-              Yes
+              Oui
             </Button>
           </Flex>
         </Flex>

@@ -59,7 +59,7 @@ export const ErrorDialog = ({ open = true, onOpenChange, title, children, ...pro
   );
 };
 
-export const RequestDialog = ({ open = true, onOpenChange, title, body, actionText = 'Accept', onAction, Icon }) => (
+export const RequestDialog = ({ open = true, onOpenChange, title, body, actionText = 'Accepter', onAction, Icon }) => (
   <Dialog.Root open={open} onOpenChange={onOpenChange}>
     <Dialog.Portal>
       <Dialog.Overlay />
@@ -87,7 +87,7 @@ export const RequestDialog = ({ open = true, onOpenChange, title, body, actionTe
           <Box css={{ width: '50%' }}>
             <Dialog.Close css={{ width: '100%' }}>
               <Button variant="standard" outlined css={{ width: '100%' }}>
-                Cancel
+                Annuler
               </Button>
             </Dialog.Close>
           </Box>

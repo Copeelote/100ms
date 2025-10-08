@@ -15,18 +15,18 @@ const Regions = {
 };
 
 const ConnectivityStateMessage = {
-  [ConnectivityState.STARTING]: 'Fetching Init',
-  [ConnectivityState.INIT_FETCHED]: 'Connecting to signal server',
-  [ConnectivityState.SIGNAL_CONNECTED]: 'Establishing ICE connection',
-  [ConnectivityState.ICE_ESTABLISHED]: 'Capturing Media',
-  [ConnectivityState.MEDIA_CAPTURED]: 'Publishing Media',
-  [ConnectivityState.MEDIA_PUBLISHED]: 'Finishing Up',
-  [ConnectivityState.COMPLETED]: 'Completed',
+  [ConnectivityState.STARTING]: 'Récupération de l\'initialisation',
+  [ConnectivityState.INIT_FETCHED]: 'Connexion au serveur de signalisation',
+  [ConnectivityState.SIGNAL_CONNECTED]: 'Établissement de la connexion ICE',
+  [ConnectivityState.ICE_ESTABLISHED]: 'Capture des médias',
+  [ConnectivityState.MEDIA_CAPTURED]: 'Publication des médias',
+  [ConnectivityState.MEDIA_PUBLISHED]: 'Finalisation',
+  [ConnectivityState.COMPLETED]: 'Terminé',
 };
 
 export const ConnectivityTestStepResult = ({
   title,
-  status = 'Connected',
+  status = 'Connecté',
   success,
   children,
 }: {

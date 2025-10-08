@@ -104,5 +104,8 @@
       "path": "packages/react-icons/dist/index.js",
       "limit": "100 KB"
     }
-  ]
+  ],
+  "dependencies": {
+    "@tldraw/tldraw": "^4.0.3"
+  }
 }

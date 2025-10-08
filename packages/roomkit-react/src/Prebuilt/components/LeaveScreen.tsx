@@ -30,7 +30,7 @@ export const LeaveScreen = () => {
           👋
         </Text>
         <Text variant="h4" css={{ color: '$on_surface_high', fontWeight: '$semiBold', mt: '$12' }}>
-          You left the room
+          Vous avez quitté la salle
         </Text>
         <Text
           variant="body1"
@@ -41,7 +41,7 @@ export const LeaveScreen = () => {
             textAlign: 'center',
           }}
         >
-          Have a nice day
+          Passez une bonne journée
           {previewPreference.name && (
             <Box as="span" css={{ ...textEllipsis(100) }}>
               , {previewPreference.name}
@@ -51,7 +51,7 @@ export const LeaveScreen = () => {
         </Text>
         <Flex css={{ mt: '$14', gap: '$10', alignItems: 'center' }}>
           <Text variant="body1" css={{ color: '$on_surface_medium', fontWeight: '$regular' }}>
-            Left by mistake?
+            Parti par erreur ?
           </Text>
           <Button
             onClick={() => {
@@ -61,7 +61,7 @@ export const LeaveScreen = () => {
             data-testid="join_again_btn"
           >
             <ExitIcon />
-            <Text css={{ ml: '$3', fontWeight: '$semiBold', color: 'inherit' }}>Rejoin</Text>
+            <Text css={{ ml: '$3', fontWeight: '$semiBold', color: 'inherit' }}>Rejoindre</Text>
           </Button>
         </Flex>
         <Feedback />

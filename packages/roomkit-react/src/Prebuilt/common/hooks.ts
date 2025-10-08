@@ -95,6 +95,7 @@ export const useShowStreamingUI = () => {
   return join_form?.join_btn_type === JoinForm_JoinBtnType.JOIN_BTN_TYPE_JOIN_AND_GO_LIVE;
 };
 
+
 // The search results should not have role name matches
 export const useParticipants = (params?: { metadata?: { isHandRaised?: boolean }; role?: string; search?: string }) => {
   const isConnected = useHMSStore(selectIsConnectedToRoom);

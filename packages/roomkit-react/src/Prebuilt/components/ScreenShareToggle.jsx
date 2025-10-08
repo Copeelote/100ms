@@ -45,7 +45,7 @@ export const ScreenshareToggle = ({ css = {} }) => {
             await requestPermission();
           }}
         >
-          <Tooltip title={`${!isVideoScreenshare ? 'Start' : 'Stop'} screen sharing`}>
+          <Tooltip title={`${!isVideoScreenshare ? 'Démarrer' : 'Arrêter'} le partage d'écran`}>
             <Box>
               <ShareScreenIcon />
             </Box>

@@ -272,18 +272,18 @@ const LocalPeerStats = () => {
 
   return (
     <Flex css={{ flexWrap: 'wrap', gap: '$10' }}>
-      <StatsRow label="Packets Lost" value={stats.subscribe?.packetsLost} />
+      <StatsRow label="Paquets perdus" value={stats.subscribe?.packetsLost} />
       <StatsRow label="Jitter" value={`${((stats.subscribe?.jitter ?? 0) * 1000).toFixed(2)} ms`} />
-      <StatsRow label="Publish Bitrate" value={formatBytes(stats.publish?.bitrate, 'b/s')} />
-      <StatsRow label="Subscribe Bitrate" value={formatBytes(stats.subscribe?.bitrate, 'b/s')} />
+      <StatsRow label="Débit de publication" value={formatBytes(stats.publish?.bitrate, 'b/s')} />
+      <StatsRow label="Débit d'abonnement" value={formatBytes(stats.subscribe?.bitrate, 'b/s')} />
       <StatsRow
-        label="Available Outgoing Bitrate"
+        label="Débit sortant disponible"
         value={formatBytes(stats.publish?.availableOutgoingBitrate, 'b/s')}
       />
-      <StatsRow label="Total Bytes Sent" value={formatBytes(stats.publish?.bytesSent)} />
-      <StatsRow label="Total Bytes Received" value={formatBytes(stats.subscribe?.bytesReceived)} />
+      <StatsRow label="Total octets envoyés" value={formatBytes(stats.publish?.bytesSent)} />
+      <StatsRow label="Total octets reçus" value={formatBytes(stats.subscribe?.bytesReceived)} />
       <StatsRow
-        label="Round Trip Time"
+        label="Temps d'aller-retour"
         value={`${
           (((stats.publish?.currentRoundTripTime || 0) + (stats.subscribe?.currentRoundTripTime || 0)) / 2).toFixed(3) *
           1000
@@ -312,11 +312,11 @@ const TrackStats = ({ trackID, layer, local }) => {
   return (
     <Flex css={{ flexWrap: 'wrap', gap: '$10' }}>
       <StatsRow label="Type" value={stats.type + ' ' + stats.kind} />
-      <StatsRow label="Bitrate" value={formatBytes(stats.bitrate, 'b/s')} />
-      <StatsRow label="Packets Lost" value={stats.packetsLost} />
+      <StatsRow label="Débit" value={formatBytes(stats.bitrate, 'b/s')} />
+      <StatsRow label="Paquets perdus" value={stats.packetsLost} />
       <StatsRow label="Jitter" value={`${((stats.subscribe?.jitter ?? 0) * 1000).toFixed(2)} ms`} />
       <StatsRow
-        label={inbound ? 'Bytes Received' : 'Bytes Sent'}
+        label={inbound ? 'Octets reçus' : 'Octets envoyés'}
         value={formatBytes(inbound ? stats.bytesReceived : stats.bytesSent)}
       />
       {stats.kind === 'video' && (

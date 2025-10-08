@@ -50,7 +50,7 @@ export const ChangeNameContent = ({
         }}
       >
         {isMobile ? <ChevronLeftIcon onClick={onBackClick} style={{ marginRight: '0.5rem' }} /> : null}
-        Change Name
+        Changer le nom
         <Box
           css={{ color: 'inherit', ml: 'auto', '&:hover': { color: '$on_surface_medium', cursor: 'pointer' } }}
           onClick={onExit}
@@ -59,7 +59,7 @@ export const ChangeNameContent = ({
         </Box>
       </Text>
       <Text variant="sm" css={{ color: '$on_surface_medium', pb: '$6', mb: '$8', '@md': { px: '$8', mt: '$4' } }}>
-        Your name will be visible to other participants in the session.
+        Votre nom sera visible par les autres participants de la session.
       </Text>
       <Flex justify="center" align="center" css={{ my: '$8', w: '100%', '@md': { px: '$8' } }}>
         <Input

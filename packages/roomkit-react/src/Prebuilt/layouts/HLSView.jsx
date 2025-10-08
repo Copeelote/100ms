@@ -461,14 +461,14 @@ const HLSView = () => {
           {streamEnded ? (
             <WaitingView
               icon={<ColoredHandIcon height={56} width={56} />}
-              title="Stream has ended"
-              subtitle="Have a nice day!"
+              title="Le stream s'est terminé"
+              subtitle="Passez une bonne journée !"
             />
           ) : (
             <WaitingView
               icon={<GoLiveIcon height={56} width={56} style={{ color: 'white' }} />}
-              title="Stream yet to start"
-              subtitle="Sit back and relax"
+              title="Le stream n'a pas encore commencé"
+              subtitle="Détendez-vous et attendez"
             />
           )}
         </Flex>

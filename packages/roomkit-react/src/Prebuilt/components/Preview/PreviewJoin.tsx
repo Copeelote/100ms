@@ -45,10 +45,10 @@ import { APP_DATA, UI_SETTINGS } from '../../common/constants';
 
 const getParticipantChipContent = (peerCount = 0) => {
   if (peerCount === 0) {
-    return 'You are the first to join';
+    return 'Vous êtes le premier à rejoindre';
   }
   const formattedNum = getFormattedCount(peerCount);
-  return `${formattedNum} other${parseInt(formattedNum) === 1 ? '' : 's'} in the session`;
+  return `${formattedNum} autre${parseInt(formattedNum) === 1 ? '' : 's'} dans la session`;
 };
 
 const useLocalTileAspectRatio = () => {
@@ -138,13 +138,13 @@ const PreviewJoin = ({
         <Flex direction="column" justify="center" css={{ w: '100%', maxWidth: '600px', gap: '$8' }}>
           <Logo />
           <Text variant="h4" css={{ wordBreak: 'break-word', textAlign: 'center' }}>
-            {previewHeader.title}
+            {previewHeader.title || 'Commencer'}
           </Text>
           <Text
             css={{ c: '$on_surface_medium', textAlign: 'center', maxWidth: '100%', wordWrap: 'break-word' }}
             variant="sm"
           >
-            {previewHeader.sub_title}
+            {previewHeader.sub_title || 'Configurez votre audio et vidéo avant de rejoindre'}
           </Text>
           <Flex justify="center" css={{ gap: '$4' }}>
             {isStreamingOn ? (

@@ -1,12 +1,12 @@
 const connectionTooltip = {
-  0: 'Reconnecting',
-  1: 'Very Bad Connection',
-  2: 'Bad Connection',
-  3: 'Moderate Connection',
-  4: 'Good Connection',
-  5: 'Excellent Connection',
+  0: 'Reconnexion en cours',
+  1: 'Connexion très mauvaise',
+  2: 'Mauvaise connexion',
+  3: 'Connexion modérée',
+  4: 'Bonne connexion',
+  5: 'Excellente connexion',
 };
-connectionTooltip[-1] = 'Network Unknown';
+connectionTooltip[-1] = 'Réseau inconnu';
 
 /**
  * @param connectionScore -> 1-5 connection score for network quality

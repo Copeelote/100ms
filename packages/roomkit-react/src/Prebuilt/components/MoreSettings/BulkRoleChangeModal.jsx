@@ -27,7 +27,7 @@ export const BulkRoleChangeModal = ({ onOpenChange }) => {
         setErrorMessage('');
         onOpenChange(false);
       } catch (err) {
-        setErrorMessage(err?.message ? err?.message : 'Unknown error');
+        setErrorMessage(err?.message ? err?.message : 'Erreur inconnue');
         setIsSubmiting(false);
       }
     }
@@ -35,9 +35,9 @@ export const BulkRoleChangeModal = ({ onOpenChange }) => {
 
   return (
     <Dialog.Root defaultOpen onOpenChange={onOpenChange}>
-      <DialogContent title="Bulk Role Change" Icon={ChangeRoleIcon}>
+      <DialogContent title="Changement de rôle en masse" Icon={ChangeRoleIcon}>
         <DialogRow>
-          <Text>For Roles: </Text>
+          <Text>Pour les rôles : </Text>
           <Dropdown.Root
             open={bulkRoleDialog}
             onOpenChange={value => {
@@ -49,7 +49,7 @@ export const BulkRoleChangeModal = ({ onOpenChange }) => {
           >
             <DialogDropdownTrigger
               ref={ref}
-              title={selectedBulkRole.length === 0 ? 'Select Multiple Roles' : selectedBulkRole.toString()}
+              title={selectedBulkRole.length === 0 ? 'Sélectionner plusieurs rôles' : selectedBulkRole.toString()}
               css={{
                 w: '70%',
                 p: '$8',
@@ -90,11 +90,11 @@ export const BulkRoleChangeModal = ({ onOpenChange }) => {
           </Dropdown.Root>
         </DialogRow>
         <DialogRow>
-          <Text>To Role: </Text>
+          <Text>Vers le rôle : </Text>
           <Dropdown.Root open={roleDialog} onOpenChange={value => setRoleDialog(value)}>
             <DialogDropdownTrigger
               ref={roleRef}
-              title={selectedRole || 'Select Role'}
+              title={selectedRole || 'Sélectionner un rôle'}
               css={{
                 w: '70%',
                 p: '$8',
@@ -130,7 +130,7 @@ export const BulkRoleChangeModal = ({ onOpenChange }) => {
         <DialogRow justify="end">
           <Button variant="primary" onClick={changeBulkRole} disabled={!(selectedRole && selectedBulkRole.length > 0)}>
             {isSubmiting && <Loading css={{ color: '$on_primary_medium' }} />}
-            Apply
+            Appliquer
           </Button>
         </DialogRow>
       </DialogContent>

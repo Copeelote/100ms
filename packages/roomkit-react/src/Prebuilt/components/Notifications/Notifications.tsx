@@ -30,7 +30,7 @@ export function Notifications() {
 
   const handleRoleChangeDenied = useCallback((request: HMSRoleChangeRequest & { peerName: string }) => {
     ToastManager.addToast({
-      title: `${request.peerName} denied your request to join the ${request.role.name} role`,
+      title: `${request.peerName} a refusé votre demande de rejoindre le rôle ${request.role.name}`,
       variant: 'error',
     });
   }, []);

@@ -60,7 +60,7 @@ const Settings = ({ setHide }) => {
             </StyledVideoTile.Container>
           )}
           <DeviceSelector
-            title="Video"
+            title="Vidéo"
             devices={videoInput}
             icon={<VideoOnIcon />}
             selection={selectedDeviceIDs.videoInput}
@@ -91,7 +91,7 @@ const Settings = ({ setHide }) => {
 
       {audioOutputFiltered?.length && shouldShowAudioOutput ? (
         <DeviceSelector
-          title="Speaker"
+          title="Haut-parleur"
           icon={<SpeakerIcon />}
           devices={audioOutput}
           selection={selectedDeviceIDs.audioOutput}
@@ -143,7 +143,7 @@ const DeviceSelector = ({ title, devices, selection, onChange, icon, children = 
             <DialogDropdownTrigger
               ref={ref}
               icon={icon}
-              title={devices.find(({ deviceId }) => deviceId === selection)?.label || 'Select device from list'}
+              title={devices.find(({ deviceId }) => deviceId === selection)?.label || 'Sélectionner un appareil dans la liste'}
               open={open}
             />
             <Dropdown.Portal>
@@ -191,7 +191,7 @@ const TestAudio = ({ id }) => {
         <SpeakerIcon />
         &nbsp;Test{' '}
         <Text as="span" css={{ display: 'none', '@md': { display: 'inline' } }}>
-          &nbsp; speaker
+          &nbsp; haut-parleur
         </Text>
       </Button>
       <audio

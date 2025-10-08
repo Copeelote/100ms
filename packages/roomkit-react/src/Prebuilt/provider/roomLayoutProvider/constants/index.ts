@@ -16,13 +16,13 @@ export const defaultLayout: Layout = {
       default: {
         elements: {
           preview_header: {
-            title: 'Get Started',
-            sub_title: 'Setup your audio and video before joining',
+            title: 'Commencer',
+            sub_title: 'Configurez votre audio et vidéo avant de rejoindre',
           },
           join_form: {
             join_btn_type: JoinForm_JoinBtnType.JOIN_BTN_TYPE_JOIN_ONLY,
-            join_btn_label: 'Join Now',
-            go_live_btn_label: 'Go Live',
+            join_btn_label: 'Rejoindre maintenant',
+            go_live_btn_label: 'Diffuser en direct',
           },
         },
       },
@@ -33,9 +33,9 @@ export const defaultLayout: Layout = {
           chat: {
             public_chat_enabled: true,
             private_chat_enabled: true,
-            chat_title: 'Chat',
+            chat_title: 'Discussion',
             allow_pinning_messages: true,
-            message_placeholder: 'Send a message...',
+            message_placeholder: 'Envoyer un message...',
             roles_whitelist: [],
             real_time_controls: {
               can_disable_chat: true,

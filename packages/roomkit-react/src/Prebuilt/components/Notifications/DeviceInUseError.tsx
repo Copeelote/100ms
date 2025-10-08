@@ -37,22 +37,22 @@ export function DeviceInUseError() {
 
     const errorMessage = error?.message;
     ToastManager.addToast({
-      title: `Error: ${errorMessage} - ${error?.description}`,
+      title: `Erreur : ${errorMessage} - ${error?.description}`,
       action: (
         <Button outlined variant="standard" css={{ w: 'max-content' }} onClick={() => setShowDeviceInUseModal(true)}>
-          Help
+          Aide
         </Button>
       ),
     });
 
     if (hasAudioVideo) {
-      setDeviceType('camera and microphone');
+      setDeviceType('caméra et microphone');
     } else if (hasAudio) {
       setDeviceType('microphone');
     } else if (hasVideo) {
-      setDeviceType('camera');
+      setDeviceType('caméra');
     } else if (hasScreen) {
-      setDeviceType('screen');
+      setDeviceType('écran');
     }
   }, [notification]);
 

@@ -93,13 +93,13 @@ export function useRoomLayoutHeader() {
   const details = useMemo(() => {
     const details = [];
     if (hlsState?.variants[0]?.['startedAt']) {
-      details.push(`${getFormattedCount(peerCount)} watching`);
+      details.push(`${getFormattedCount(peerCount)} en train de regarder`);
       details.push(hlsState.variants[0]['startedAt']);
     } else if (sessionStartedAt) {
       details.push(sessionStartedAt);
     }
     if (isRecordingOn) {
-      details.push('Recording');
+      details.push('Enregistrement');
     }
     return details;
   }, [hlsState?.variants, isRecordingOn, peerCount, sessionStartedAt]);

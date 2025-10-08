@@ -17,7 +17,7 @@ import { settingContent } from './common';
 const settingsList = [
   {
     tabName: 'devices',
-    title: 'Device Settings',
+    title: 'Paramètres d\'appareils',
     icon: SettingsIcon,
     content: DeviceSettings,
   },
@@ -29,7 +29,7 @@ const settingsList = [
   },
   {
     tabName: 'layout',
-    title: 'Layout',
+    title: 'Disposition',
     icon: GridFourIcon,
     content: LayoutSettings,
   },

@@ -308,7 +308,7 @@ export const ChatFooter = ({ onSend, children }: { onSend: (count: number) => vo
       )}
       {messageLengthExceeded && (
         <Text variant="xs" css={{ color: '$alert_error_default', fontWeight: '$semiBold', mt: '$1', ml: '$7' }}>
-          Message cannot exceed 2000 characters
+          Le message ne peut pas dépasser 2000 caractères
         </Text>
       )}
     </Box>

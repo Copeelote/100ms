@@ -5,7 +5,7 @@ import { CHAT_SELECTOR } from '../../common/constants';
 
 export const ParticipantFilter = ({ selection, onSelection, isConnected, roles }) => {
   const [open, setOpen] = useState(false);
-  const selectionValue = selection?.role || (selection?.metadata?.isHandRaised ? 'Raised Hand' : '');
+  const selectionValue = selection?.role || (selection?.metadata?.isHandRaised ? 'Main levée' : '');
   const onItemClick = useCallback(value => {
     onSelection(value);
     setOpen(false);
@@ -44,10 +44,10 @@ export const ParticipantFilter = ({ selection, onSelection, isConnected, roles }
           w: '$48',
         }}
       >
-        <Item selected={!selection} title="Everyone" onSelection={onItemClick} icon={<PeopleIcon />} />
+        <Item selected={!selection} title="Tout le monde" onSelection={onItemClick} icon={<PeopleIcon />} />
         <Item
           selected={selection?.metadata?.isHandRaised}
-          title="Raised Hand"
+          title="Main levée"
           onSelection={onItemClick}
           icon={<HandRaiseIcon />}
           value={{ metadata: { isHandRaised: true }, role: '' }}
