@@ -35,7 +35,7 @@ export const getRecordingText = (
   }
   const title: string[] = [];
   if (isBrowserRecordingOn) {
-    title.push('Browser');
+    title.push('Navigateur');
   }
   if (isServerRecordingOn) {
     title.push('Server');

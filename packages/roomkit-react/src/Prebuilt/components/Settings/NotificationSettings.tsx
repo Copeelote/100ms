@@ -38,25 +38,25 @@ export const NotificationSettings = () => {
   return (
     <Box className={settingOverflow()}>
       <NotificationItem
-        label="Peer Joined"
+        label="Arrivée d'un participant"
         type={SUBSCRIBED_NOTIFICATIONS.PEER_JOINED}
         icon={<PeopleAddIcon />}
         checked={subscribedNotifications.PEER_JOINED}
       />
       <NotificationItem
-        label="Peer Leave"
+        label="Départ d'un participant"
         type={SUBSCRIBED_NOTIFICATIONS.PEER_LEFT}
         icon={<PeopleRemoveIcon />}
         checked={subscribedNotifications.PEER_LEFT}
       />
       <NotificationItem
-        label="Hand Raised"
+        label="Main levée"
         type={SUBSCRIBED_NOTIFICATIONS.METADATA_UPDATED}
         icon={<HandIcon />}
         checked={subscribedNotifications.METADATA_UPDATED}
       />
       <NotificationItem
-        label="Error"
+        label="Erreur"
         type={SUBSCRIBED_NOTIFICATIONS.ERROR}
         icon={<AlertOctagonIcon />}
         checked={subscribedNotifications.ERROR}

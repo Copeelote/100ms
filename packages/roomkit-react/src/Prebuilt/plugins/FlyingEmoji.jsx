@@ -62,7 +62,7 @@ export function FlyingEmoji() {
         const sender = await hmsActions.getPeer(senderId);
         senderPeerName = sender?.name;
       }
-      const nameToShow = localPeerId === senderId ? 'You' : senderPeerName;
+      const nameToShow = localPeerId === senderId ? 'Vous' : senderPeerName;
       const startingPoint = startingPoints[emojiCount % startingPoints.length];
       const id = emojiCount++;
 

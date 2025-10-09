@@ -4,7 +4,6 @@ import { Box, Flex } from '../../../Layout';
 import { Text } from '../../../Text';
 import { config as cssConfig } from '../../../Theme';
 // @ts-ignore
-import emptyChat from '../../images/empty-chat.svg';
 import { useRoomLayoutConferencingScreen } from '../../provider/roomLayoutProvider/hooks/useRoomLayoutScreen';
 import { useIsPeerBlacklisted } from '../hooks/useChatBlacklist';
 import { useLandscapeHLSStream, useMobileHLSStream } from '../../common/hooks';
@@ -37,9 +36,6 @@ export const EmptyChat = () => {
       justify="center"
     >
       <Box>
-        <Box css={{ m: '0 auto', mt: '$4', '@media (max-height: 575px)': { display: 'none' } }}>
-          <img src={emptyChat} style={{ display: 'inline' }} alt="Empty Chat" height={132} width={185} />
-        </Box>
 
         <Text variant="h5" css={{ mt: '$8', c: '$on_surface_high' }}>
           {canSendMessages ? 'Commencer une conversation' : 'Aucun message pour le moment'}

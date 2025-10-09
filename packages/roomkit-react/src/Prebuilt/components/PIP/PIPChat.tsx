@@ -28,7 +28,7 @@ export const PIPChat = () => {
   const getSenderName = useCallback(
     (senderName: string, senderID?: string) => {
       const slicedName = senderName.length > 10 ? senderName.slice(0, 10) + '...' : senderName;
-      return slicedName + (senderID === localPeerID ? ' (You)' : '');
+      return slicedName + (senderID === localPeerID ? ' (Vous)' : '');
     },
     [localPeerID],
   );
@@ -189,7 +189,7 @@ export const PIPChat = () => {
       {canSendChatMessages && (
         <Box css={{ bg: '$surface_dim' }}>
           <Flex css={{ px: '$4', pb: '3px', gap: '$2', alignItems: 'center' }}>
-            <Text variant="caption">To:</Text>
+            <Text variant="caption">À :</Text>
             <Flex css={{ bg: '$primary_bright', color: '$on_primary_high', r: '$2' }}>
               <select
                 id="selector"
@@ -201,14 +201,14 @@ export const PIPChat = () => {
                   borderRadius: '4px',
                   padding: '0 2px',
                 }}
-                defaultValue={elements.chat?.public_chat_enabled ? 'Everyone' : elements.chat?.roles_whitelist?.[0]}
+                defaultValue={elements.chat?.public_chat_enabled ? 'Tout le monde' : elements.chat?.roles_whitelist?.[0]}
               >
                 {elements.chat?.roles_whitelist?.map(role => (
                   <option key={role} value={role}>
                     {role}
                   </option>
                 ))}
-                {elements.chat?.public_chat_enabled ? <option value="Everyone">Everyone</option> : ''}
+                {elements.chat?.public_chat_enabled ? <option value="Tout le monde">Tout le monde</option> : ''}
               </select>
             </Flex>
           </Flex>

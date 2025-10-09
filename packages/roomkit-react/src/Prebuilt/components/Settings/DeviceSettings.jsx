@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState } from 'react';
+import React, { Fragment, useRef, useState, useEffect } from 'react';
 import {
   DeviceType,
   selectIsLocalVideoEnabled,
@@ -38,10 +38,11 @@ const Settings = ({ setHide }) => {
    */
   const audioOutputFiltered = audioOutput?.filter(item => !!item.label) ?? [];
 
-  if (!videoInput?.length && !audioInput?.length && !audioOutputFiltered?.length) {
-    setHide(true);
-  }
-
+  useEffect(() => {
+    if (!videoInput?.length && !audioInput?.length && !audioOutputFiltered?.length) {
+      setHide(true);
+    }
+  }, [videoInput, audioInput, audioOutputFiltered, setHide]);
   return (
     <Box className={settingOverflow()}>
       {videoInput?.length ? (

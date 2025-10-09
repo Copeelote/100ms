@@ -14,6 +14,20 @@ import { useGroupOnStageActions } from '../hooks/useGroupOnStageActions';
 // @ts-ignore: No implicit Any
 import { getFormattedCount } from '../../common/utils';
 
+// Role name translations
+const translateRoleName = (roleName: string): string => {
+  const roleTranslations: Record<string, string> = {
+    'viewer': 'Spectateur',
+    'host': 'Hôte',
+    'speaker': 'Intervenant',
+    'moderator': 'Modérateur',
+    'guest': 'Invité',
+    'participant': 'Participant',
+    'admin': 'Administrateur',
+  };
+  return roleTranslations[roleName.toLowerCase()] || roleName;
+};
+
 export const ROW_HEIGHT = 50;
 const ITER_TIMER = 5000;
 
@@ -114,7 +128,7 @@ export const RoleAccordion = ({
             variant="sm"
             css={{ fontWeight: '$semiBold', textTransform: 'capitalize', color: '$on_surface_medium' }}
           >
-            {roleName} {`(${getFormattedCount(isLargeRoom && isOffStageRole ? total : peerList.length)})`}
+            {translateRoleName(roleName)} {`(${getFormattedCount(isLargeRoom && isOffStageRole ? total : peerList.length)})`}
           </Text>
           <RoleOptions roleName={roleName} peerList={peersInAccordion} />
         </Flex>
@@ -158,7 +172,7 @@ export const RoleAccordion = ({
             onClick={() => onActive?.(roleName)}
           >
             <Text variant="sm" css={{ color: 'inherit' }}>
-              View All
+              Voir tout
             </Text>
             <ChevronRightIcon />
           </Flex>
@@ -168,7 +182,7 @@ export const RoleAccordion = ({
             <HorizontalDivider />
             <Flex css={{ w: '100%', p: '$6', gap: '$4' }} justify="center">
               <Button variant="standard" onClick={lowerAllHands} icon css={{ pl: '$2' }}>
-                <CrossIcon /> Lower all hands
+                <CrossIcon /> Baisser toutes les mains
               </Button>
 
               <Button onClick={bringAllToStage} icon css={{ pl: '$2' }}>

@@ -19,6 +19,20 @@ import { config as cssConfig, useTheme } from '../../../Theme';
 import { StyledMenuTile } from '../../../TileMenu';
 import { ChangeNameModal } from '../MoreSettings/ChangeNameModal';
 import { getVideoTileLabel } from '../peerTileUtils';
+
+// Role name translations
+const translateRoleName = (roleName: string): string => {
+  const roleTranslations: Record<string, string> = {
+    'viewer': 'Spectateur',
+    'host': 'Hôte',
+    'speaker': 'Intervenant',
+    'moderator': 'Modérateur',
+    'guest': 'Invité',
+    'participant': 'Participant',
+    'admin': 'Administrateur',
+  };
+  return roleTranslations[roleName.toLowerCase()] || roleName;
+};
 import { RoleChangeModal } from '../RoleChangeModal';
 import { TileMenuContent } from './TileMenuContent';
 import { useDropdownList } from '../hooks/useDropdownList';
@@ -117,7 +131,7 @@ const TileMenu = ({
                   </Text>
                   {peer?.roleName ? (
                     <Text variant="xs" css={{ color: '$on_surface_low', mt: '$2' }}>
-                      {peer.roleName}
+                      {translateRoleName(peer.roleName)}
                     </Text>
                   ) : null}
                 </Box>

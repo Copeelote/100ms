@@ -9,9 +9,9 @@ import { settingOverflow } from './common';
 import { UI_SETTINGS } from '../../common/constants';
 
 export const LayoutMode = {
-  SIDEBAR: 'Sidebar',
-  GALLERY: 'Gallery',
-  SPOTLIGHT: 'Spotlight',
+  SIDEBAR: 'Barre latérale',
+  GALLERY: 'Galerie',
+  SPOTLIGHT: 'Projecteur',
 };
 
 export type LayoutModeKeys = keyof typeof LayoutMode;
@@ -43,7 +43,7 @@ export const LayoutSettings = () => {
     <Box className={settingOverflow()}>
       <Flex align="center" css={{ w: '100%', my: '$2', py: '$8', '@md': { display: 'none' } }}>
         <Text variant="md" css={{ fontWeight: '$semiBold' }}>
-          Tiles In View({maxTileCount})
+          Vignettes visibles ({maxTileCount})
         </Text>
         <Flex justify="end" css={{ flex: '1 1 0' }}>
           <Slider
@@ -58,9 +58,9 @@ export const LayoutSettings = () => {
           />
         </Flex>
       </Flex>
-      <SwitchWithLabel label="Audio Only Mode" id="audioOnlyMode" checked={isAudioOnly} onChange={toggleIsAudioOnly} />
+      <SwitchWithLabel label="Mode audio uniquement" id="audioOnlyMode" checked={isAudioOnly} onChange={toggleIsAudioOnly} />
       <SwitchWithLabel
-        label="Mirror Local Video"
+        label="Miroir de la vidéo locale"
         id="mirrorMode"
         checked={mirrorLocalVideo}
         onChange={value => {

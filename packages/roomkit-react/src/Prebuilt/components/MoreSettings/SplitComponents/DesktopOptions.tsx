@@ -120,7 +120,7 @@ export const DesktopOptions = ({
         onOpenChange={value => updateState(MODALS.MORE_SETTINGS, value)}
         modal={false}
       >
-        <Tooltip title="More options">
+        <Tooltip title="Plus d'options">
           <Dropdown.Trigger asChild data-testid="more_settings_btn">
             <IconButton>
               <HamburgerMenuIcon />
@@ -147,7 +147,7 @@ export const DesktopOptions = ({
             <Dropdown.Item onClick={toggleBRB} data-testid="brb_btn">
               <BrbIcon />
               <Text variant="sm" css={{ ml: '$4', color: '$on_surface_high' }}>
-                Be Right Back
+                De retour bientôt
               </Text>
               <Flex justify="end" css={{ color: '$on_surface_high', flexGrow: '1' }}>
                 {isBRBOn ? <CheckIcon /> : null}
@@ -164,10 +164,10 @@ export const DesktopOptions = ({
               <OpenCaptionIcon />
               <Flex direction="column" css={{ flexGrow: '1' }}>
                 <Text variant="sm" css={{ ml: '$4', color: '$on_surface_high' }}>
-                  Closed Captions
+                  Sous-titres
                 </Text>
                 <Text variant="caption" css={{ ml: '$4', color: '$on_surface_medium' }}>
-                  {isTranscriptionEnabled ? 'Enabled' : 'Disabled'}
+                  {isTranscriptionEnabled ? 'Activé' : 'Désactivé'}
                 </Text>
               </Flex>
               <Switch id="closed_caption_start_stop" checked={isTranscriptionEnabled} disabled={false} />
@@ -180,7 +180,7 @@ export const DesktopOptions = ({
                   <Flex css={{ w: '100%', h: '100%', p: '$8' }}>
                     <PipIcon />
                     <Text variant="sm" css={{ ml: '$4' }}>
-                      {isPipOn ? 'Disable' : 'Enable'} Picture-in-Picture
+                      {isPipOn ? 'Désactiver' : 'Activer'} l'image dans l'image
                     </Text>
                   </Flex>
                 }
@@ -200,7 +200,7 @@ export const DesktopOptions = ({
           <Dropdown.Item onClick={() => updateState(MODALS.DEVICE_SETTINGS, true)} data-testid="device_settings_btn">
             <SettingsIcon />
             <Text variant="sm" css={{ ml: '$4' }}>
-              Settings
+              Paramètres
             </Text>
           </Dropdown.Item>
           {match({ screenType, isSupported: HMSHLSPlayer.isSupported() })
@@ -222,7 +222,7 @@ export const DesktopOptions = ({
                   </Checkbox.Root>
                   <Flex justify="between" css={{ width: '100%' }}>
                     <Text variant="sm" css={{ ml: '$4' }}>
-                      Show HLS Stats
+                      Afficher les statistiques HLS
                     </Text>
 
                     <Text variant="sm" css={{ ml: '$4' }}>
@@ -239,7 +239,7 @@ export const DesktopOptions = ({
               >
                 <InfoIcon />
                 <Text variant="sm" css={{ ml: '$4' }}>
-                  Stats for Nerds
+                  Statistiques détaillées
                 </Text>
               </Dropdown.Item>
             ))}

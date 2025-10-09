@@ -32,7 +32,7 @@ export const ChatSelectorContainer = () => {
     <>
       <Flex align="center" css={{ mb: '$8', flex: '1 1 0', pl: '$2' }}>
         <Text variant="xs" css={{ color: '$on_surface_medium' }}>
-          {selection ? 'To' : 'Choose Participant'}
+          {selection ? 'À' : 'Choisir un participant'}
         </Text>
 
         {isMobile ? (

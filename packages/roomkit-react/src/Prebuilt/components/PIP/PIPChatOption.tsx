@@ -11,7 +11,7 @@ export const PIPChatOption = ({ openChat, showPIPChat }: { openChat: () => void;
     <Dropdown.Item onClick={openChat} data-testid="pip_chat_btn">
       <ExternalLinkIcon />
       <Text variant="sm" css={{ ml: '$4', color: '$on_surface_high' }}>
-        Pop out Chat
+        Ouvrir le chat dans une fenêtre
       </Text>
     </Dropdown.Item>
   );

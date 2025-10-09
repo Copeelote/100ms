@@ -128,7 +128,7 @@ export const PinnedMessage = () => {
               '&:hover .hide-on-hover': { display: 'none !important' },
               '&:hover .show-on-hover': { display: 'block !important' },
             }}
-            title="Unpin Message"
+            title="Désépingler le message"
           >
             <UnpinIcon className="show-on-hover" style={{ display: 'none' }} height={20} width={20} />
             <PinIcon className="hide-on-hover" style={{ display: 'block' }} height={20} width={20} />

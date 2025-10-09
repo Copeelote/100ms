@@ -19,7 +19,7 @@ export const FullScreenItem = () => {
     >
       <ExpandIcon />
       <Text variant="sm" css={{ ml: '$4' }}>
-        {isFullscreen ? 'Exit ' : 'Go '}Fullscreen
+        {isFullscreen ? 'Quitter le ' : 'Passer en '}plein écran
       </Text>
     </Dropdown.Item>
   );

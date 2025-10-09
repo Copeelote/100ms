@@ -52,7 +52,7 @@ export const DesktopLeaveRoom = ({
             }}
             onClick={() => setShowLeaveRoomAlert(true)}
           >
-            <Tooltip title="Leave Room">
+            <Tooltip title="Quitter la salle">
               <Box>
                 <ExitIcon style={{ transform: 'rotate(180deg)' }} />
               </Box>
@@ -83,10 +83,10 @@ export const DesktopLeaveRoom = ({
                   data-testid="just_leave_btn"
                 >
                   <LeaveCard
-                    title={showStream ? 'Leave Stream' : 'Leave Session'}
-                    subtitle={`Others will continue after you leave. You can join the ${
-                      showStream ? 'stream' : 'session'
-                    } again.`}
+                    title={showStream ? 'Quitter le stream' : 'Quitter la session'}
+                    subtitle={`Les autres continueront après votre départ. Vous pouvez rejoindre ${
+                      showStream ? 'le stream' : 'la session'
+                    } à nouveau.`}
                     bg=""
                     titleColor="$on_surface_high"
                     icon={<ExitIcon height={24} width={24} style={{ transform: 'rotate(180deg)' }} />}
@@ -105,10 +105,10 @@ export const DesktopLeaveRoom = ({
                   data-testid="end_room_btn"
                 >
                   <LeaveCard
-                    title={showStream ? 'End Stream' : 'End Session'}
-                    subtitle={`The ${
+                    title={showStream ? 'Terminer le stream' : 'Terminer la session'}
+                    subtitle={`Le ${
                       showStream ? 'stream' : 'session'
-                    } will end for everyone. You can't undo this action.`}
+                    } se terminera pour tout le monde. Cette action est irréversible.`}
                     bg=""
                     titleColor="$alert_error_brighter"
                     icon={<StopIcon height={24} width={24} />}
@@ -131,7 +131,7 @@ export const DesktopLeaveRoom = ({
           key="LeaveRoom"
           data-testid="leave_room_btn"
         >
-          <Tooltip title="Leave Room">
+          <Tooltip title="Quitter la salle">
             <Box>
               <ExitIcon style={{ transform: 'rotate(180deg)' }} />
             </Box>

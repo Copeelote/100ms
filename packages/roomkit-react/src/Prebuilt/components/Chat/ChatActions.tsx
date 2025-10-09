@@ -84,12 +84,12 @@ export const ChatActions = ({
     try {
       navigator?.clipboard.writeText(message.message);
       ToastManager.addToast({
-        title: 'Message copied successfully',
+        title: 'Message copié avec succès',
       });
     } catch (e) {
       console.log(e);
       ToastManager.addToast({
-        title: 'Could not copy message',
+        title: "Impossible de copier le message",
       });
     }
   }, [message]);
@@ -106,35 +106,35 @@ export const ChatActions = ({
     }
   > = {
     reply: {
-      text: 'Reply privately',
-      tooltipText: 'Reply privately',
+      text: 'Répondre en privé',
+      tooltipText: 'Répondre en privé',
       icon: <ReplyIcon style={iconStyle} />,
       onClick: onReply,
       show: showReply,
     },
     replyGroup: {
-      text: 'Reply to group',
-      tooltipText: 'Reply to group',
+      text: 'Répondre au groupe',
+      tooltipText: 'Répondre au groupe',
       icon: <ReplyGroupIcon style={iconStyle} />,
       onClick: onReplyGroup,
       show: !!message.senderRole && roles_whitelist.includes(message.senderRole),
     },
     pin: {
-      text: 'Pin message',
-      tooltipText: 'Pin',
+      text: 'Épingler le message',
+      tooltipText: 'Épingler',
       icon: <PinIcon style={iconStyle} />,
       onClick: () => setPinnedMessages(message, localPeerName || ''),
       show: showPinAction,
     },
     copy: {
-      text: 'Copy text',
-      tooltipText: 'Copy',
+      text: 'Copier le texte',
+      tooltipText: 'Copier',
       icon: <CopyIcon style={iconStyle} />,
       onClick: copyMessageContent,
       show: true,
     },
     hide: {
-      text: message.recipientPeer ? 'Hide for both' : 'Hide for everyone',
+      text: message.recipientPeer ? 'Masquer pour les deux' : 'Masquer pour tout le monde',
       icon: <EyeCloseIcon style={iconStyle} />,
       onClick: async () => {
         blacklistMessage(message.id);
@@ -143,7 +143,7 @@ export const ChatActions = ({
       show: !!can_hide_message,
     },
     block: {
-      text: 'Block from chat',
+      text: 'Bloquer du chat',
       icon: <CrossCircleIcon style={iconStyle} />,
       onClick: async () => {
         if (message.senderUserId) {
@@ -154,7 +154,7 @@ export const ChatActions = ({
       show: !!can_block_user && !sentByLocalPeer && !isSenderBlocked,
     },
     remove: {
-      text: 'Remove participant',
+      text: 'Retirer le participant',
       icon: <PeopleRemoveIcon style={iconStyle} />,
       color: '$alert_error_default',
       show: !!canRemoveOthers && !sentByLocalPeer,
@@ -189,7 +189,7 @@ export const ChatActions = ({
               alignItems: 'center',
             }}
           >
-            Message options
+           Options
             <Sheet.Close css={{ color: '$on_surface_high' }} onClick={e => setOpenSheet(false, e)}>
               <CrossIcon />
             </Sheet.Close>
@@ -259,7 +259,7 @@ export const ChatActions = ({
         ) : null}
 
         {options.block.show || options.hide.show || options.remove.show ? (
-          <Tooltip boxCss={tooltipBoxCSS} title="More actions">
+          <Tooltip boxCss={tooltipBoxCSS} title="Plus d'actions">
             <Dropdown.Trigger asChild>
               <IconButton>
                 <VerticalMenuIcon style={iconStyle} />

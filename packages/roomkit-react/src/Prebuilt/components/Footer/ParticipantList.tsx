@@ -117,7 +117,7 @@ export const ParticipantList = ({
               className="emptyParticipants"
               css={{ w: '100%', p: '$8 0', display: 'none' }}
             >
-              <Text variant="sm">{!filter ? 'No participants' : 'No matching participants'}</Text>
+              <Text variant="sm">{!filter ? 'Aucun participant' : 'Aucun participant correspondant'}</Text>
             </Flex>
           ) : null}
         </VirtualizedParticipants>
@@ -188,7 +188,7 @@ export const Participant = ({
         variant="sm"
         css={{ ...textEllipsis('100%'), flex: '1 1 0', mr: '$8', fontWeight: '$semiBold', color: '$on_surface_high' }}
       >
-        {peer.name} {localPeerId === peer.id ? '(You)' : ''}
+        {peer.name} {localPeerId === peer.id ? '(Vous)' : ''}
       </Text>
       {isConnected && peer.roleName ? (
         <ParticipantActions
@@ -240,7 +240,7 @@ const VirtualizedParticipants = ({
         {handRaisedList.length > 0 ? (
           <RoleAccordion
             peerList={handRaisedList}
-            roleName="Hand Raised"
+            roleName="Main levée"
             filter={filter}
             isConnected={isConnected}
             isHandRaisedAccordion
@@ -413,7 +413,7 @@ const ParticipantMoreActions = ({ peerId, role }: { peerId: string; role: string
               <Dropdown.Item css={{ bg: '$surface_default' }} onClick={() => setOpenRoleChangeModal(true)}>
                 <PersonSettingsIcon />
                 <Text variant="sm" css={{ ml: '$4', fontWeight: '$semiBold', c: '$on_surface_high' }}>
-                  Switch Role
+                  Changer de rôle
                 </Text>
               </Dropdown.Item>
             ) : null}
@@ -428,7 +428,7 @@ const ParticipantMoreActions = ({ peerId, role }: { peerId: string; role: string
 
 export const ParticipantSearch = ({
   onSearch,
-  placeholder = 'Search for participants',
+  placeholder = 'Rechercher des participants',
   inSidePane = false,
 }: {
   inSidePane?: boolean;

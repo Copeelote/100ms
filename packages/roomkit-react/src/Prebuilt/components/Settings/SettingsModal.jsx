@@ -118,7 +118,7 @@ const MobileSettingModal = ({
           <Flex direction="row" justify="between" css={{ w: '100%' }}>
             {!selection ? (
               <Text variant="h6" css={{ display: 'flex' }}>
-                Settings
+                Paramètres
               </Text>
             ) : (
               <Text variant="h6" css={{ display: 'flex' }}>
@@ -237,7 +237,7 @@ const DesktopSettingModal = ({
                 borderBottomLeftRadius: '$4',
               }}
             >
-              <Text variant="h5">Settings </Text>
+              <Text variant="h5">Paramètres </Text>
               <Flex direction="column" css={{ mx: 0, overflowY: 'auto', pt: '$10' }}>
                 {settingsList
                   .filter(({ tabName }) => showSetting[tabName])

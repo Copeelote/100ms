@@ -24,7 +24,7 @@ export const LeaveSessionContent = ({
       >
         <AlertTriangleIcon style={{ marginRight: '0.5rem' }} />
         <Text variant="lg" css={{ color: 'inherit', fontWeight: '$semiBold' }}>
-          Leave
+          Quitter
         </Text>
         {isModal ? null : (
           <Box css={{ color: '$on_surface_high', ml: 'auto' }} onClick={() => setShowLeaveRoomAlert(false)}>
@@ -33,7 +33,7 @@ export const LeaveSessionContent = ({
         )}
       </Flex>
       <Text variant="sm" css={{ color: '$on_surface_low', mb: '$8', mt: '$4' }}>
-        Others will continue after you leave. You can join the session again.
+        Les autres continueront après votre départ. Vous pouvez rejoindre la session à nouveau.
       </Text>
       <Flex align="center" justify="between" css={{ w: '100%', gap: '$8' }}>
         <Button
@@ -42,7 +42,7 @@ export const LeaveSessionContent = ({
           css={{ w: '100%', '@md': { display: 'none' } }}
           onClick={() => setShowLeaveRoomAlert(false)}
         >
-          Cancel
+          Annuler
         </Button>
         <Button
           variant="danger"
@@ -53,7 +53,7 @@ export const LeaveSessionContent = ({
           id="leaveRoom"
           data-testid="leave_room"
         >
-          Leave Session
+          Quitter la session
         </Button>
       </Flex>
     </Box>

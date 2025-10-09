@@ -15,6 +15,20 @@ import { useSidepaneReset } from '../AppData/useSidepane';
 // @ts-ignore: No implicit Any
 import { getFormattedCount } from '../../common/utils';
 
+// Role name translations
+const translateRoleName = (roleName: string): string => {
+  const roleTranslations: Record<string, string> = {
+    'viewer': 'Spectateur',
+    'host': 'Hôte',
+    'speaker': 'Intervenant',
+    'moderator': 'Modérateur',
+    'guest': 'Invité',
+    'participant': 'Participant',
+    'admin': 'Administrateur',
+  };
+  return roleTranslations[roleName.toLowerCase()] || roleName;
+};
+
 const LoadMoreParticipants = ({
   hasNext,
   loadMore,
@@ -99,11 +113,11 @@ export const PaginatedParticipants = ({ roleName, onBack }: { roleName: string; 
           <CrossIcon />
         </IconButton>
       </Flex>
-      <ParticipantSearch onSearch={(search: string) => setSearch(search)} placeholder={`Search for ${roleName}`} />
+      <ParticipantSearch onSearch={(search: string) => setSearch(search)} placeholder={`Rechercher ${translateRoleName(roleName)}`} />
       <Flex direction="column" css={{ border: '1px solid $border_default', borderRadius: '$1', flex: '1 1 0' }}>
         <Flex align="center" css={{ height: ROW_HEIGHT, borderBottom: '1px solid $border_default', px: '$8' }}>
           <Text css={{ fontSize: '$space$7' }}>
-            {roleName}({getFormattedCount(peers.length)}/{getFormattedCount(total)})
+            {translateRoleName(roleName)}({getFormattedCount(peers.length)}/{getFormattedCount(total)})
           </Text>
         </Flex>
         <Box css={{ flex: '1 1 0', overflowY: 'auto', overflowX: 'hidden', mr: '-$10' }}>

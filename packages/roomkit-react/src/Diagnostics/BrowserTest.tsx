@@ -117,7 +117,7 @@ export const BrowserTest = () => {
     <>
       <TestContainer css={{ display: 'flex', gap: '$8', '@lg': { display: 'block' } }}>
         <CheckDetails
-          title="Browser"
+          title="Navigateur"
           iconURL={
             parsedUserAgent.getBrowser().name &&
             browserTypeIconInfo[parsedUserAgent.getBrowser().name?.toLowerCase() as keyof typeof browserTypeIconInfo]
@@ -126,7 +126,7 @@ export const BrowserTest = () => {
           value={`${parsedUserAgent.getBrowser().name} ${parsedUserAgent.getBrowser().version}`}
         />
         <CheckDetails
-          title="Operating system"
+          title="Système d'exploitation"
           iconURL={
             parsedUserAgent.getOS().name &&
             operatingSystemIconInfo[parsedUserAgent.getOS().name?.toLowerCase() as keyof typeof operatingSystemIconInfo]
@@ -135,7 +135,7 @@ export const BrowserTest = () => {
           value={`${parsedUserAgent.getOS().name} ${parsedUserAgent.getOS().version}`}
         />
       </TestContainer>
-      <TestFooter error={error} ctaText="Is your device information correct?" />
+      <TestFooter error={error} ctaText="Les informations de votre appareil sont-elles correctes ?" />
     </>
   );
 };

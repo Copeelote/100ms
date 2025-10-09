@@ -138,13 +138,13 @@ const PreviewJoin = ({
         <Flex direction="column" justify="center" css={{ w: '100%', maxWidth: '600px', gap: '$8' }}>
           <Logo />
           <Text variant="h4" css={{ wordBreak: 'break-word', textAlign: 'center' }}>
-            {previewHeader.title || 'Commencer'}
+            {previewHeader.title}
           </Text>
           <Text
             css={{ c: '$on_surface_medium', textAlign: 'center', maxWidth: '100%', wordWrap: 'break-word' }}
             variant="sm"
           >
-            {previewHeader.sub_title || 'Configurez votre audio et vidéo avant de rejoindre'}
+            {previewHeader.sub_title}
           </Text>
           <Flex justify="center" css={{ gap: '$4' }}>
             {isStreamingOn ? (

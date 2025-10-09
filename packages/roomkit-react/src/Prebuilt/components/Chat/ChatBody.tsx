@@ -113,12 +113,12 @@ export const MessageType = ({
   const localPeerRoleName = useHMSStore(selectLocalPeerRoleName);
   if (receiver) {
     return (
-      <MessageTypeContainer left={hasCurrentUserSent ? `${peerName ? `to ${peerName}` : ''}` : 'to You'} right="(DM)" />
+      <MessageTypeContainer left={hasCurrentUserSent ? `${peerName ? `à ${peerName}` : ''}` : 'à Vous'} right="(Privé)" />
     );
   }
 
   if (roles && roles.length) {
-    return <MessageTypeContainer left={`to ${hasCurrentUserSent ? roles[0] : localPeerRoleName}`} right="(Group)" />;
+    return <MessageTypeContainer left={`à ${hasCurrentUserSent ? roles[0] : localPeerRoleName}`} right="(Groupe)" />;
   }
   return null;
 };
@@ -265,7 +265,7 @@ const ChatMessage = React.memo(
                   variant="sub2"
                   css={{ color: isOverlay ? '#FFF' : '$on_surface_high', fontWeight: '$semiBold' }}
                 >
-                  {message.senderName || 'Anonymous'}
+                  {message.senderName === 'You' ? 'Vous' : message.senderName || 'Anonyme'}
                 </SenderName>
               ) : (
                 <Tooltip title={message.senderName} side="top" align="start" boxCss={{ zIndex: 50 }}>
@@ -274,7 +274,7 @@ const ChatMessage = React.memo(
                     variant="sub2"
                     css={{ color: isOverlay ? '#FFF' : '$on_surface_high', fontWeight: '$semiBold' }}
                   >
-                    {message.sender === localPeerId ? `${message.senderName} (You)` : message.senderName}
+                    {message.sender === localPeerId ? `${message.senderName} (Vous)` : message.senderName}
                   </SenderName>
                 </Tooltip>
               )}
@@ -486,7 +486,7 @@ const PinnedBy = ({
     <Flex align="center" css={{ gap: '$2', mb: '$2', color: '$on_surface_low' }}>
       <SolidPinIcon height={12} width={12} />
       <Text variant="xs" css={{ color: 'inherit' }}>
-        Pinned by {localPeerName === pinnedBy ? 'you' : pinnedBy}
+        Epinglé par {localPeerName === pinnedBy ? 'vous' : pinnedBy}
       </Text>
     </Flex>
   );

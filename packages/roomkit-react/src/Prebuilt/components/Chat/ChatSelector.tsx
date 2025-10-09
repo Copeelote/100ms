@@ -94,7 +94,7 @@ const Everyone = React.memo(({ active }: { active: boolean }) => {
   const [, setRoleSelector] = useSetSubscribedChatSelector(CHAT_SELECTOR.ROLE);
   return (
     <SelectorItem
-      value="Everyone"
+      value="Tout le monde"
       icon={<PeopleIcon />}
       active={active}
       unreadCount={unreadCount}
@@ -172,7 +172,7 @@ const VirtualizedSelectItemList = ({
       selectItems = [<Everyone active={!selectedRole && !selectedPeerId} />];
     }
     if (roles.length > 0 && !searchValue) {
-      selectItems.push(<SelectorHeader isHorizontalDivider={isPublicChatEnabled}>Roles</SelectorHeader>);
+      selectItems.push(<SelectorHeader isHorizontalDivider={isPublicChatEnabled}>Rôles</SelectorHeader>);
       roles.forEach(userRole =>
         selectItems.push(<RoleItem key={userRole} active={selectedRole === userRole} role={userRole} />),
       );
@@ -213,7 +213,7 @@ export const ChatSelector = ({ role, peerId }: { role: string; peerId: string })
     <>
       {peers.length > 0 && isPrivateChatEnabled && (
         <Box css={{ px: '$4' }}>
-          <ParticipantSearch onSearch={setSearch} placeholder="Search for participants" />
+          <ParticipantSearch onSearch={setSearch} placeholder="Rechercher des participants" />
         </Box>
       )}
       <VirtualizedSelectItemList

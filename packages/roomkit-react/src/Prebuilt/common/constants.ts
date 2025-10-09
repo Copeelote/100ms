@@ -18,7 +18,7 @@ export const EMOJI_REACTION_TYPE = 'EMOJI_REACTION';
 export const CHAT_SELECTOR = {
   PEER: 'peer',
   ROLE: 'role',
-  EVERYONE: 'Everyone',
+  EVERYONE: 'Tout le monde',
 };
 
 export const APP_DATA = {
