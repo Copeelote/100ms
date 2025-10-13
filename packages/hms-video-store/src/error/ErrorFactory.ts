@@ -38,7 +38,7 @@ export const ErrorFactory = {
         ErrorCodes.WebSocketConnectionErrors.WEBSOCKET_CONNECTION_LOST,
         'WebSocketConnectionLost',
         action,
-        `Network connection lost`,
+        `Connexion réseau perdue`,
         description,
       );
     },
@@ -48,7 +48,7 @@ export const ErrorFactory = {
         ErrorCodes.WebSocketConnectionErrors.ABNORMAL_CLOSE,
         'WebSocketAbnormalClose',
         action,
-        `Websocket closed abnormally`,
+        `La connexion WebSocket s’est fermée anormalement`,
         description,
       );
     },
@@ -60,7 +60,7 @@ export const ErrorFactory = {
         code,
         'ServerErrors',
         action,
-        `[${action}]: Server error ${description}`,
+        `[${action}]: Erreur serveur ${description}`,
         description,
         isTerminal,
       );
@@ -71,7 +71,7 @@ export const ErrorFactory = {
         ErrorCodes.APIErrors.ENDPOINT_UNREACHABLE,
         'EndpointUnreachable',
         action,
-        `Endpoint is not reachable - ${description}`,
+        `Point de terminaison inaccessible - ${description}`,
         description,
       );
     },
@@ -81,7 +81,7 @@ export const ErrorFactory = {
         ErrorCodes.APIErrors.INVALID_TOKEN_FORMAT,
         'InvalidTokenFormat',
         action,
-        `Token is not in proper JWT format - ${description}`,
+        `Le jeton n’est pas au format JWT valide - ${description}`,
         description,
         true,
       );
@@ -114,7 +114,7 @@ export const ErrorFactory = {
         ErrorCodes.TracksErrors.CANT_ACCESS_CAPTURE_DEVICE,
         'CantAccessCaptureDevice',
         action,
-        `User denied permission to access capture device - ${deviceInfo}`,
+        `L’utilisateur a refusé l’accès au périphérique de capture - ${deviceInfo}`,
         description,
         deviceInfo as HMSTrackExceptionTrackType,
       );
@@ -125,7 +125,7 @@ export const ErrorFactory = {
         ErrorCodes.TracksErrors.DEVICE_NOT_AVAILABLE,
         'DeviceNotAvailable',
         action,
-        `[TRACK]: Capture device is no longer available - ${deviceInfo}`,
+        `[PISTE]: Le périphérique de capture n’est plus disponible - ${deviceInfo}`,
         description,
         deviceInfo as HMSTrackExceptionTrackType,
       );
@@ -136,7 +136,7 @@ export const ErrorFactory = {
         ErrorCodes.TracksErrors.DEVICE_IN_USE,
         'DeviceInUse',
         action,
-        `[TRACK]: Capture device is in use by another application - ${deviceInfo}`,
+        `[PISTE]: Le périphérique de capture est utilisé par une autre application - ${deviceInfo}`,
         description,
         deviceInfo as HMSTrackExceptionTrackType,
       );
@@ -147,7 +147,7 @@ export const ErrorFactory = {
         ErrorCodes.TracksErrors.DEVICE_LOST_MIDWAY,
         'DeviceLostMidway',
         action,
-        `Lost access to capture device midway - ${deviceInfo}`,
+        `Perte d’accès au périphérique de capture en cours d’utilisation - ${deviceInfo}`,
         description,
         deviceInfo as HMSTrackExceptionTrackType,
       );
@@ -156,7 +156,7 @@ export const ErrorFactory = {
     NothingToReturn(
       action: HMSAction,
       description = '',
-      message = `There is no media to return. Please select either video or audio or both.`,
+      message = `Aucun média à retourner. Veuillez sélectionner la vidéo, l’audio ou les deux.`,
     ) {
       return new HMSTrackException(
         ErrorCodes.TracksErrors.NOTHING_TO_RETURN,
@@ -173,7 +173,7 @@ export const ErrorFactory = {
         ErrorCodes.TracksErrors.INVALID_VIDEO_SETTINGS,
         'InvalidVideoSettings',
         action,
-        `Cannot enable simulcast when no video settings are provided`,
+        `Impossible d’activer le simulcast sans paramètres vidéo fournis`,
         description,
         HMSTrackExceptionTrackType.VIDEO,
       );
@@ -184,7 +184,7 @@ export const ErrorFactory = {
         ErrorCodes.TracksErrors.AUTOPLAY_ERROR,
         'AutoplayBlocked',
         action,
-        "Autoplay blocked because the user didn't interact with the document first",
+        "Lecture automatique bloquée car l’utilisateur n’a pas interagi avec le document",
         description,
         HMSTrackExceptionTrackType.AUDIO,
       );
@@ -195,7 +195,7 @@ export const ErrorFactory = {
         ErrorCodes.TracksErrors.CODEC_CHANGE_NOT_PERMITTED,
         'CodecChangeNotPermitted',
         action,
-        `Codec can't be changed mid call.`,
+        `Le codec ne peut pas être modifié en cours d’appel.`,
         description,
         HMSTrackExceptionTrackType.AUDIO_VIDEO,
       );
@@ -206,18 +206,18 @@ export const ErrorFactory = {
         ErrorCodes.TracksErrors.OVER_CONSTRAINED,
         'OverConstrained',
         action,
-        `[TRACK]: Requested constraints cannot be satisfied with the device hardware - ${deviceInfo}`,
+        `[PISTE]: Les contraintes demandées ne peuvent pas être satisfaites par le matériel du périphérique - ${deviceInfo}`,
         description,
         deviceInfo as HMSTrackExceptionTrackType,
       );
     },
 
-    NoAudioDetected(action: HMSAction, description = 'Please check the mic or use another audio input') {
+    NoAudioDetected(action: HMSAction, description = 'Veuillez vérifier le micro ou utiliser une autre entrée audio') {
       return new HMSTrackException(
         ErrorCodes.TracksErrors.NO_AUDIO_DETECTED,
         'NoAudioDetected',
         action,
-        'No audio input detected from microphone',
+        'Aucune entrée audio détectée depuis le microphone',
         description,
         HMSTrackExceptionTrackType.AUDIO,
       );
@@ -228,7 +228,7 @@ export const ErrorFactory = {
         ErrorCodes.TracksErrors.SYSTEM_DENIED_PERMISSION,
         'SystemDeniedPermission',
         action,
-        `Operating System denied permission to access capture device - ${deviceInfo}`,
+        `Le système d’exploitation a refusé l’accès au périphérique de capture - ${deviceInfo}`,
         description,
         deviceInfo as HMSTrackExceptionTrackType,
       );
@@ -239,8 +239,8 @@ export const ErrorFactory = {
         ErrorCodes.TracksErrors.CURRENT_TAB_NOT_SHARED,
         'CurrentTabNotShared',
         HMSAction.TRACK,
-        'The app requires you to share the current tab',
-        'You must screen share the current tab in order to proceed',
+        'L’application nécessite le partage de l’onglet actuel',
+        'Vous devez partager l’onglet actuel pour continuer',
         HMSTrackExceptionTrackType.SCREEN,
       );
     },
@@ -248,7 +248,7 @@ export const ErrorFactory = {
     AudioPlaybackError(description: string) {
       return new HMSTrackException(
         ErrorCodes.TracksErrors.AUDIO_PLAYBACK_ERROR,
-        'Audio playback error',
+        'Erreur de lecture audio',
         HMSAction.TRACK,
         description,
         description,
@@ -261,8 +261,8 @@ export const ErrorFactory = {
         ErrorCodes.TracksErrors.SELECTED_DEVICE_MISSING,
         'SelectedDeviceMissing',
         HMSAction.TRACK,
-        `Could not detect selected ${deviceType} device`,
-        `Please check connection to the ${deviceType} device`,
+        `Impossible de détecter le périphérique ${deviceType} sélectionné`,
+        `Veuillez vérifier la connexion au périphérique ${deviceType}`,
         deviceType as HMSTrackExceptionTrackType,
       );
     },
@@ -270,10 +270,10 @@ export const ErrorFactory = {
     NoDataInTrack(description: string) {
       return new HMSTrackException(
         ErrorCodes.TracksErrors.NO_DATA,
-        'Track does not have any data',
+        'La piste ne contient aucune donnée',
         HMSAction.TRACK,
         description,
-        'This could possibily due to another application taking priority over the access to camera or microphone or due to an incoming call',
+        'Cela peut être dû à une autre application prioritaire sur l’accès à la caméra ou au micro, ou à un appel entrant',
         HMSTrackExceptionTrackType.AUDIO_VIDEO,
       );
     },
@@ -285,7 +285,7 @@ export const ErrorFactory = {
         ErrorCodes.WebrtcErrors.CREATE_OFFER_FAILED,
         'CreateOfferFailed',
         action,
-        `[${action.toString()}]: Failed to create offer. `,
+        `[${action.toString()}]: Échec de la création de l’offre. `,
         description,
       );
     },
@@ -295,7 +295,7 @@ export const ErrorFactory = {
         ErrorCodes.WebrtcErrors.CREATE_ANSWER_FAILED,
         'CreateAnswerFailed',
         action,
-        `[${action.toString()}]: Failed to create answer. `,
+        `[${action.toString()}]: Échec de la création de la réponse. `,
         description,
       );
     },
@@ -305,7 +305,7 @@ export const ErrorFactory = {
         ErrorCodes.WebrtcErrors.SET_LOCAL_DESCRIPTION_FAILED,
         'SetLocalDescriptionFailed',
         action,
-        `[${action.toString()}]: Failed to set offer. `,
+        `[${action.toString()}]: Échec de l’application de l’offre. `,
         description,
       );
     },
@@ -315,7 +315,7 @@ export const ErrorFactory = {
         ErrorCodes.WebrtcErrors.SET_REMOTE_DESCRIPTION_FAILED,
         'SetRemoteDescriptionFailed',
         action,
-        `[${action.toString()}]: Failed to set answer. `,
+        `[${action.toString()}]: Échec de l’application de la réponse. `,
         description,
         true,
       );
@@ -326,7 +326,7 @@ export const ErrorFactory = {
         ErrorCodes.WebrtcErrors.ICE_FAILURE,
         'ICEFailure',
         action,
-        `[${action.toString()}]: Ice connection state FAILED`,
+        `[${action.toString()}]: État de connexion ICE ÉCHEC`,
         description,
         isTerminal,
       );
@@ -337,7 +337,7 @@ export const ErrorFactory = {
         ErrorCodes.WebrtcErrors.ICE_DISCONNECTED,
         'ICEDisconnected',
         action,
-        `[${action.toString()}]: Ice connection state DISCONNECTED`,
+        `[${action.toString()}]: État de connexion ICE DÉCONNECTÉ`,
         description,
       );
     },
@@ -347,7 +347,7 @@ export const ErrorFactory = {
         ErrorCodes.WebrtcErrors.STATS_FAILED,
         'StatsFailed',
         action,
-        `Failed to WebRTC get stats - ${description}`,
+        `Échec de la récupération des statistiques WebRTC - ${description}`,
         description,
       );
     },
@@ -363,7 +363,7 @@ export const ErrorFactory = {
         ErrorCodes.WebsocketMethodErrors.ALREADY_JOINED,
         'AlreadyJoined',
         action,
-        `[JOIN]: You have already joined this room.`,
+        `[JOIN]: Vous avez déjà rejoint cette salle.`,
         description,
       );
     },
@@ -373,7 +373,7 @@ export const ErrorFactory = {
         ErrorCodes.WebsocketMethodErrors.CANNOT_JOIN_PREVIEW_IN_PROGRESS,
         'CannotJoinPreviewInProgress',
         action,
-        `[JOIN]: Cannot join if preview is in progress`,
+        `[JOIN]: Impossible de rejoindre si l’aperçu est en cours`,
         description,
       );
     },
@@ -385,7 +385,7 @@ export const ErrorFactory = {
         ErrorCodes.GenericErrors.NOT_CONNECTED,
         'NotConnected',
         action,
-        `Client is not connected`,
+        `Le client n’est pas connecté`,
         description,
       );
     },
@@ -395,7 +395,7 @@ export const ErrorFactory = {
         ErrorCodes.GenericErrors.SIGNALLING,
         'Signalling',
         action,
-        `Unknown signalling error: ${action.toString()} ${description} `,
+        `Erreur de signalisation inconnue : ${action.toString()} ${description} `,
         description,
       );
     },
@@ -405,7 +405,7 @@ export const ErrorFactory = {
         ErrorCodes.GenericErrors.UNKNOWN,
         'Unknown',
         action,
-        `Unknown exception: ${description}`,
+        `Exception inconnue : ${description}`,
         description,
       );
     },
@@ -419,7 +419,7 @@ export const ErrorFactory = {
         ErrorCodes.GenericErrors.JSON_PARSING_FAILED,
         'JsonParsingFailed',
         action,
-        `Failed to parse JSON message - ${jsonMessage}`,
+        `Échec de l’analyse du message JSON - ${jsonMessage}`,
         description,
       );
     },
@@ -429,7 +429,7 @@ export const ErrorFactory = {
         ErrorCodes.GenericErrors.TRACK_METADATA_MISSING,
         'TrackMetadataMissing',
         action,
-        `Track Metadata Missing`,
+        `Métadonnées de piste manquantes`,
         description,
       );
     },
@@ -439,7 +439,7 @@ export const ErrorFactory = {
         ErrorCodes.GenericErrors.RTC_TRACK_MISSING,
         'RTCTrackMissing',
         action,
-        `RTC Track missing`,
+        `Piste RTC manquante`,
         description,
       );
     },
@@ -449,7 +449,7 @@ export const ErrorFactory = {
         ErrorCodes.GenericErrors.PEER_METADATA_MISSING,
         'PeerMetadataMissing',
         action,
-        `Peer Metadata Missing`,
+        `Métadonnées du pair manquantes`,
         description,
       );
     },
@@ -469,7 +469,7 @@ export const ErrorFactory = {
         ErrorCodes.GenericErrors.INVALID_ROLE,
         'InvalidRole',
         action,
-        `Invalid role. Join with valid role`,
+        `Rôle invalide. Rejoignez avec un rôle valide`,
         description,
         true,
       );
@@ -480,7 +480,7 @@ export const ErrorFactory = {
         ErrorCodes.GenericErrors.PREVIEW_IN_PROGRESS,
         'PreviewAlreadyInProgress',
         action,
-        `[Preview]: Cannot join if preview is in progress`,
+        `[Prévisualisation] : Impossible de rejoindre si l’aperçu est en cours`,
         description,
       );
     },
@@ -490,7 +490,7 @@ export const ErrorFactory = {
         ErrorCodes.GenericErrors.LOCAL_STORAGE_ACCESS_DENIED,
         'LocalStorageAccessDenied',
         HMSAction.NONE,
-        `LocalStorageAccessDenied`,
+        `Accès à localStorage refusé`,
         description,
       );
     },
@@ -500,7 +500,7 @@ export const ErrorFactory = {
         ErrorCodes.GenericErrors.MISSING_MEDIADEVICES,
         'MissingMediaDevices',
         HMSAction.JOIN,
-        `navigator.mediaDevices is undefined. 100ms SDK won't work on this website as WebRTC is not supported on HTTP endpoints(missing navigator.mediaDevices). Please ensure you're using the SDK either on localhost or a valid HTTPS endpoint.`,
+        `navigator.mediaDevices est indéfini. Le SDK 100ms ne fonctionnera pas sur ce site car WebRTC n’est pas pris en charge sur HTTP (navigator.mediaDevices manquant). Veuillez utiliser le SDK en local (localhost) ou sur une URL HTTPS valide.`,
         '',
         true,
       );
@@ -511,7 +511,7 @@ export const ErrorFactory = {
         ErrorCodes.GenericErrors.MISSING_RTCPEERCONNECTION,
         'MissingRTCPeerConnection',
         HMSAction.JOIN,
-        `RTCPeerConnection which is a core requirement for WebRTC call was not found, this could be due to an unsupported browser or browser extensions blocking WebRTC`,
+        `RTCPeerConnection, requis pour les appels WebRTC, est introuvable. Cela peut être dû à un navigateur non pris en charge ou à une extension bloquant WebRTC`,
         '',
         true,
       );
@@ -524,21 +524,21 @@ export const ErrorFactory = {
         7001,
         'PlatformNotSupported',
         action,
-        'Check HMS Docs to see the list of supported platforms',
+        'Consultez la documentation HMS pour la liste des plateformes prises en charge',
         description,
       );
     },
 
     InitFailed(action: HMSAction, description = '') {
-      return new HMSException(7002, 'InitFailed', action, 'Plugin init failed', description);
+      return new HMSException(7002, 'InitFailed', action, "Échec de l’initialisation du plugin", description);
     },
 
     ProcessingFailed(action: HMSAction, description = '') {
-      return new HMSException(7003, 'ProcessingFailed', action, 'Plugin processing failed', description);
+      return new HMSException(7003, 'ProcessingFailed', action, 'Échec du traitement du plugin', description);
     },
 
     AddAlreadyInProgress(action: HMSAction, description = '') {
-      return new HMSException(7004, 'AddAlreadyInProgress', action, 'Plugin add already in progress', description);
+      return new HMSException(7004, 'AddAlreadyInProgress', action, "Ajout du plugin déjà en cours", description);
     },
 
     DeviceNotSupported(action: HMSAction, description = '') {
@@ -546,7 +546,7 @@ export const ErrorFactory = {
         7005,
         'DeviceNotSupported',
         action,
-        'Check HMS Docs to see the list of supported devices',
+        'Consultez la documentation HMS pour la liste des appareils pris en charge',
         description,
       );
     },
@@ -558,7 +558,7 @@ export const ErrorFactory = {
         ErrorCodes.PlaylistErrors.NO_ENTRY_TO_PLAY,
         'NoEntryToPlay',
         action,
-        'Reached end of playlist',
+        'Fin de la liste de lecture atteinte',
         description,
       );
     },
@@ -567,7 +567,7 @@ export const ErrorFactory = {
         ErrorCodes.PlaylistErrors.NO_ENTRY_IS_PLAYING,
         'NoEntryIsPlaying',
         action,
-        'No entry is playing at this time',
+        'Aucune entrée en lecture pour le moment',
         description,
       );
     },

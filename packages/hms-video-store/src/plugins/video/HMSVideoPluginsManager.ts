@@ -80,17 +80,17 @@ export class HMSVideoPluginsManager {
     if (this.pluginAddInProgress) {
       const name = plugin.getName?.();
       if (!name || name === '') {
-        HMSLogger.w('no name provided by the plugin');
+        HMSLogger.w("aucun nom fourni par le plugin");
         return;
       }
 
       const err = ErrorFactory.MediaPluginErrors.AddAlreadyInProgress(
         HMSAction.VIDEO_PLUGINS,
-        'Add Plugin is already in Progress',
+        "L'ajout d'un plugin est déjà en cours",
       );
       this.analytics.failure(name, err);
 
-      HMSLogger.w("can't add another plugin when previous add is in progress");
+      HMSLogger.w("impossible d'ajouter un autre plugin pendant qu'un ajout est en cours");
       throw err;
     }
 
@@ -106,11 +106,11 @@ export class HMSVideoPluginsManager {
   private async addPluginInternal(plugin: HMSVideoPlugin, pluginFrameRate?: number) {
     const name = plugin.getName?.();
     if (!name || name === '') {
-      HMSLogger.w('no name provided by the plugin');
+      HMSLogger.w("aucun nom fourni par le plugin");
       return;
     }
     if (this.pluginsMap.has(name)) {
-      HMSLogger.w(this.TAG, `plugin - ${plugin.getName()} already added.`);
+      HMSLogger.w(this.TAG, `plugin - ${plugin.getName()} déjà ajouté.`);
       return;
     }
     //TODO: assuming this inputFrameRate from getMediaTrackSettings will not change once set
@@ -119,17 +119,17 @@ export class HMSVideoPluginsManager {
 
     let numFramesToSkip = 0;
     if (pluginFrameRate && pluginFrameRate > 0) {
-      HMSLogger.i(this.TAG, `adding plugin ${plugin.getName()} with framerate ${pluginFrameRate}`);
+      HMSLogger.i(this.TAG, `ajout du plugin ${plugin.getName()} avec fréquence d’images ${pluginFrameRate}`);
       if (pluginFrameRate < inputFrameRate) {
         numFramesToSkip = Math.ceil(inputFrameRate / pluginFrameRate) - 1;
       }
       this.analytics.added(name, inputFrameRate, pluginFrameRate);
     } else {
-      HMSLogger.i(this.TAG, `adding plugin ${plugin.getName()}`);
+      HMSLogger.i(this.TAG, `ajout du plugin ${plugin.getName()}`);
       this.analytics.added(name, inputFrameRate);
     }
 
-    HMSLogger.i(this.TAG, 'numFrames to skip processing', numFramesToSkip);
+    HMSLogger.i(this.TAG, 'nombre d’images à ignorer', numFramesToSkip);
     this.pluginNumFramesToSkip[name] = numFramesToSkip;
     this.pluginNumFramesSkipped[name] = numFramesToSkip;
 
@@ -146,7 +146,7 @@ export class HMSVideoPluginsManager {
       }
       await this.startPluginsLoop(plugin.getContextType?.());
     } catch (err) {
-      HMSLogger.e(this.TAG, 'failed to add plugin', err);
+      HMSLogger.e(this.TAG, 'échec de l’ajout du plugin', err);
       await this.removePlugin(plugin);
       throw err;
     }
@@ -187,10 +187,10 @@ export class HMSVideoPluginsManager {
       HMSLogger.w(this.TAG, `plugin - ${name} not found to remove.`);
       return;
     }
-    HMSLogger.i(this.TAG, `removing plugin ${name}`);
+      HMSLogger.i(this.TAG, `suppression du plugin ${name}`);
     this.removePluginEntry(name);
     if (this.pluginsMap.size === 0) {
-      HMSLogger.i(this.TAG, `No plugins left, stopping plugins loop`);
+      HMSLogger.i(this.TAG, `Plus aucun plugin, arrêt de la boucle des plugins`);
       await this.stopPluginsLoop();
     }
     plugin.stop();

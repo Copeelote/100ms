@@ -37,7 +37,7 @@ export function ShareScreenOptions() {
       >
         <Dropdown.Trigger asChild data-testid="sharing_btn" disabled={amIScreenSharing}>
           <ShareMenuIcon disabled={amIScreenSharing}>
-            <Tooltip title="Share">
+            <Tooltip title="Partager">
               <Box>
                 <VerticalMenuIcon />
               </Box>
@@ -66,8 +66,8 @@ export function ShareScreenOptions() {
               },
             }}
           >
-            <Text variant="h6">Start Sharing</Text>
-            <Text variant="sm">Choose what you want to share</Text>
+            <Text variant="h6">Commencer le partage</Text>
+            <Text variant="sm">Choisissez ce que vous souhaitez partager</Text>
           </Dropdown.Item>
           <Dropdown.Item
             css={{
@@ -115,7 +115,7 @@ export function ShareScreenOptions() {
                 />
               </IconButton>
               <Flex direction="column" align="center">
-                <Text variant="body2">Share Screen</Text>
+                <Text variant="body2">Partager l’écran</Text>
                 <Text
                   variant="caption"
                   css={{
@@ -123,7 +123,7 @@ export function ShareScreenOptions() {
                     textAlign: 'center',
                   }}
                 >
-                  Share your tab, window or your entire screen
+                  Partagez votre onglet, fenêtre ou l’intégralité de votre écran
                 </Text>
               </Flex>
             </Flex>
@@ -183,12 +183,12 @@ export function ShareScreenOptions() {
                       pr: '$4',
                     }}
                   >
-                    New
+                    Nouveau
                   </Text>
                 </Flex>
               </IconButton>
               <Flex direction="column" align="center">
-                <Text variant="body2">Share PDF</Text>
+                <Text variant="body2">Partager un PDF</Text>
                 <Text
                   variant="caption"
                   css={{
@@ -196,7 +196,7 @@ export function ShareScreenOptions() {
                     textAlign: 'center',
                   }}
                 >
-                  Annotate, draw shapes, and more over PDFs
+                  Annoter, dessiner des formes et plus encore sur des PDF
                 </Text>
               </Flex>
             </Flex>

@@ -46,8 +46,8 @@ export const TrackBulkUnmuteModal = () => {
 
   return (
     <RequestDialog
-      title="Unmute request"
-      body={`${peer?.name} is requesting you to unmute your ${Array.from(types).join(',')}`}
+      title="Demande de réactivation"
+      body={`${peer?.name} vous demande de réactiver ${Array.from(types).join(',')}`}
       onOpenChange={(value: boolean) => !value && setMuteNotification(null)}
       onAction={() => {
         tracks.forEach(track => {

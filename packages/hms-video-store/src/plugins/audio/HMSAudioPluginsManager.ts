@@ -53,24 +53,24 @@ export class HMSAudioPluginsManager {
   async addPlugin(plugin: HMSAudioPlugin) {
     const name = plugin.getName?.();
     if (!name) {
-      HMSLogger.w('no name provided by the plugin');
+      HMSLogger.w("aucun nom fourni par le plugin");
       return;
     }
     if (this.pluginAddInProgress) {
       const err = ErrorFactory.MediaPluginErrors.AddAlreadyInProgress(
         HMSAction.AUDIO_PLUGINS,
-        'Add Plugin is already in Progress',
+        "L'ajout d'un plugin est déjà en cours",
       );
       this.analytics.added(name, this.audioContext!.sampleRate);
       this.analytics.failure(name, err);
-      HMSLogger.w("can't add another plugin when previous add is in progress");
+      HMSLogger.w("impossible d'ajouter un autre plugin pendant qu'un ajout est en cours");
       throw err;
     }
 
     switch (plugin.getName()) {
       case 'HMSKrispPlugin': {
         if (!this.room?.isNoiseCancellationEnabled) {
-          const errorMessage = 'Krisp Noise Cancellation is not enabled for this room';
+          const errorMessage = "La réduction de bruit Krisp n'est pas activée pour cette salle";
           if (this.pluginsMap.size === 0) {
             throw Error(errorMessage);
           } else {
@@ -97,7 +97,7 @@ export class HMSAudioPluginsManager {
   private async addPluginInternal(plugin: HMSAudioPlugin) {
     const name = plugin.getName?.();
     if (this.pluginsMap.get(name)) {
-      HMSLogger.w(this.TAG, `plugin - ${name} already added.`);
+      HMSLogger.w(this.TAG, `plugin - ${name} déjà ajouté.`);
       return;
     }
 
@@ -131,14 +131,14 @@ export class HMSAudioPluginsManager {
   async validateAndThrow(name: string, plugin: HMSAudioPlugin) {
     const result = this.validatePlugin(plugin);
     if (result.isSupported) {
-      HMSLogger.i(this.TAG, `plugin is supported,- ${plugin.getName()}`);
+      HMSLogger.i(this.TAG, `plugin pris en charge - ${plugin.getName()}`);
     } else {
       //Needed to re-add in the reprocess case, to send error message in case of failure
       this.analytics.added(name, this.audioContext!.sampleRate);
       if (result.errType === HMSPluginUnsupportedTypes.PLATFORM_NOT_SUPPORTED) {
         const err = ErrorFactory.MediaPluginErrors.PlatformNotSupported(
           HMSAction.AUDIO_PLUGINS,
-          'platform not supported, see docs',
+          "plateforme non prise en charge, voir la documentation",
         );
         this.analytics.failure(name, err);
         await this.cleanup();
@@ -146,7 +146,7 @@ export class HMSAudioPluginsManager {
       } else if (result.errType === HMSPluginUnsupportedTypes.DEVICE_NOT_SUPPORTED) {
         const err = ErrorFactory.MediaPluginErrors.DeviceNotSupported(
           HMSAction.AUDIO_PLUGINS,
-          'audio device not supported, see docs',
+          "périphérique audio non pris en charge, voir la documentation",
         );
         this.analytics.failure(name, err);
         await this.cleanup();
@@ -168,7 +168,7 @@ export class HMSAudioPluginsManager {
     if (this.pluginsMap.size === 0) {
       // remove all previous nodes
       await this.cleanup();
-      HMSLogger.i(this.TAG, `No plugins left, stopping plugins loop`);
+      HMSLogger.i(this.TAG, `Plus aucun plugin, arrêt de la boucle des plugins`);
       await this.hmsTrack.setProcessedTrack(undefined);
     } else {
       // Reprocess the remaining plugins again because there is no way to connect
@@ -228,7 +228,7 @@ export class HMSAudioPluginsManager {
     try {
       await this.hmsTrack.setProcessedTrack(this.outputTrack);
     } catch (err) {
-      HMSLogger.e(this.TAG, 'error in setting processed track', err);
+      HMSLogger.e(this.TAG, "erreur lors de la configuration de la piste traitée", err);
       throw err;
     }
   }
@@ -249,7 +249,7 @@ export class HMSAudioPluginsManager {
     } catch (err) {
       const name = plugin.getName();
       //TODO error happened on processing of plugin notify UI
-      HMSLogger.e(this.TAG, `error in processing plugin ${name}`, err);
+      HMSLogger.e(this.TAG, `erreur lors du traitement du plugin ${name}`, err);
       //remove plugin from loop and stop analytics for it
       await this.removePluginInternal(plugin);
     }
@@ -261,17 +261,17 @@ export class HMSAudioPluginsManager {
         this.prevAudioNode.connect(this.destinationNode);
       }
     } catch (err) {
-      HMSLogger.e(this.TAG, 'error in connecting to destination node', err);
+      HMSLogger.e(this.TAG, "erreur lors de la connexion au nœud de destination", err);
     }
   }
 
   private async removePluginInternal(plugin: HMSAudioPlugin) {
     const name = plugin.getName?.();
     if (!this.pluginsMap.get(name)) {
-      HMSLogger.w(this.TAG, `plugin - ${name} not found to remove.`);
+      HMSLogger.w(this.TAG, `plugin - ${name} introuvable pour suppression.`);
       return;
     }
-    HMSLogger.i(this.TAG, `removing plugin ${name}`);
+    HMSLogger.i(this.TAG, `suppression du plugin ${name}`);
     this.pluginsMap.delete(name);
     plugin.stop();
     this.analytics.removed(name);

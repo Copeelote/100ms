@@ -29,7 +29,7 @@ export const DeleteQuestionModal = ({
             >
               <AlertTriangleIcon style={{ marginRight: '0.5rem' }} />
               <Text variant="lg" css={{ color: 'inherit', fontWeight: '$semiBold' }}>
-                Delete Question?
+                Supprimer la question ?
               </Text>
 
               <Box
@@ -44,7 +44,7 @@ export const DeleteQuestionModal = ({
               </Box>
             </Flex>
             <Text variant="sm" css={{ color: '$on_surface_medium', mb: '$8', mt: '$4' }}>
-              The question will be deleted. You can't undo this action.
+              La question sera supprimée. Cette action est irréversible.
             </Text>
             <Flex css={{ w: '100%', mt: '$12', gap: '$md' }}>
               <Button
@@ -53,7 +53,7 @@ export const DeleteQuestionModal = ({
                 onClick={() => setOpen(false)}
                 css={{ w: '100%', fontSize: '$md', fontWeight: '$semiBold' }}
               >
-                Cancel
+                Annuler
               </Button>
               <Button
                 css={{ w: '100%', fontSize: '$md', fontWeight: '$semiBold' }}
@@ -63,7 +63,7 @@ export const DeleteQuestionModal = ({
                   setOpen(false);
                 }}
               >
-                Delete
+                Supprimer
               </Button>
             </Flex>
           </Box>

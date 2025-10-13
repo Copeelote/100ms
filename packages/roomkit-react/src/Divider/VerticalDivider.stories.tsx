@@ -7,7 +7,7 @@ import { Text } from '../Text';
 import { VerticalDivider } from '.';
 
 export default {
-  title: 'UI Components/Divider',
+  title: 'Composants UI/Séparateur',
   component: VerticalDivider,
   argTypes: {
     ref: { table: { disable: true }, control: { type: null } },
@@ -23,14 +23,14 @@ const VerticalDividerComponent: ComponentStory<typeof VerticalDivider> = ({ spac
       <Button icon variant="primary">
         <AddIcon />
         <Text as="span" variant="button" css={{ c: 'white' }}>
-          Add Stuff
+          Ajouter un élément
         </Text>
       </Button>
       <VerticalDivider space={space} css={{ bg: '$on_primary_high', ...css }} />
       <Button icon variant="danger">
         <AddIcon />
         <Text as="span" variant="button" css={{ c: 'white' }}>
-          Add Another Stuff
+          Ajouter un autre élément
         </Text>
       </Button>
     </Flex>

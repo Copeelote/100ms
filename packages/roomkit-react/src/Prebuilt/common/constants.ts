@@ -131,15 +131,15 @@ export enum INTERACTION_TYPE {
 }
 
 export enum QUESTION_TYPE_TITLE {
-  'single-choice' = 'Single Choice',
-  'multiple-choice' = 'Multiple Choice',
+  'single-choice' = 'Choix unique',
+  'multiple-choice' = 'Choix multiples',
   // 'short-answer' = 'Short Answer',
   // 'long-answer' = 'Long Answer',
 }
 
 export enum QUESTION_TYPE {
-  SINGLE_CHOICE = 'single-choice',
-  MULTIPLE_CHOICE = 'multiple-choice',
+  SINGLE_CHOICE = 'Choix unique',
+  MULTIPLE_CHOICE = 'Choix multiples',
   // SHORT_ANSWER = 'short-answer',
   // LONG_ANSWER = 'long-answer',
 }

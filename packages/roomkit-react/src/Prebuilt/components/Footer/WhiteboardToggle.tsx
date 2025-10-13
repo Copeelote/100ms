@@ -21,7 +21,9 @@ export const WhiteboardToggle = () => {
     <Tooltip
       key="whiteboard"
       title={
-        peerSharing ? 'Cannot open whiteboard when viewing a shared screen' : `${open ? 'Close' : 'Open'} Whiteboard`
+        peerSharing
+          ? "Impossible d’ouvrir le tableau blanc lors de l’affichage d’un écran partagé"
+          : `${open ? 'Fermer' : 'Ouvrir'} le tableau blanc`
       }
     >
       <IconButton

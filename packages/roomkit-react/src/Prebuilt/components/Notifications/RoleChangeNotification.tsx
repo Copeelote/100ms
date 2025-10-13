@@ -14,7 +14,7 @@ export const RoleChangeNotification = () => {
     }
     if (notification.data?.isLocal && notification.data?.roleName) {
       ToastManager.addToast({
-        title: `You are now a ${notification.data.roleName}`,
+        title: `Vous êtes maintenant ${notification.data.roleName}`,
       });
       updateRoomLayoutForRole?.(notification.data.roleName);
     }

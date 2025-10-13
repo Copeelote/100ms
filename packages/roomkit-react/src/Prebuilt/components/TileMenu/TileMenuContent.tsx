@@ -88,7 +88,7 @@ const SpotlightActions = ({
       }}
     >
       <StarIcon height={20} width={20} />
-      <span>{isTileSpotlighted ? 'Remove from Spotlight' : 'Spotlight Tile for everyone'}</span>
+      <span>{isTileSpotlighted ? 'Retirer du projecteur' : 'Mettre cette tuile en avant pour tous'}</span>
     </StyledMenuTile.ItemButton>
   );
 };
@@ -111,7 +111,7 @@ const PinActions = ({ audioTrackID, videoTrackID }: { videoTrackID: string; audi
         onClick={() => (isTilePinned ? setPinnedTrackId() : setPinnedTrackId(videoTrackID || audioTrackID))}
       >
         <PinIcon height={20} width={20} />
-        <span>{isTilePinned ? 'Unpin' : 'Pin'} Tile for myself</span>
+        <span>{isTilePinned ? 'Désépingler' : 'Épingler'} la tuile pour moi</span>
       </StyledMenuTile.ItemButton>
     </>
   );
@@ -125,7 +125,7 @@ const MinimiseInset = () => {
     <>
       <StyledMenuTile.ItemButton className={dragClassName} css={spacingCSS} onClick={() => setMinimised(!minimised)}>
         <ShrinkIcon height={20} width={20} />
-        <span>{minimised ? 'Show' : 'Minimise'} your video</span>
+        <span>{minimised ? 'Afficher' : 'Réduire'} votre vidéo</span>
       </StyledMenuTile.ItemButton>
     </>
   );
@@ -143,7 +143,7 @@ const SimulcastLayers = ({ trackId }: { trackId: HMSTrackID }) => {
   return (
     <Fragment>
       <StyledMenuTile.ItemButton className={dragClassName} css={{ color: '$on_surface_medium', cursor: 'default' }}>
-        Select maximum resolution
+        Sélectionner la résolution maximale
       </StyledMenuTile.ItemButton>
       {track.layerDefinitions.map((layer: HMSSimulcastLayerDefinition) => {
         return (
@@ -185,8 +185,8 @@ const SimulcastLayers = ({ trackId }: { trackId: HMSTrackID }) => {
         );
       })}
       <StyledMenuTile.ItemButton className={dragClassName}>
-        <Text as="span" variant="xs" css={{ color: '$on_surface_medium' }}>
-          Currently streaming:
+          <Text as="span" variant="xs" css={{ color: '$on_surface_medium' }}>
+          Diffusion actuelle :
           <Text
             as="span"
             variant="xs"
@@ -277,7 +277,7 @@ export const TileMenuContent = ({
           >
             <PencilIcon height={20} width={20} />
             <Text variant="sm" css={{ '@md': { fontWeight: '$semiBold' }, c: '$on_surface_high' }}>
-              Change Name
+              Changer le nom
             </Text>
           </StyledMenuTile.ItemButton>
         )}
@@ -298,7 +298,7 @@ export const TileMenuContent = ({
           data-testid={isVideoEnabled ? 'mute_video_participant_btn' : 'unmute_video_participant_btn'}
         >
           {isVideoEnabled ? <VideoOnIcon height={20} width={20} /> : <VideoOffIcon height={20} width={20} />}
-          <span>{isVideoEnabled ? 'Mute Video' : 'Request to Unmute Video'}</span>
+          <span>{isVideoEnabled ? 'Couper la vidéo' : 'Demander à réactiver la vidéo'}</span>
         </StyledMenuTile.ItemButton>
       ) : null}
 
@@ -313,7 +313,7 @@ export const TileMenuContent = ({
           data-testid={isAudioEnabled ? 'mute_audio_participant_btn' : 'unmute_audio_participant_btn'}
         >
           {isAudioEnabled ? <MicOnIcon height={20} width={20} /> : <MicOffIcon height={20} width={20} />}
-          <span>{isAudioEnabled ? 'Mute Audio' : 'Request to Unmute Audio'}</span>
+          <span>{isAudioEnabled ? 'Couper le son' : 'Demander à réactiver le son'}</span>
         </StyledMenuTile.ItemButton>
       ) : null}
 
@@ -328,7 +328,7 @@ export const TileMenuContent = ({
           data-testid="change_role_btn"
         >
           <PersonSettingsIcon height={20} width={20} />
-          <span>Switch Role</span>
+          <span>Changer de rôle</span>
         </StyledMenuTile.ItemButton>
       ) : null}
 
@@ -372,7 +372,7 @@ export const TileMenuContent = ({
           data-testid="remove_participant_btn"
         >
           <RemoveUserIcon height={20} width={20} />
-          <span>Remove Participant</span>
+          <span>Retirer le participant</span>
         </StyledMenuTile.RemoveItem>
       ) : null}
 
@@ -385,7 +385,7 @@ export const TileMenuContent = ({
           css={spacingCSS}
         >
           <ShareScreenIcon height={20} width={20} />
-          <span>Stop Screenshare</span>
+          <span>Arrêter le partage d’écran</span>
         </StyledMenuTile.RemoveItem>
       ) : null}
     </>

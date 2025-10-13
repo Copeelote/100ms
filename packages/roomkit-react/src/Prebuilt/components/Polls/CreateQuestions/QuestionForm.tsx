@@ -109,10 +109,10 @@ export const QuestionForm = ({
   return (
     <>
       <Text variant="overline" css={{ c: '$on_surface_low', textTransform: 'uppercase' }}>
-        Question {index + 1} of {length}
+        Question {index + 1} sur {length}
       </Text>
       <Text variant="body2" css={{ mt: '$4', mb: '$md' }}>
-        Question Type
+        Type de question
       </Text>
       <Dropdown.Root open={open} onOpenChange={setOpen}>
         <DialogDropdownTrigger
@@ -149,7 +149,7 @@ export const QuestionForm = ({
       </Dropdown.Root>
       <TextArea
         maxLength={1024}
-        placeholder="Ask a question"
+        placeholder="Posez une question"
         css={{
           mt: '$md',
           backgroundColor: '$surface_bright',
@@ -175,8 +175,8 @@ export const QuestionForm = ({
           {isQuiz && (
             <Text variant="xs" css={{ c: '$on_surface_medium', mb: '$md' }}>
               {type === QUESTION_TYPE.SINGLE_CHOICE
-                ? 'Use the radio buttons to indicate the correct answer'
-                : 'Use the checkboxes to indicate the correct answer(s)'}
+                ? 'Utilisez les boutons radio pour indiquer la bonne réponse'
+                : 'Utilisez les cases à cocher pour indiquer la ou les bonnes réponses'}
             </Text>
           )}
 
@@ -218,7 +218,7 @@ export const QuestionForm = ({
                   c: 'inherit',
                 }}
               >
-                Add an option
+                Ajouter une option
               </Text>
             </Flex>
           )}
@@ -227,7 +227,7 @@ export const QuestionForm = ({
             <>
               <Flex justify="between" align="center" css={{ gap: '$6', w: '100%' }}>
                 <Text variant="sm" css={{ color: '$on_surface_medium' }}>
-                  Point Weightage
+                  Pondération des points
                 </Text>
                 <Input
                   type="number"
@@ -261,8 +261,8 @@ export const QuestionForm = ({
           disabled={isValid}
           title={
             options.length < 2
-              ? 'At least two options must be added'
-              : `Please fill all the fields ${isQuiz ? 'and mark the correct answer(s)' : ''} to continue`
+              ? 'Au moins deux options doivent être ajoutées'
+              : `Veuillez remplir tous les champs ${isQuiz ? 'et indiquer la ou les bonnes réponses' : ''} pour continuer`
           }
           boxCss={{ maxWidth: '$40' }}
         >
@@ -281,7 +281,7 @@ export const QuestionForm = ({
               });
             }}
           >
-            Save
+            Enregistrer
           </Button>
         </Tooltip>
       </Flex>

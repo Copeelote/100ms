@@ -62,15 +62,15 @@ export const MwebLandscapePrompt = () => {
             >
               <RefreshIcon style={{ marginRight: '0.5rem' }} />
               <Text variant="lg" css={{ color: '$on_surface_high', fontWeight: '$semiBold' }}>
-                Please rotate your device
+                Veuillez faire pivoter votre appareil
               </Text>
             </Flex>
             <Text variant="sm" css={{ color: '$on_surface_medium', mb: '$8', mt: '$4' }}>
-              We do not support landscape mode as of now, please use the app in portrait mode for the best experience.
+              Nous ne prenons pas en charge le mode paysage pour le moment ; veuillez utiliser l’application en mode portrait pour une meilleure expérience.
             </Text>
             <Flex align="center" justify="between" css={{ w: '100%', gap: '$8' }}>
               <Button outlined variant="standard" css={{ w: '100%' }} onClick={() => setShowMwebLandscapePrompt(false)}>
-                Continue anyway
+                Continuer quand même
               </Button>
             </Flex>
           </Box>

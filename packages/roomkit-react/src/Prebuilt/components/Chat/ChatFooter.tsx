@@ -81,7 +81,7 @@ export const ChatFooter = ({ onSend, children }: { onSend: (count: number) => vo
   const [draftMessage, setDraftMessage] = useChatDraftMessage();
   const isMobile = useMedia(cssConfig.media.md);
   const { elements, screenType } = useRoomLayoutConferencingScreen();
-  const message_placeholder = elements?.chat?.message_placeholder || 'Send a message';
+  const message_placeholder = elements?.chat?.message_placeholder || 'Envoyer un message';
   const localPeer = useHMSStore(selectLocalPeer);
   const isOverlayChat = elements?.chat?.is_overlay;
   const canDisableChat = !!elements?.chat?.real_time_controls?.can_disable_chat;
@@ -141,7 +141,7 @@ export const ChatFooter = ({ onSend, children }: { onSend: (count: number) => vo
     } catch (error) {
       const err = error as HMSException;
       ToastManager.addToast({
-        title: err.message.startsWith('Invalid peer') ? `${selectedPeer.name} is not in this room` : err.message,
+        title: err.message.startsWith('Invalid peer') ? `${selectedPeer.name} n’est pas dans cette salle` : err.message,
       });
     }
   }, [selectedRole, selectedPeer, hmsActions, onSend]);
@@ -207,7 +207,7 @@ export const ChatFooter = ({ onSend, children }: { onSend: (count: number) => vo
                 >
                   <PauseCircleIcon />
                   <Text variant="sm" css={{ fontWeight: '$semiBold' }}>
-                    Pause Chat
+                    Mettre le chat en pause
                   </Text>
                 </Popover.Content>
               </Popover.Portal>

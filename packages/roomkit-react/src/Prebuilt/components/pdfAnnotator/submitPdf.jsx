@@ -24,7 +24,7 @@ export const SubmitPDF = ({ pdfFile, onOpenChange }) => {
         }}
         css={{ w: '50%' }}
       >
-        Cancel
+        Annuler
       </Button>
       <Button
         variant="primary"
@@ -41,7 +41,7 @@ export const SubmitPDF = ({ pdfFile, onOpenChange }) => {
           w: '50%',
         }}
       >
-        Start Sharing
+        Commencer le partage
       </Button>
     </Flex>
   );

@@ -23,7 +23,7 @@ const ChatAction = React.forwardRef((_, ref) => {
 
   return (
     <Button outlined as="div" variant="standard" css={{ w: 'max-content' }} onClick={toggleChat} ref={ref}>
-      Open Chat
+      Ouvrir le chat
     </Button>
   );
 });
@@ -66,7 +66,7 @@ const HandRaiseAction = React.forwardRef(({ id = '', isSingleHandRaise = true },
   }
   return (
     <Button outlined as="div" variant="standard" css={{ w: 'max-content' }} onClick={onClickHandler} ref={ref}>
-      {isSingleHandRaise ? bring_to_stage_label : 'View'}
+      {isSingleHandRaise ? bring_to_stage_label : 'Voir'}
     </Button>
   );
 });
@@ -75,13 +75,13 @@ export const ToastConfig = {
   PEER_JOINED: {
     single: function (notification) {
       return {
-        title: `${notification.data?.name} joined`,
+        title: `${notification.data?.name} a rejoint`,
         icon: <PeopleAddIcon />,
       };
     },
     multiple: function (notifications) {
       return {
-        title: `${notifications[notifications.length - 1].data.name} and ${notifications.length - 1} others joined`,
+        title: `${notifications[notifications.length - 1].data.name} et ${notifications.length - 1} autres ont rejoint`,
         icon: <PeopleAddIcon />,
       };
     },
@@ -89,13 +89,13 @@ export const ToastConfig = {
   PEER_LEFT: {
     single: function (notification) {
       return {
-        title: `${notification.data?.name} left`,
+        title: `${notification.data?.name} a quitté`,
         icon: <PeopleRemoveIcon />,
       };
     },
     multiple: function (notifications) {
       return {
-        title: `${notifications[notifications.length - 1].data.name} and ${notifications.length - 1} others left`,
+        title: `${notifications[notifications.length - 1].data.name} et ${notifications.length - 1} autres ont quitté`,
         icon: <PeopleRemoveIcon />,
       };
     },
@@ -103,16 +103,14 @@ export const ToastConfig = {
   RAISE_HAND: {
     single: notification => {
       return {
-        title: `${notification.data?.name} raised hand`,
+        title: `${notification.data?.name} a levé la main`,
         icon: <HandIcon />,
       };
     },
     multiple: notifications => {
       const count = new Set(notifications.map(notification => notification.data?.id)).size;
       return {
-        title: `${notifications[notifications.length - 1].data?.name} ${
-          count > 1 ? `and ${count} others` : ''
-        } raised hand`,
+        title: `${notifications[notifications.length - 1].data?.name} ${count > 1 ? `et ${count} autres` : ''} ont levé la main`,
         icon: <HandIcon />,
       };
     },
@@ -120,7 +118,7 @@ export const ToastConfig = {
   RAISE_HAND_HLS: {
     single: notification => {
       return {
-        title: `${notification.data?.name} raised hand`,
+        title: `${notification.data?.name} a levé la main`,
         icon: <HandIcon />,
         action: <HandRaiseAction id={notification.data?.id} />,
       };
@@ -128,9 +126,7 @@ export const ToastConfig = {
     multiple: notifications => {
       const count = new Set(notifications.map(notification => notification.data?.id)).size;
       return {
-        title: `${notifications[notifications.length - 1].data?.name} ${
-          count > 1 ? `and ${count} others` : ''
-        } raised hand`,
+        title: `${notifications[notifications.length - 1].data?.name} ${count > 1 ? `et ${count} autres` : ''} ont levé la main`,
         icon: <HandIcon />,
         action: <HandRaiseAction isSingleHandRaise={false} />,
       };

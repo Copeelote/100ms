@@ -104,7 +104,7 @@ export const ChangeNameContent = ({
             disabled={!localPeerName}
             onClick={onExit}
           >
-            Cancel
+            Annuler
           </Button>
         )}
 
@@ -115,7 +115,7 @@ export const ChangeNameContent = ({
           disabled={!currentName?.trim() || currentName?.trim() === localPeerName}
           data-testid="popup_change_btn"
         >
-          Change
+          Modifier
         </Button>
       </Flex>
     </form>

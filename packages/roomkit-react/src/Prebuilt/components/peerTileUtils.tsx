@@ -4,11 +4,11 @@ const PEER_NAME_PLACEHOLDER = 'peerName';
 
 // Map [isLocal, videoSource] to the label to be displayed.
 const labelMap = new Map([
-  [[true, 'screen'].toString(), 'Your Screen'],
-  [[true, 'regular'].toString(), `You (${PEER_NAME_PLACEHOLDER})`],
-  [[false, 'screen'].toString(), `${PEER_NAME_PLACEHOLDER}'s Screen`],
+  [[true, 'screen'].toString(), 'Votre écran'],
+  [[true, 'regular'].toString(), `Vous (${PEER_NAME_PLACEHOLDER})`],
+  [[false, 'screen'].toString(), `Écran de ${PEER_NAME_PLACEHOLDER}`],
   [[false, 'regular'].toString(), PEER_NAME_PLACEHOLDER],
-  [[true, undefined].toString(), `You (${PEER_NAME_PLACEHOLDER})`],
+  [[true, undefined].toString(), `Vous (${PEER_NAME_PLACEHOLDER})`],
   [[false, undefined].toString(), `${PEER_NAME_PLACEHOLDER}`],
 ]);
 
@@ -38,5 +38,5 @@ export const getVideoTileLabel = ({
     label = `${peerName} ${videoTrack.source}`;
   }
   // label = `${label}${track.degraded ? '(Degraded)' : ''}`;
-  return `${label}${isLocallyMuted ? ' (Muted for you)' : ''}`;
+  return `${label}${isLocallyMuted ? ' (En sourdine pour vous)' : ''}`;
 };

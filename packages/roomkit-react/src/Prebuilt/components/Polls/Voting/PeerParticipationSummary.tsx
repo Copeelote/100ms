@@ -18,38 +18,38 @@ export const PeerParticipationSummary = ({ quiz }: { quiz: HMSPoll }) => {
   const boxes = isLocalPeerQuizCreator
     ? [
         {
-          title: 'Voted',
+          title: 'A voté',
           value: `${summary.totalUsers ? ((100 * summary.votedUsers) / summary.totalUsers).toFixed(0) : 0}% (${
             summary.votedUsers
           }/${summary.totalUsers})`,
         },
         {
-          title: 'Correct Answers',
+          title: 'Bonnes réponses',
           value: `${summary.totalUsers ? ((100 * summary.correctUsers) / summary.totalUsers).toFixed(0) : 0}% (${
             summary.correctUsers
           }/${summary.totalUsers})`,
         },
         // Time in ms
-        { title: 'Avg. Time Taken', value: getFormattedTime(summary.avgTime) },
+        { title: 'Temps moyen écoulé', value: getFormattedTime(summary.avgTime) },
         {
-          title: 'Avg. Score',
+          title: 'Score moyen',
           value: Number.isInteger(summary.avgScore) ? summary.avgScore : summary.avgScore.toFixed(2),
         },
       ]
     : [
-        { title: 'Your rank', value: peerEntry?.position || '-' },
+        { title: 'Votre classement', value: peerEntry?.position || '-' },
         { title: 'Points', value: peerEntry?.score || 0 },
         // Time in ms
-        { title: 'Time Taken', value: getFormattedTime(peerEntry?.duration) },
+        { title: 'Temps écoulé', value: getFormattedTime(peerEntry?.duration) },
         {
-          title: 'Correct Answers',
+          title: 'Bonnes réponses',
           value: peerEntry?.totalResponses ? `${peerEntry?.correctResponses}/${peerEntry.totalResponses}` : '-',
         },
       ];
 
   return (
     <Box>
-      <Text css={{ fontWeight: '$semiBold', my: '$8' }}>Participation Summary</Text>
+      <Text css={{ fontWeight: '$semiBold', my: '$8' }}>Résumé de participation</Text>
       <Box css={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '$4' }}>
         {boxes.map(box => (
           <StatisticBox key={box.title} title={box.title} value={box.value} />

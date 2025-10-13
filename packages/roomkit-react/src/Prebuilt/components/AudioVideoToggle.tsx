@@ -113,7 +113,7 @@ const useNoiseCancellationWithPlugin = () => {
         return;
       }
       if (!krispPlugin.checkSupport().isSupported) {
-        throw Error('Krisp plugin is not supported');
+        throw Error("Le plugin Krisp n'est pas pris en charge");
       }
       setInProgress(true);
       if (enabled) {
@@ -162,14 +162,14 @@ export const NoiseCancellation = ({
         }}
       >
         <AudioLevelIcon />
-        <ActionTile.Title>{isNoiseCancellationEnabled ? 'Noise Reduced' : 'Reduce Noise'}</ActionTile.Title>
+        <ActionTile.Title>{isNoiseCancellationEnabled ? 'Réduction du bruit activée' : 'Réduire le bruit'}</ActionTile.Title>
       </ActionTile.Root>
     );
   }
 
   if (iconOnly) {
     return (
-      <Tooltip title={isNoiseCancellationEnabled ? 'Noise Reduced' : 'Reduce Noise'}>
+      <Tooltip title={isNoiseCancellationEnabled ? 'Réduction du bruit activée' : 'Réduire le bruit'}>
         <IconButton
           onClick={async () => {
             await setNoiseCancellationWithPlugin(!isNoiseCancellationEnabled);
@@ -202,7 +202,7 @@ export const NoiseCancellation = ({
       >
         <Text css={{ display: 'flex', alignItems: 'center', gap: '$2', fontSize: '$xs', '& svg': { size: '$8' } }}>
           <AudioLevelIcon />
-          Reduce Noise
+          Réduire le bruit
         </Text>
         <Switch
           id="noise_cancellation"
@@ -223,7 +223,7 @@ const AudioOutputLabel = ({ deviceId }: { deviceId: string }) => {
   const { playing, setPlaying, audioRef } = useAudioOutputTest({ deviceId });
   return (
     <OptionLabel icon={<SpeakerIcon />}>
-      <Box css={{ flex: '1 1 0' }}>Speakers</Box>
+      <Box css={{ flex: '1 1 0' }}>Haut-parleurs</Box>
       <Text
         variant="xs"
         css={{ color: '$primary_bright', '&:hover': { cursor: 'pointer' } }}
@@ -241,7 +241,7 @@ const AudioOutputLabel = ({ deviceId }: { deviceId: string }) => {
           onPlay={() => setPlaying(true)}
           style={{ display: 'none' }}
         />
-        {playing ? 'Playing Sound...' : 'Play Test Sound'}
+        {playing ? 'Lecture du son…' : 'Lire le son de test'}
       </Text>
     </OptionLabel>
   );
@@ -262,7 +262,7 @@ const AudioSettings = ({ onClick }: { onClick: () => void }) => {
         }}
         onClick={onClick}
       >
-        <SettingsIcon /> Audio Settings
+        <SettingsIcon /> Paramètres audio
       </Dropdown.Item>
     </>
   );
@@ -306,7 +306,7 @@ export const AudioVideoToggle = ({ hideOptions = false }: { hideOptions?: boolea
         try {
           await setNoiseCancellationWithPlugin(true);
           ToastManager.addToast({
-            title: `Noise Reduction Enabled`,
+            title: `Réduction du bruit activée`,
             variant: 'standard',
             duration: 2000,
             icon: <AudioLevelIcon />,
@@ -330,7 +330,7 @@ export const AudioVideoToggle = ({ hideOptions = false }: { hideOptions?: boolea
           hideOptions={hideOptions || !hasAudioDevices}
           onDisabledClick={toggleAudio}
           testid="audio_toggle_btn"
-          tooltipMessage={`Turn ${isLocalAudioEnabled ? 'off' : 'on'} audio (${isMacOS ? '⌘' : 'ctrl'} + d)`}
+          tooltipMessage={`${isLocalAudioEnabled ? 'Couper le son' : 'Activer le son'} (${isMacOS ? '⌘' : 'ctrl'} + d)`}
           icon={!isLocalAudioEnabled ? <MicOffIcon /> : <MicOnIcon />}
           active={isLocalAudioEnabled}
           onClick={toggleAudio}
@@ -370,7 +370,7 @@ export const AudioVideoToggle = ({ hideOptions = false }: { hideOptions?: boolea
           disabled={!toggleVideo}
           hideOptions={hideOptions || !hasVideoDevices}
           onDisabledClick={toggleVideo}
-          tooltipMessage={`Turn ${isLocalVideoEnabled ? 'off' : 'on'} video (${isMacOS ? '⌘' : 'ctrl'} + e)`}
+          tooltipMessage={`${isLocalVideoEnabled ? 'Couper' : 'Activer'} la vidéo (${isMacOS ? '⌘' : 'ctrl'} + e)`}
           testid="video_toggle_btn"
           icon={!isLocalVideoEnabled ? <VideoOffIcon /> : <VideoOnIcon />}
           key="toggleVideo"
@@ -386,14 +386,14 @@ export const AudioVideoToggle = ({ hideOptions = false }: { hideOptions?: boolea
       ) : null}
 
       {localVideoTrack?.facingMode && roomState === HMSRoomState.Preview && (isIOS || isAndroid) ? (
-        <Tooltip title="Switch Camera" key="switchCamera">
+        <Tooltip title="Changer de caméra" key="switchCamera">
           <IconButton
             onClick={async () => {
               try {
                 await actions.switchCamera();
               } catch (e) {
                 ToastManager.addToast({
-                  title: `Error while flipping camera ${(e as Error).message || ''}`,
+                  title: `Erreur lors du changement de caméra ${(e as Error).message || ''}`,
                   variant: 'error',
                 });
               }

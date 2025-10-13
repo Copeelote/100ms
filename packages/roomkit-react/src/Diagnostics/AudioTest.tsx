@@ -41,7 +41,7 @@ const MicTest = ({ setError }: { setError: (err?: Error) => void }) => {
   return (
     <SelectContainer>
       <DeviceSelector
-        title="Microphone (Input)"
+        title="Microphone (Entrée)"
         devices={devices.audioInput}
         selection={selectedMic}
         icon={<MicOnIcon />}
@@ -75,7 +75,7 @@ const MicTest = ({ setError }: { setError: (err?: Error) => void }) => {
           disabled={devices.audioInput.length === 0 || playing}
         >
           {isRecording ? <StopIcon /> : <MicOnIcon />}
-          {isRecording ? 'Stop Recording' : 'Record'}
+          {isRecording ? "Arrêter l'enregistrement" : 'Enregistrer'}
         </Button>
 
         <Button
@@ -91,7 +91,7 @@ const MicTest = ({ setError }: { setError: (err?: Error) => void }) => {
           disabled={playing || hmsDiagnostics?.getRecordedAudio() === TEST_AUDIO_URL}
         >
           <SpeakerIcon />
-          {playing ? 'Playing...' : 'Playback'}
+          {playing ? 'Lecture en cours…' : "Lire l'enregistrement"}
         </Button>
         <audio
           ref={audioRef}
@@ -130,7 +130,7 @@ const SpeakerTest = () => {
   return (
     <SelectContainer>
       <DeviceSelector
-        title="Speaker (Output)"
+        title="Haut-parleur (Sortie)"
         devices={devices.audioOutput}
         selection={audioOutputDeviceId || devices.audioOutput[0]?.deviceId}
         icon={<SpeakerIcon />}
@@ -162,9 +162,9 @@ export const AudioTest = () => {
     <>
       <TestContainer>
         <Text variant="body2" css={{ c: '$on_primary_medium' }}>
-          Record a 10 second audio clip and play it back to check that your microphone and speaker are working. If they
-          aren't, make sure your volume is turned up, try a different speaker or microphone, or check your bluetooth
-          settings.
+          Enregistrez un clip audio de 10 secondes et écoutez-le pour vérifier que votre microphone et votre haut-parleur
+          fonctionnent. S'ils ne fonctionnent pas, assurez-vous que le volume est suffisant, essayez un autre haut-parleur
+          ou microphone, ou vérifiez vos paramètres Bluetooth.
         </Text>
 
         <Flex
@@ -181,7 +181,7 @@ export const AudioTest = () => {
           <SpeakerTest />
         </Flex>
       </TestContainer>
-      <TestFooter error={error} ctaText="Does your audio sound good?" />
+      <TestFooter error={error} ctaText="Votre audio est-il bon ?" />
       <PermissionErrorModal error={error as HMSException} />
     </>
   );

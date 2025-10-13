@@ -54,10 +54,10 @@ export const MwebLeaveRoom = ({
           </Sheet.Trigger>
           <Sheet.Content container={container}>
             <LeaveCard
-              title={showStream ? 'Leave Stream' : 'Leave Session'}
-              subtitle={`Others will continue after you leave. You can join the ${
-                showStream ? 'stream' : 'session'
-              } again.`}
+              title={showStream ? 'Quitter le live' : 'Quitter la session'}
+              subtitle={`Les autres continueront après votre départ. Vous pourrez rejoindre la ${
+                showStream ? 'diffusion' : 'session'
+              } à nouveau.`}
               bg="$surface_default"
               titleColor="$on_surface_high"
               icon={<ExitIcon height={24} width={24} style={{ transform: 'rotate(180deg)' }} />}
@@ -66,10 +66,10 @@ export const MwebLeaveRoom = ({
             />
 
             <LeaveCard
-              title={showStream ? 'End Stream' : 'End Session'}
-              subtitle={`The will end the ${
-                showStream ? 'stream' : 'session'
-              } for everyone. You can't undo this action.`}
+              title={showStream ? 'Terminer le live' : 'Terminer la session'}
+              subtitle={`Ceci mettra fin à la ${
+                showStream ? 'diffusion' : 'session'
+              } pour tout le monde. Cette action est irréversible.`}
               bg="$alert_error_dim"
               titleColor="$alert_error_brighter"
               css={{ color: '$alert_error_bright', '&:hover': { color: '$alert_error_brighter' } }}
@@ -109,7 +109,7 @@ const LeaveButton = ({ onClick }: { onClick: () => void }) => {
 
   return isMobileHLSStream || isLandscapeHLSStream ? (
     <IconButton key="LeaveRoom" data-testid="leave_room_btn" onClick={onClick}>
-      <Tooltip title="Leave Room">
+      <Tooltip title="Quitter la salle">
         <Box>
           <CrossIcon />
         </Box>
@@ -125,7 +125,7 @@ const LeaveButton = ({ onClick }: { onClick: () => void }) => {
       }}
       onClick={onClick}
     >
-      <Tooltip title="Leave Room">
+      <Tooltip title="Quitter la salle">
         <Box>
           <ExitIcon style={{ transform: 'rotate(180deg)' }} />
         </Box>

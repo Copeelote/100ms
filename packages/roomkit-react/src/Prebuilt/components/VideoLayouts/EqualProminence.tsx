@@ -51,8 +51,8 @@ export function EqualProminence({ isInsetEnabled = false, peers, onPageChange, o
       )}
       {pageList.length === 0 ? (
         <WaitingView
-          title="You're the only one here"
-          subtitle="Sit back and relax till others join"
+          title="Vous êtes le seul ici"
+          subtitle="Détendez-vous en attendant que d'autres vous rejoignent"
           icon={<PeopleAddIcon width="56px" height="56px" style={{ color: 'white' }} />}
         />
       ) : null}

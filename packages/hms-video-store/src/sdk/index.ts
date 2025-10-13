@@ -286,7 +286,7 @@ export class HMSSdk implements HMSInterface {
   getDebugInfo(): DebugInfo | undefined {
     if (!this.transport) {
       HMSLogger.e(this.TAG, `Transport is not defined`);
-      throw new Error('getDebugInfo can only be called after join');
+      throw new Error("getDebugInfo ne peut être appelé qu'après la jonction");
     }
     const websocketURL = this.transport.getWebsocketEndpoint();
     const enabledFlags = Object.values(InitFlags).filter(flag => this.transport.isFlagEnabled(flag));
@@ -554,7 +554,7 @@ export class HMSSdk implements HMSInterface {
 
   async cancelMidCallPreview() {
     if (!this.localPeer || !this.localPeer.isInPreview()) {
-      HMSLogger.w(this.TAG, 'Cannot cancel mid call preview as preview is not in progress');
+      HMSLogger.w(this.TAG, "Impossible d'annuler l'aperçu en cours d'appel car aucun aperçu n'est en cours");
     }
 
     if (this.localPeer?.asRole && this.localPeer.role) {
@@ -618,7 +618,7 @@ export class HMSSdk implements HMSInterface {
     validateRTCPeerConnection();
 
     if (this.sdkState.isPreviewInProgress) {
-      throw ErrorFactory.GenericErrors.NotReady(HMSAction.JOIN, "Preview is in progress, can't join");
+      throw ErrorFactory.GenericErrors.NotReady(HMSAction.JOIN, "L’aperçu est en cours, impossible de rejoindre");
     }
 
     // remove terminal error handling from preview(do not send preview.failed after join on disconnect)
@@ -684,7 +684,7 @@ export class HMSSdk implements HMSInterface {
       this.sdkState.isJoinInProgress = false;
       this.listener?.onError(error as HMSException);
       this.sendJoinAnalyticsEvent(this.sdkState.isPreviewCalled, error as HMSException);
-      HMSLogger.e(this.TAG, 'Unable to join room', error);
+      HMSLogger.e(this.TAG, "Impossible de rejoindre la salle", error);
       throw error;
     }
     HMSLogger.timeEnd(`join-room-${roomId}`);
@@ -817,14 +817,14 @@ export class HMSSdk implements HMSInterface {
         return knownRoles[role.name];
       }) || [];
     if (recipientRoles.length === 0) {
-      throw ErrorFactory.GenericErrors.ValidationFailed('No valid role is present', roles);
+      throw ErrorFactory.GenericErrors.ValidationFailed('Aucun rôle valide présent', roles);
     }
     return await this.sendMessageInternal({ message, recipientRoles: roles, type });
   }
 
   async sendDirectMessage(message: string, peerId: string, type?: string) {
     if (this.localPeer?.peerId === peerId) {
-      throw ErrorFactory.GenericErrors.ValidationFailed('Cannot send message to self');
+      throw ErrorFactory.GenericErrors.ValidationFailed("Impossible d’envoyer un message à soi-même");
     }
     const isLargeRoom = !!this.store.getRoom()?.large_room_optimization;
     let recipientPeer = this.store.getPeerById(peerId);
@@ -832,11 +832,11 @@ export class HMSSdk implements HMSInterface {
       if (isLargeRoom) {
         const peer = await this.transport.signal.getPeer({ peer_id: peerId });
         if (!peer) {
-          throw ErrorFactory.GenericErrors.ValidationFailed('Invalid peer - peer not present in the room', peerId);
+          throw ErrorFactory.GenericErrors.ValidationFailed('Pair invalide - pair absent de la salle', peerId);
         }
         recipientPeer = createRemotePeer(peer, this.store);
       } else {
-        throw ErrorFactory.GenericErrors.ValidationFailed('Invalid peer - peer not present in the room', peerId);
+        throw ErrorFactory.GenericErrors.ValidationFailed('Pair invalide - pair absent de la salle', peerId);
       }
     }
 
@@ -844,13 +844,13 @@ export class HMSSdk implements HMSInterface {
   }
   async submitSessionFeedback(feedback: HMSSessionFeedback, eventEndpoint?: string) {
     if (!this.sessionPeerInfo) {
-      HMSLogger.e(this.TAG, 'submitSessionFeedback> session is undefined');
-      throw new Error('session is undefined');
+      HMSLogger.e(this.TAG, 'submitSessionFeedback> session est indéfini');
+      throw new Error('La session est indéfinie');
     }
     const token = this.sessionPeerInfo.peer.token;
     if (!token) {
-      HMSLogger.e(this.TAG, 'submitSessionFeedback> token is undefined');
-      throw new Error('Internal error, token is not present');
+      HMSLogger.e(this.TAG, 'submitSessionFeedback> jeton (token) indéfini');
+      throw new Error("Erreur interne, le jeton est absent");
     }
     try {
       await FeedbackService.sendFeedback({
@@ -859,11 +859,11 @@ export class HMSSdk implements HMSInterface {
         feedback,
         eventEndpoint,
       });
-      HMSLogger.i(this.TAG, 'submitSessionFeedback> submitted feedback');
+      HMSLogger.i(this.TAG, 'submitSessionFeedback> retour envoyé');
       this.sessionPeerInfo = undefined;
     } catch (e) {
-      HMSLogger.e(this.TAG, 'submitSessionFeedback> error occured ', e);
-      throw new Error('Unable to submit feedback');
+      HMSLogger.e(this.TAG, 'submitSessionFeedback> erreur survenue ', e);
+      throw new Error("Impossible d’envoyer le retour");
     }
   }
   async getPeer(peerId: string) {
@@ -907,8 +907,8 @@ export class HMSSdk implements HMSInterface {
 
   private async sendMessageInternal({ recipientRoles, recipientPeer, type = 'chat', message }: HMSMessageInput) {
     if (message.replace(/\u200b/g, ' ').trim() === '') {
-      HMSLogger.w(this.TAG, 'sendMessage', 'Ignoring empty message send');
-      throw ErrorFactory.GenericErrors.ValidationFailed('Empty message not allowed');
+      HMSLogger.w(this.TAG, 'sendMessage', 'Envoi de message vide ignoré');
+      throw ErrorFactory.GenericErrors.ValidationFailed('Message vide non autorisé');
     }
     const sendParams: SendMessage = {
       info: {
@@ -941,7 +941,7 @@ export class HMSSdk implements HMSInterface {
     }
 
     if (this.localPeer?.auxiliaryTracks?.find(track => track.source === 'screen')) {
-      throw Error('Cannot share multiple screens');
+      throw Error('Impossible de partager plusieurs écrans');
     }
 
     const tracks = await this.getScreenshareTracks(onStop, config);
@@ -981,11 +981,11 @@ export class HMSSdk implements HMSInterface {
 
   async addTrack(track: MediaStreamTrack, source: HMSTrackSource = 'regular'): Promise<void> {
     if (!track) {
-      HMSLogger.w(this.TAG, 'Please pass a valid MediaStreamTrack');
+      HMSLogger.w(this.TAG, 'Veuillez fournir un MediaStreamTrack valide');
       return;
     }
     if (!this.localPeer) {
-      throw ErrorFactory.GenericErrors.NotConnected(HMSAction.VALIDATION, 'No local peer present, cannot addTrack');
+      throw ErrorFactory.GenericErrors.NotConnected(HMSAction.VALIDATION, "Aucun pair local, impossible d’exécuter addTrack");
     }
     const isTrackPresent = this.localPeer.auxiliaryTracks.find(t => t.trackId === track.id);
     if (isTrackPresent) {
@@ -1013,7 +1013,7 @@ export class HMSSdk implements HMSInterface {
 
   async removeTrack(trackId: string, internal = false) {
     if (!this.localPeer) {
-      throw ErrorFactory.GenericErrors.NotConnected(HMSAction.VALIDATION, 'No local peer present, cannot removeTrack');
+      throw ErrorFactory.GenericErrors.NotConnected(HMSAction.VALIDATION, "Aucun pair local, impossible d’exécuter removeTrack");
     }
     const trackIndex = this.localPeer.auxiliaryTracks.findIndex(t => t.trackId === trackId);
     if (trackIndex > -1) {
@@ -1097,7 +1097,7 @@ export class HMSSdk implements HMSInterface {
 
   async endRoom(lock: boolean, reason: string) {
     if (!this.localPeer) {
-      throw ErrorFactory.GenericErrors.NotConnected(HMSAction.VALIDATION, 'No local peer present, cannot end room');
+      throw ErrorFactory.GenericErrors.NotConnected(HMSAction.VALIDATION, "Aucun pair local, impossible de terminer la salle");
     }
     await this.transport?.signal.endRoom(lock, reason);
     await this.leave();
@@ -1105,7 +1105,7 @@ export class HMSSdk implements HMSInterface {
 
   async removePeer(peerId: string, reason: string) {
     if (!this.localPeer) {
-      throw ErrorFactory.GenericErrors.NotConnected(HMSAction.VALIDATION, 'No local peer present, cannot remove peer');
+      throw ErrorFactory.GenericErrors.NotConnected(HMSAction.VALIDATION, "Aucun pair local, impossible de retirer un pair");
     }
     await this.transport?.signal.removePeer({ requested_for: peerId, reason });
   }
@@ -1114,7 +1114,7 @@ export class HMSSdk implements HMSInterface {
     if (!this.localPeer) {
       throw ErrorFactory.GenericErrors.NotConnected(
         HMSAction.VALIDATION,
-        'No local peer present, cannot start streaming or recording',
+        'Aucun pair local, impossible de démarrer la diffusion ou l’enregistrement',
       );
     }
     const signalParams: StartRTMPOrRecordingRequestParams = {
@@ -1137,7 +1137,7 @@ export class HMSSdk implements HMSInterface {
     if (!this.localPeer) {
       throw ErrorFactory.GenericErrors.NotConnected(
         HMSAction.VALIDATION,
-        'No local peer present, cannot stop streaming or recording',
+        'Aucun pair local, impossible d’arrêter la diffusion ou l’enregistrement',
       );
     }
 
@@ -1148,7 +1148,7 @@ export class HMSSdk implements HMSInterface {
     if (!this.localPeer) {
       throw ErrorFactory.GenericErrors.NotConnected(
         HMSAction.VALIDATION,
-        'No local peer present, cannot start HLS streaming',
+        'Aucun pair local, impossible de démarrer la diffusion HLS',
       );
     }
     const hlsParams: HLSRequestParams = {};
@@ -1174,7 +1174,7 @@ export class HMSSdk implements HMSInterface {
     if (!this.localPeer) {
       throw ErrorFactory.GenericErrors.NotConnected(
         HMSAction.VALIDATION,
-        'No local peer present, cannot stop HLS streaming',
+        'Aucun pair local, impossible d’arrêter la diffusion HLS',
       );
     }
     if (params) {
@@ -1199,7 +1199,7 @@ export class HMSSdk implements HMSInterface {
     if (!this.localPeer) {
       throw ErrorFactory.GenericErrors.NotConnected(
         HMSAction.VALIDATION,
-        'No local peer present, cannot start transcriptions',
+        'Aucun pair local, impossible de démarrer les transcriptions',
       );
     }
     const transcriptionParams: StartTranscriptionRequestParams = {
@@ -1212,7 +1212,7 @@ export class HMSSdk implements HMSInterface {
     if (!this.localPeer) {
       throw ErrorFactory.GenericErrors.NotConnected(
         HMSAction.VALIDATION,
-        'No local peer present, cannot stop transcriptions',
+        'Aucun pair local, impossible d’arrêter les transcriptions',
       );
     }
     if (!params) {

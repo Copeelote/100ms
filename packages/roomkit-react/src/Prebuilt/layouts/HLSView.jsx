@@ -194,7 +194,7 @@ const HLSView = () => {
         // launch poll
         if (!toastMap[pollId]) {
           const toastID = ToastManager.addToast({
-            title: `${pollStartedBy} started a ${poll.type}: ${poll.title}`,
+            title: `${pollStartedBy} a lancé un ${poll.type === 'quiz' ? 'quiz' : 'sondage'} : ${poll.title}`,
             action: (
               <Button
                 onClick={() => {
@@ -212,7 +212,7 @@ const HLSView = () => {
                   p: '$xs $md',
                 }}
               >
-                {poll.type === 'quiz' ? 'Answer' : 'Vote'}
+                {poll.type === 'quiz' ? 'Répondre' : 'Voter'}
               </Button>
             ),
             duration: Infinity,
@@ -227,7 +227,7 @@ const HLSView = () => {
           break;
         default: {
           const toast = {
-            title: `Payload from timed Metadata ${parsedPayload}`,
+            title: `Données depuis les métadonnées temporisées ${parsedPayload}`,
             duration: duration || 3000,
           };
           console.debug('Added toast ', JSON.stringify(toast));

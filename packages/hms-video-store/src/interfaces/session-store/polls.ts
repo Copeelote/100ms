@@ -67,19 +67,19 @@ export interface HMSPollQuestionCreateParams extends Pick<HMSPollQuestion, 'text
 }
 
 export interface HMSPollQuestionAnswer {
-  hidden: boolean; // if true answer will not be returned when poll is running
-  option?: number; // option index for correct answer, in case of single choice
-  options?: number[]; // list of options that shoould be in answer
-  text?: string; // answer text for answer.
-  case?: boolean; // if false case is ignored when comparing.
-  trim?: boolean; // if true, empty space is trimmer from start and end of asnwer.
+  hidden: boolean; // si vrai, la réponse ne sera pas renvoyée pendant le sondage
+  option?: number; // index de l’option pour la bonne réponse, pour choix unique
+  options?: number[]; // liste des options devant figurer dans la réponse
+  text?: string; // texte de la réponse
+  case?: boolean; // si faux, la casse est ignorée lors de la comparaison
+  trim?: boolean; // si vrai, les espaces sont supprimés au début et à la fin de la réponse
 }
 
 export enum HMSPollQuestionType {
-  SINGLE_CHOICE = 'single-choice',
-  MULTIPLE_CHOICE = 'multiple-choice',
-  SHORT_ANSWER = 'short-answer',
-  LONG_ANSWER = 'long-answer',
+  SINGLE_CHOICE = 'Choix unique',
+  MULTIPLE_CHOICE = 'Choix multiples',
+  SHORT_ANSWER = 'Réponse courte',
+  LONG_ANSWER = 'Réponse longue',
 }
 
 export enum HMSPollStates {
@@ -108,9 +108,9 @@ export interface HMSPollQuestionResponse {
   option?: number;
   options?: number[];
   text?: string;
-  update?: boolean; // SDK Needs to track whether we previously answered and set accordingly
-  duration?: number; // Time it took to answer the question for leaderboard
-  responseFinal?: boolean; // Indicates whether this is last update when fetching responses
+  update?: boolean; // le SDK doit suivre si nous avons déjà répondu et l’indiquer
+  duration?: number; // temps nécessaire pour répondre à la question (classement)
+  responseFinal?: boolean; // indique s’il s’agit de la dernière mise à jour lors de la récupération des réponses
 }
 
 export type HMSPollQuestionResponseCreateParams = Omit<
@@ -127,20 +127,20 @@ interface HMSPollResponsePeerInfo {
 
 export interface HMSPollResult {
   /**
-   * The number of unique users who responded to the poll
+   * Nombre d’utilisateurs uniques ayant répondu au sondage
    */
   totalUsers?: number;
   /**
-   * The maximum number of users in the room during the poll.
+   * Nombre maximal d’utilisateurs dans la salle pendant le sondage
    */
   maxUsers?: number;
   totalResponses?: number;
 }
 
 export interface HMSPollQuestionResult {
-  correctResponses?: number;
-  skippedCount?: number;
-  totalResponses?: number;
+  correctResponses?: number; // réponses correctes
+  skippedCount?: number; // réponses ignorées
+  totalResponses?: number; // nombre total de réponses
 }
 
 export interface HMSQuizLeaderboardEntry {

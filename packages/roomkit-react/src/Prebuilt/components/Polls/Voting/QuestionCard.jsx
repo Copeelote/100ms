@@ -138,7 +138,7 @@ export const QuestionCard = ({
               },
             )
             .otherwise(() => null)}
-          QUESTION {index} OF {totalQuestions}: {type.toUpperCase()}
+          QUESTION {index} SUR {totalQuestions} : {type.toUpperCase()}
         </Text>
       </Flex>
 
@@ -207,13 +207,13 @@ const QuestionActions = ({ isValidVote, response, isQuiz, onVote, disableVote })
     <Flex align="center" justify="end" css={{ gap: '$4', w: '100%' }}>
       {response ? (
         <Text css={{ fontWeight: '$semiBold', color: '$on_surface_medium' }}>
-          {response.skipped ? 'Skipped' : null}
-          {isQuiz && !response.skipped ? 'Answered' : null}
-          {!isQuiz && !response.skipped ? 'Voted' : null}
+          {response.skipped ? 'Ignorée' : null}
+          {isQuiz && !response.skipped ? 'Répondu' : null}
+          {!isQuiz && !response.skipped ? 'A voté' : null}
         </Text>
       ) : (
         <Button css={{ p: '$xs $10', fontWeight: '$semiBold' }} disabled={!isValidVote || disableVote} onClick={onVote}>
-          {isQuiz ? 'Answer' : 'Vote'}
+          {isQuiz ? 'Répondre' : 'Voter'}
         </Button>
       )}
     </Flex>

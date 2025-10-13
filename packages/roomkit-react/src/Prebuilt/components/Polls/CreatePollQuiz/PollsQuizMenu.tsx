@@ -26,7 +26,7 @@ export const PollsQuizMenu = () => {
 
   return (
     <Container rounded>
-      <ContentHeader content="Polls and Quizzes" onClose={togglePollView} />
+      <ContentHeader content="Sondages et quiz" onClose={togglePollView} />
       <Flex direction="column" css={{ px: '$10', pb: '$10', overflowY: 'auto' }}>
         {permissions?.pollWrite && <AddMenu />}
         <PrevMenu />
@@ -105,7 +105,7 @@ const AddMenu = () => {
   const validateTitle = useMemo(() => {
     if (!isValidTextInput(title)) {
       if (title) {
-        setTitleError('The title should have between 2-100 characters');
+        setTitleError('Le titre doit contenir entre 2 et 100 caractères');
       }
       return true;
     } else {
@@ -172,7 +172,7 @@ const AddMenu = () => {
               .catch(err => setError(err.message));
           }}
         >
-          Create {interactionType}
+          {interactionType === INTERACTION_TYPE.QUIZ ? 'Créer un quiz' : 'Créer un sondage'}
         </Button>
         <ErrorText error={error || titleError} />
       </Flex>
@@ -208,7 +208,7 @@ const PrevMenu = () => {
       }}
     >
       <Text variant="h6" css={{ c: '$on_surface_high' }}>
-        Previous Polls and Quizzes
+        Sondages et quiz précédents
       </Text>
       <Flex direction="column" css={{ gap: '$10', mt: '$8' }}>
         {sortedPolls?.map(poll => (
@@ -240,7 +240,7 @@ const InteractionCard = ({ id, title, status }: { id: string; title: string; sta
             })
           }
         >
-          View
+          Voir
         </Button>
       </Flex>
     </Flex>

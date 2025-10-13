@@ -15,7 +15,7 @@ const ToastStory = ({ ...props }) => {
 };
 
 const ToastMeta = {
-  title: 'UI Components/Toast',
+  title: 'Composants UI/Toast',
   component: ToastStory,
   argTypes: {
     onClick: { action: 'clicked' },
@@ -32,18 +32,19 @@ const ToastComponent = ({ ...props }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <Button onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Close' : 'Launch'} Toast</Button>
+      <Button onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Fermer' : 'Lancer'} Toast</Button>
       <Toast.Root open={isOpen} onOpenChange={o => setIsOpen(o)} {...props}>
         <Toast.Title asChild>
           <Flex align="center" css={{ gap: '$4', flex: '1 1 0', minWidth: 0 }}>
             <Text variant="sub1" css={{ c: 'inherit', wordBreak: 'break-word' }}>
-              Hello from toast.
+              Bonjour depuis le toast.
             </Text>
             <Toast.Close />
           </Flex>
         </Toast.Title>
         <Toast.Description>
-          This is a custom toast component using primitives with controlled open and close state using React state.
+          Ceci est un composant toast personnalisé utilisant des primitives avec un état d’ouverture et de fermeture
+          contrôlé via l’état React.
         </Toast.Description>
       </Toast.Root>
       <Toast.Viewport css={{ bottom: '$24' }} />

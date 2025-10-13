@@ -21,7 +21,7 @@ export const PollsToggle = () => {
   }, [isPollsOpen, unreadPollQuiz, setUnreadPollQuiz]);
 
   return (
-    <Tooltip key="polls" title={`${isPollsOpen ? 'Close' : 'Open'} polls and quizzes`}>
+    <Tooltip key="polls" title={`${isPollsOpen ? 'Fermer' : 'Ouvrir'} les sondages et quiz`}>
       <IconButton
         onClick={() => {
           togglePollView();

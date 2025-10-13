@@ -26,7 +26,7 @@ export function PDFFileOptions({ onOpenChange }) {
               onChange={target => {
                 setPDFFile(target.files[0]);
               }}
-              placeholder="Click to upload"
+              placeholder="Cliquez pour importer"
               type="file"
               accept=".pdf"
             />

@@ -53,14 +53,14 @@ export const TileMenu: React.FC<TileMenuProps> = ({ peerId }) => {
         {canMuteVideo ? (
           <StyledMenuTile.ItemButton onClick={() => toggleTrackEnabled(videoTrack)}>
             {videoTrack?.enabled ? <VideoOnIcon /> : <VideoOffIcon />}
-            <span>{`${videoTrack?.enabled ? 'Mute' : 'Unmute'} Video`}</span>
+            <span>{`${videoTrack?.enabled ? 'Couper' : 'Rétablir'} la vidéo`}</span>
           </StyledMenuTile.ItemButton>
         ) : null}
 
         {canMuteAudio ? (
           <StyledMenuTile.ItemButton onClick={() => toggleTrackEnabled(audioTrack)}>
             {audioTrack?.enabled ? <MicOnIcon /> : <MicOffIcon />}
-            <span>{`${audioTrack?.enabled ? 'Mute' : 'Unmute'} Audio`}</span>
+            <span>{`${audioTrack?.enabled ? 'Couper' : 'Rétablir'} le son`}</span>
           </StyledMenuTile.ItemButton>
         ) : null}
 
@@ -89,7 +89,7 @@ export const TileMenu: React.FC<TileMenuProps> = ({ peerId }) => {
             }}
           >
             <RemoveUserIcon />
-            <span>Remove Participant</span>
+            <span>Retirer le participant</span>
           </StyledMenuTile.RemoveItem>
         ) : null}
       </StyledMenuTile.Content>

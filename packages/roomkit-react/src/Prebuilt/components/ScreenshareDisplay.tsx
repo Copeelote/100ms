@@ -21,7 +21,7 @@ export const ScreenshareDisplay = () => {
     >
       <ShareScreenIcon width={48} height={48} />
       <Text variant="h5" css={{ m: '$8 0' }}>
-        You are sharing your screen
+        Vous partagez votre écran
       </Text>
       <Button
         variant="danger"
@@ -32,7 +32,7 @@ export const ScreenshareDisplay = () => {
         data-testid="stop_screen_share_btn"
       >
         <CrossIcon width={18} height={18} />
-        &nbsp; Stop screen share
+        &nbsp; Arrêter le partage d’écran
       </Button>
     </Flex>
   );

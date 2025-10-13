@@ -110,7 +110,7 @@ export const Voting = ({ id, toggleVoting }: { id: string; toggleVoting: () => v
       <Flex direction="column" css={{ p: '$8 $10', flex: '1 1 0', overflowY: 'auto' }}>
         {poll.state === 'started' ? (
           <Text css={{ color: '$on_surface_medium', fontWeight: '$semiBold' }}>
-            {pollCreatorName || 'Participant'} started a {poll.type}
+            {pollCreatorName || 'Participant'} a lancé un {poll.type === 'quiz' ? 'quiz' : 'sondage'}
           </Text>
         ) : null}
 
@@ -129,12 +129,12 @@ export const Voting = ({ id, toggleVoting }: { id: string; toggleVoting: () => v
             css={{ fontWeight: '$semiBold', w: 'max-content' }}
             onClick={() => actions.interactivityCenter.stopPoll(id)}
           >
-            End {poll.type}
+            {poll.type === 'quiz' ? 'Terminer le quiz' : 'Terminer le sondage'}
           </Button>
         )}
         {canViewLeaderboard ? (
           <Button css={{ fontWeight: '$semiBold', w: 'max-content' }} onClick={() => setPollView(POLL_VIEWS.RESULTS)}>
-            View Leaderboard
+            Voir le classement
           </Button>
         ) : null}
       </Flex>

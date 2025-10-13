@@ -31,17 +31,17 @@ const StartRecording = ({ open, onOpenChange }) => {
               <Flex gap={2} css={{ c: '$alert_error_default' }}>
                 <AlertTriangleIcon />
                 <Text css={{ c: 'inherit' }} variant="h6">
-                  End Recording
+                  Arrêter l’enregistrement
                 </Text>
               </Flex>
             </Dialog.Title>
             <Text variant="sm" css={{ c: '$on_surface_medium', my: '$8' }}>
-              Are you sure you want to end recording? You can’t undo this action.
+              Voulez-vous vraiment arrêter l’enregistrement ? Cette action est irréversible.
             </Text>
             <Flex justify="end" css={{ mt: '$12' }}>
               <Dialog.Close asChild>
                 <Button outlined css={{ borderColor: '$secondary_bright', mr: '$4' }}>
-                  Don't end
+                  Ne pas arrêter
                 </Button>
               </Dialog.Close>
               <Button
@@ -60,7 +60,7 @@ const StartRecording = ({ open, onOpenChange }) => {
                   onOpenChange(false);
                 }}
               >
-                End recording
+                Arrêter l’enregistrement
               </Button>
             </Flex>
           </Dialog.Content>
@@ -72,7 +72,7 @@ const StartRecording = ({ open, onOpenChange }) => {
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Content css={{ width: 'min(400px,80%)', p: '$10' }}>
         <Dialog.Title>
-          <Text variant="h6">Start Recording</Text>
+          <Text variant="h6">Démarrer l’enregistrement</Text>
         </Dialog.Title>
         <ResolutionInput
           testId="recording_resolution_mobile"
@@ -91,7 +91,7 @@ const StartRecording = ({ open, onOpenChange }) => {
             onOpenChange(false);
           }}
         >
-          Start
+          Démarrer
         </Button>
       </Dialog.Content>
     </Dialog.Root>

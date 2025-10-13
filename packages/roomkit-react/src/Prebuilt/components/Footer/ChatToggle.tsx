@@ -20,7 +20,7 @@ export const ChatToggle = ({ onClick }: { onClick?: () => void }) => {
         position: 'relative',
       }}
     >
-      <Tooltip key="chat" title={`${isChatOpen ? 'Close' : 'Open'} chat`}>
+      <Tooltip key="chat" title={`${isChatOpen ? 'Fermer' : 'Ouvrir'} le chat`}>
         <IconButton
           onClick={() => (onClick ? onClick() : toggleChat())}
           css={{ bg: isChatOpen ? '$surface_brighter' : '' }}

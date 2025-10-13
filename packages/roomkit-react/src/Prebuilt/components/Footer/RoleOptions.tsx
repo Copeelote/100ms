@@ -149,7 +149,7 @@ export const RoleOptions = ({ roleName, peerList }: { roleName: string; peerList
         >
           <PersonRectangleIcon />
           <Text variant="sm" css={optionTextCSS}>
-            Remove all from Stage
+            Retirer tous de la scène
           </Text>
         </Dropdown.Item>
       ) : null}
@@ -160,7 +160,7 @@ export const RoleOptions = ({ roleName, peerList }: { roleName: string; peerList
             <Dropdown.Item css={dropdownItemCSS} onClick={() => setTrackEnabled('audio', false)}>
               <MicOffIcon />
               <Text variant="sm" css={optionTextCSS}>
-                Mute Audio for All
+                Couper le son pour tous
               </Text>
             </Dropdown.Item>
           );
@@ -170,7 +170,7 @@ export const RoleOptions = ({ roleName, peerList }: { roleName: string; peerList
             <Dropdown.Item css={dropdownItemCSS} onClick={() => setTrackEnabled('audio', true)}>
               <MicOnIcon />
               <Text variant="sm" css={optionTextCSS}>
-                Request to Unmute Audio for All
+                Demander à réactiver le son pour tous
               </Text>
             </Dropdown.Item>
           );
@@ -182,7 +182,7 @@ export const RoleOptions = ({ roleName, peerList }: { roleName: string; peerList
             <Dropdown.Item css={dropdownItemCSS} onClick={() => setTrackEnabled('video', false)}>
               <VideoOffIcon />
               <Text variant="sm" css={optionTextCSS}>
-                Mute Video for All
+                Couper la vidéo pour tous
               </Text>
             </Dropdown.Item>
           );
@@ -192,7 +192,7 @@ export const RoleOptions = ({ roleName, peerList }: { roleName: string; peerList
             <Dropdown.Item css={dropdownItemCSS} onClick={() => setTrackEnabled('video', true)}>
               <VideoOnIcon />
               <Text variant="sm" css={optionTextCSS}>
-                Request to Unmute Video for All
+                Demander à réactiver la vidéo pour tous
               </Text>
             </Dropdown.Item>
           );
@@ -206,7 +206,7 @@ export const RoleOptions = ({ roleName, peerList }: { roleName: string; peerList
         >
           <RemoveUserIcon />
           <Text variant="sm" css={{ ...optionTextCSS, color: 'inherit' }}>
-            Remove all from Room
+            Retirer tous de la salle
           </Text>
         </Dropdown.Item>
       ) : null}

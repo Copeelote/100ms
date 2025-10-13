@@ -136,7 +136,7 @@ export const MwebOptions = ({
   return (
     <>
       <Sheet.Root open={openOptionsSheet} onOpenChange={setOpenOptionsSheet}>
-        <Tooltip title="More options">
+        <Tooltip title="Plus d’options">
           <Sheet.Trigger asChild data-testid="more_settings_btn">
             <IconButton css={{ bg: isMobileHLSStream || isLandscapeHLSStream ? '$surface_default' : '' }}>
               <HamburgerMenuIcon />
@@ -198,7 +198,7 @@ export const MwebOptions = ({
                 }}
               >
                 {isHandRaised ? <HandRaiseSlashedIcon /> : <HandIcon />}
-                <ActionTile.Title>{isHandRaised ? 'Lower' : 'Raise'} Hand</ActionTile.Title>
+                <ActionTile.Title>{isHandRaised ? 'Baisser' : 'Lever'} la main</ActionTile.Title>
               </ActionTile.Root>
             ) : null}
             <NoiseCancellation setOpenOptionsSheet={setOpenOptionsSheet} actionTile />
@@ -210,7 +210,7 @@ export const MwebOptions = ({
                 }}
               >
                 {isTranscriptionEnabled && isCaptionEnabled ? <ClosedCaptionIcon /> : <OpenCaptionIcon />}
-                <ActionTile.Title>Closed Caption</ActionTile.Title>
+                <ActionTile.Title>Sous-titrage</ActionTile.Title>
               </ActionTile.Root>
             ) : null}
             {isLocalVideoEnabled && !!elements?.virtual_background ? (
@@ -221,7 +221,7 @@ export const MwebOptions = ({
                 }}
               >
                 <VirtualBackgroundIcon />
-                <ActionTile.Title>Virtual Background</ActionTile.Title>
+                <ActionTile.Title>Arrière-plan virtuel</ActionTile.Title>
               </ActionTile.Root>
             ) : null}
 
@@ -233,7 +233,7 @@ export const MwebOptions = ({
                 }}
               >
                 <EmojiIcon />
-                <ActionTile.Title>Emoji Reactions</ActionTile.Title>
+                <ActionTile.Title>Réactions emoji</ActionTile.Title>
               </ActionTile.Root>
             )}
 
@@ -246,7 +246,7 @@ export const MwebOptions = ({
                 }}
               >
                 {unreadPollQuiz ? <QuizActiveIcon /> : <QuizIcon />}
-                <ActionTile.Title>Polls and Quizzes</ActionTile.Title>
+                <ActionTile.Title>Sondages et quiz</ActionTile.Title>
               </ActionTile.Root>
             )}
 
@@ -259,7 +259,7 @@ export const MwebOptions = ({
                 }}
               >
                 <BrbIcon />
-                <ActionTile.Title>Be Right Back</ActionTile.Title>
+                <ActionTile.Title>Je reviens tout de suite</ActionTile.Title>
               </ActionTile.Root>
             )}
 
@@ -270,7 +270,7 @@ export const MwebOptions = ({
               }}
             >
               <SettingsIcon />
-              <ActionTile.Title>Settings</ActionTile.Title>
+              <ActionTile.Title>Paramètres</ActionTile.Title>
             </ActionTile.Root>
             <ActionTile.Root
               onClick={() => {
@@ -279,7 +279,7 @@ export const MwebOptions = ({
               }}
             >
               <InfoIcon />
-              <ActionTile.Title>Stats For Nerds</ActionTile.Title>
+              <ActionTile.Title>Stats pour les pros</ActionTile.Title>
             </ActionTile.Root>
             {isConnected && permissions?.browserRecording ? (
               <ActionTile.Root
@@ -304,9 +304,9 @@ export const MwebOptions = ({
                 {isRecordingLoading ? <Loading /> : <RecordIcon />}
                 <ActionTile.Title>
                   {match({ isBrowserRecordingOn, isRecordingLoading })
-                    .with({ isBrowserRecordingOn: true, isRecordingLoading: false }, () => 'Recording On')
-                    .with({ isRecordingLoading: true }, () => 'Starting Recording')
-                    .with({ isRecordingLoading: false }, () => 'Start Recording')
+                    .with({ isBrowserRecordingOn: true, isRecordingLoading: false }, () => 'Enregistrement en cours')
+                    .with({ isRecordingLoading: true }, () => "Démarrage de l’enregistrement")
+                    .with({ isRecordingLoading: false }, () => "Démarrer l’enregistrement")
                     .otherwise(() => null)}
                 </ActionTile.Title>
               </ActionTile.Root>
@@ -320,7 +320,7 @@ export const MwebOptions = ({
                 }}
               >
                 <InfoIcon />
-                <ActionTile.Title>About Session</ActionTile.Title>
+                <ActionTile.Title>À propos de la session</ActionTile.Title>
               </ActionTile.Root>
             ) : null}
           </Box>

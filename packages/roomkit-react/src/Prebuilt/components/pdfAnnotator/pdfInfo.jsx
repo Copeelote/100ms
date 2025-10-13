@@ -24,8 +24,8 @@ export const PDFInfo = () => {
         }}
       />
       <Text variant="caption">
-        On the next screen, ensure you select “This Tab” and click on share. Only the PDF viewer will be seen by other
-        participants
+        Sur l’écran suivant, assurez-vous de sélectionner « Cet onglet » puis cliquez sur Partager. Seul le lecteur PDF
+        sera visible par les autres participants
       </Text>
     </DialogRow>
   );

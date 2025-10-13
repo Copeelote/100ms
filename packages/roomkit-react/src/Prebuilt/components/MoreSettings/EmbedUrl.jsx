@@ -18,7 +18,7 @@ export const EmbedUrl = ({ setShowOpenUrl }) => {
     >
       <LinkIcon />
       <Text variant="sm" css={{ ml: '$4' }}>
-        Embed URL
+        Intégrer une URL
       </Text>
     </Dropdown.Item>
   );
@@ -41,25 +41,25 @@ export function EmbedUrlModal({ onOpenChange }) {
               alignItems: 'center',
             }}
           >
-            Embed URL
+            Intégrer une URL
           </Dialog.Title>
           <Text variant="sm" css={{ color: '$on_surface_medium', mt: '$4', mb: '$8' }}>
-            Ensure that you're sharing the current tab when the prompt opens. Note that not all websites support being
-            embedded.
+            Assurez-vous de partager l’onglet en cours lorsque l’invite s’ouvre. Notez que tous les sites web ne
+            prennent pas en charge l’intégration.
           </Text>
           <Text variant="sm" css={{ color: '$on_surface_high' }}>
             URL
           </Text>
           <Input
             css={{ w: '100%', mt: '$4' }}
-            placeholder="Enter your URL"
+            placeholder="Entrez votre URL"
             value={url}
             onChange={e => setUrl(e.target.value)}
             type="url"
           />
           <Flex justify="between" css={{ w: '100%', gap: '$8', mt: '$8' }}>
             <Button outlined variant="standard" css={{ w: '100%' }} onClick={() => onOpenChange(false)}>
-              Cancel
+              Annuler
             </Button>
             <Button
               css={{ w: '100%' }}
@@ -71,7 +71,7 @@ export function EmbedUrlModal({ onOpenChange }) {
               }}
               data-testid="embed_url_btn"
             >
-              Embed and Share
+              Intégrer et partager
             </Button>
           </Flex>
         </Dialog.Content>

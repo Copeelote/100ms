@@ -38,7 +38,7 @@ export const getRecordingText = (
     title.push('Navigateur');
   }
   if (isServerRecordingOn) {
-    title.push('Server');
+    title.push('Serveur');
   }
   if (isHLSRecordingOn) {
     title.push('HLS');
@@ -92,7 +92,7 @@ export const LiveStatus = () => {
     >
       <Box css={{ w: '$4', h: '$4', r: '$round', bg: '$alert_error_default', mr: '$2' }} />
       <Flex align="center" gap="2">
-        <Text variant={!isMobile ? 'button' : 'body2'}>LIVE</Text>
+        <Text variant={!isMobile ? 'button' : 'body2'}>EN DIRECT</Text>
         <Text variant="caption">{hlsState?.variants?.length > 0 && isHLSRunning ? formatTime(liveTime) : ''}</Text>
       </Flex>
     </Flex>
@@ -179,14 +179,14 @@ const StartRecording = () => {
           <Button variant="danger" data-testid="stop_recording" icon outlined onClick={() => setOpen(true)}>
             <RecordIcon />
             <Text as="span" css={{ '@md': { display: 'none' }, color: 'currentColor' }}>
-              Stop Recording
+              Arrêter l’enregistrement
             </Text>
           </Button>
         </Popover.Trigger>
         <Popover.Portal>
           <Popover.Content align="end" sideOffset={8} css={{ w: '$64' }}>
             <Text variant="body1" css={{ color: '$on_surface_medium' }}>
-              Are you sure you want to end the recording?
+              Voulez-vous vraiment terminer l’enregistrement ?
             </Text>
             <Button
               data-testid="stop_recording_confirm"
@@ -206,7 +206,7 @@ const StartRecording = () => {
                 setOpen(false);
               }}
             >
-              Stop
+              Arrêter
             </Button>
           </Popover.Content>
         </Popover.Portal>
@@ -225,7 +225,7 @@ const StartRecording = () => {
     >
       {recordingStarted ? <Loading size={24} color="currentColor" /> : <RecordIcon />}
       <Text as="span" css={{ '@md': { display: 'none' }, color: 'currentColor' }}>
-        {recordingStarted ? 'Starting' : 'Start'} Recording
+        {recordingStarted ? 'Démarrage de l\u2019enregistrement…' : 'Démarrer l\u2019enregistrement'}
       </Text>
     </Button>
   );
@@ -268,7 +268,7 @@ export const StopRecordingInSheet = ({
             <Flex justify="start" align="center" gap="3">
               <AlertTriangleIcon />
               <Text variant="h5" css={{ c: '$alert_error_default' }}>
-                Stop Recording
+                Arrêter l’enregistrement
               </Text>
             </Flex>
             <Sheet.Close css={{ color: 'white' }} onClick={onClose}>
@@ -279,7 +279,7 @@ export const StopRecordingInSheet = ({
         <HorizontalDivider />
         <Box as="div" css={{ p: '$10', overflowY: 'scroll', maxHeight: '70vh' }}>
           <Text variant="caption" css={{ c: '$on_surface_medium', pb: '$8' }}>
-            Are you sure you want to stop recording? You can’t undo this action.
+            Voulez-vous vraiment arrêter l’enregistrement ? Cette action est irréversible.
           </Text>
           <Button
             variant="danger"
@@ -288,7 +288,7 @@ export const StopRecordingInSheet = ({
             data-testid="popup_change_btn"
             onClick={onStopRecording}
           >
-            Stop
+            Arrêter
           </Button>
         </Box>
       </Sheet.Content>

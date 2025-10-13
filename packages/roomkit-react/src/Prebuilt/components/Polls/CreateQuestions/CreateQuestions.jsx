@@ -25,7 +25,7 @@ export function CreateQuestions() {
   const { pollInView: id, setPollView } = usePollViewState();
   const interaction = useHMSStore(selectPollByID(id));
   const [questions, setQuestions] = useState(
-    interaction.questions?.length ? getEditableFormat(interaction.questions) : [{ draftID: uuid() }],
+    interaction?.questions?.length ? getEditableFormat(interaction?.questions) : [{ draftID: uuid() }],
   );
 
   const isValidPoll = useMemo(() => questions.length > 0 && questions.every(isValidQuestion), [questions]);
@@ -53,8 +53,10 @@ export function CreateQuestions() {
   };
 
   const headingTitle = interaction?.type
-    ? interaction?.type?.[0]?.toUpperCase() + interaction?.type?.slice(1)
-    : 'Polls and Quizzes';
+    ? interaction?.type === 'quiz'
+      ? 'Quiz'
+      : 'Sondage'
+    : 'Sondages et quiz';
   const isQuiz = interaction?.type === 'quiz';
   return (
     <Container rounded>
@@ -109,12 +111,12 @@ export function CreateQuestions() {
         >
           <AddCircleIcon />
           <Text variant="body1" css={{ ml: '$md', c: '$inherit' }}>
-            Add another question
+            Ajouter une autre question
           </Text>
         </Flex>
         <Flex css={{ w: '100%' }} justify="end">
           <Button disabled={!isValidPoll} onClick={async () => launchPoll()}>
-            Launch {interaction?.type}
+            {interaction?.type === 'quiz' ? 'Lancer le quiz' : 'Lancer le sondage'}
           </Button>
         </Flex>
       </Flex>

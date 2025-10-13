@@ -137,7 +137,7 @@ export const IconButtonWithOptions = ({
             }}
           >
             <OptionsSection {...commonProps}>
-              <Tooltip title="View Options">
+              <Tooltip title="Voir les options">
                 <Icon {...commonProps}>
                   <VerticalMenuIcon />
                 </Icon>

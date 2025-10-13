@@ -60,10 +60,10 @@ export const LeaderboardSummary = ({ pollID }: { pollID: string }) => {
           {!viewAllEntries ? <PeerParticipationSummary quiz={quiz} /> : null}
 
           <Text variant="sm" css={{ fontWeight: '$semiBold', mt: '$4' }}>
-            Leaderboard
+            Classement
           </Text>
           <Text variant="xs" css={{ color: '$on_surface_medium' }}>
-            Based on score and time taken to cast the correct answer
+            Basé sur le score et le temps pour donner la bonne réponse
           </Text>
           <Box
             css={{
@@ -105,7 +105,7 @@ export const LeaderboardSummary = ({ pollID }: { pollID: string }) => {
                 }}
                 onClick={() => setViewAllEntries(true)}
               >
-                <Text variant="sm">View All</Text> <ChevronRightIcon />
+                <Text variant="sm">Tout afficher</Text> <ChevronRightIcon />
               </Flex>
             ) : null}
           </Box>

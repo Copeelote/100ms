@@ -13,7 +13,7 @@ export const PDFHeader = () => {
     >
       <Dialog.Title asChild>
         <Text as="h6" variant="h6">
-          Share PDF
+          Partager un PDF
         </Text>
       </Dialog.Title>
       <Dialog.Description asChild>
@@ -23,7 +23,7 @@ export const PDFHeader = () => {
             c: '$on_surface_medium',
           }}
         >
-          Choose PDF you want to annotate and share
+          Choisissez le PDF que vous souhaitez annoter et partager
         </Text>
       </Dialog.Description>
     </DialogCol>

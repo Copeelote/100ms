@@ -31,7 +31,7 @@ export const SavedQuestion = ({
     <>
       <Text variant="overline" css={{ c: '$on_surface_low', textTransform: 'uppercase' }}>
         {/* @ts-ignore */}
-        Question {index + 1} of {length}: {QUESTION_TYPE_TITLE[question.type]}
+        Question {index + 1} sur {length} : {QUESTION_TYPE_TITLE[question.type]}
       </Text>
       <Text variant="body2" css={{ mt: '$4', mb: '$md' }}>
         {question.text}
@@ -51,12 +51,12 @@ export const SavedQuestion = ({
       ))}
       {question.skippable ? (
         <Text variant="sm" css={{ color: '$on_surface_low', my: '$md' }}>
-          Not required to answer
+          Réponse facultative
         </Text>
       ) : null}
       <Flex justify="end" css={{ w: '100%', alignItems: 'center' }}>
         <Button variant="standard" css={{ fontWeight: '$semiBold' }} onClick={() => convertToDraft(question.draftID)}>
-          Edit
+          Modifier
         </Button>
       </Flex>
     </>

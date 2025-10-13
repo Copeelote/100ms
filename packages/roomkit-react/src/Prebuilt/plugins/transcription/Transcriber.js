@@ -61,7 +61,7 @@ export class Transcriber {
 
   async listen(retryCount = 0) {
     if (retryCount > 5) {
-      console.error('transcription', 'Max retry count reached!!', retryCount);
+      console.error('transcription', 'Nombre maximal de tentatives atteint !!', retryCount);
       this.cleanup();
       return;
     }
@@ -118,7 +118,7 @@ export class Transcriber {
           this.observeLocalPeerTrack();
         };
       } else {
-        console.error('Unable to fetch dynamic token!!');
+        console.error('Impossible de récupérer le jeton dynamique !!');
       }
     } catch (err) {
       console.error('transcription', err);
@@ -155,12 +155,12 @@ export class Transcriber {
     console.log('transcription - observing local peer track', mediaTrack.id);
     try {
       if (this.recordRTCInstance) {
-        console.log('transcription - destroying earlier instance');
+        console.log("transcription - destruction de l'instance précédente");
         this.recordRTCInstance.destroy();
       }
       this.recordRTCInstance = null;
     } catch (err) {
-      console.error('transcription - in destroying earlier instance', err);
+      console.error("transcription - échec lors de la destruction de l'instance précédente", err);
     }
     const stream = new MediaStream([mediaTrack]);
     await this.observeStream(stream);
@@ -205,7 +205,7 @@ export class Transcriber {
         this.recordRTCInstance.destroy();
         this.recordRTCInstance = null;
       } catch (err) {
-        console.error("transcription cleanup - couldn't stop recording", err);
+        console.error("transcription cleanup - impossible d'arrêter l'enregistrement", err);
       }
     }
     for (const unsub of this.unsubscribes) {

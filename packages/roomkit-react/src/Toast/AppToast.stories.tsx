@@ -13,7 +13,7 @@ const ReactToastStory = ({ ...props }) => {
 };
 
 const ToastMeta = {
-  title: 'UI Components/Toast',
+  title: 'Composants UI/Toast',
   component: ReactToastStory,
   argTypes: {
     onClick: { action: 'clicked' },
@@ -22,8 +22,8 @@ const ToastMeta = {
   },
   args: {
     variant: 'standard',
-    title: 'Hello from Toast Component',
-    description: 'Hello from toast',
+    title: 'Bonjour depuis le composant Toast',
+    description: 'Bonjour depuis le toast',
     isClosable: true,
   },
   parameters: {
@@ -37,10 +37,10 @@ const ReactToastComponent: ComponentStory<typeof ReactToastStory> = args => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <Button onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Close' : 'Launch'} Toast</Button>
+      <Button onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Fermer' : 'Lancer'} Toast</Button>
       <Toast.HMSToast
-        title="This is a title"
-        description="This is a toast using the HMSToast component."
+        title="Ceci est un titre"
+        description="Ceci est un toast utilisant le composant HMSToast."
         open={isOpen}
         isClosable={true}
         onOpenChange={o => setIsOpen(o)}

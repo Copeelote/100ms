@@ -1,5 +1,5 @@
 export enum PollStage {
-  DRAFT = 'DRAFT',
-  LIVE = 'LIVE',
-  ENDED = 'ENDED',
+  DRAFT = 'BROUILLON',
+  LIVE = 'EN DIRECT',
+  ENDED = 'TERMINÉ',
 }

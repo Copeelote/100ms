@@ -51,7 +51,7 @@ const RoleChangeContent = ({
     <>
       <Flex align="center" justify="between" css={{ w: '100%' }}>
         <Text as="h6" variant="h6">
-          Switch Role
+          Changer de rôle
         </Text>
         {isMobile && <CrossIcon onClick={() => onOpenChange(false)} />}
       </Flex>
@@ -68,9 +68,9 @@ const RoleChangeContent = ({
             columnGap: '4px',
           }}
         >
-          Switch the role of
+          Changer le rôle de
           <HighlightTerm value={peer.name} />
-          from <HighlightTerm value={peer.roleName} /> to
+          de <HighlightTerm value={peer.roleName} /> à
         </Text>
       </Box>
       <Flex
@@ -129,7 +129,7 @@ const RoleChangeContent = ({
             onClick={() => onOpenChange(false)}
             data-testid="cancel_button"
           >
-            Cancel
+            Annuler
           </Button>
         )}
 
@@ -144,7 +144,7 @@ const RoleChangeContent = ({
             }
           }}
         >
-          Switch Role
+          Changer de rôle
         </Button>
       </Flex>
     </>
