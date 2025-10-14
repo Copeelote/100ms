@@ -107,5 +107,6 @@
   ],
   "dependencies": {
     "@tldraw/tldraw": "^4.0.3"
-  }
+  },
+  "version": "0.0.1"
 }
