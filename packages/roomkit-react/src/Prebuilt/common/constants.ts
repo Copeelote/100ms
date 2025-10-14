@@ -138,8 +138,8 @@ export enum QUESTION_TYPE_TITLE {
 }
 
 export enum QUESTION_TYPE {
-  SINGLE_CHOICE = 'Choix unique',
-  MULTIPLE_CHOICE = 'Choix multiples',
+  SINGLE_CHOICE = 'single-choice',
+  MULTIPLE_CHOICE = 'multiple-choice',
   // SHORT_ANSWER = 'short-answer',
   // LONG_ANSWER = 'long-answer',
 }

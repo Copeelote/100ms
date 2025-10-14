@@ -26,7 +26,7 @@ export const EndSessionContent = ({
       >
         <AlertTriangleIcon style={{ marginRight: '0.5rem' }} />
         <Text variant="lg" css={{ color: 'inherit', fontWeight: '$semiBold' }}>
-          End {isStreamingOn ? 'Stream' : 'Session'}
+          {isStreamingOn ? 'Terminer le direct' : 'Terminer la session'}
         </Text>
         {isModal ? null : (
           <Box css={{ color: '$on_surface_high', ml: 'auto' }} onClick={() => setShowEndStreamAlert(false)}>
@@ -35,7 +35,9 @@ export const EndSessionContent = ({
         )}
       </Flex>
       <Text variant="sm" css={{ color: '$on_surface_medium', mb: '$8', mt: '$4' }}>
-        The {isStreamingOn ? 'stream' : 'session'} will end for everyone. You can't undo this action.
+        {isStreamingOn
+          ? "Le direct prendra fin pour tout le monde. Cette action est irréversible."
+          : "La session prendra fin pour tout le monde. Cette action est irréversible."}
       </Text>
       <Flex align="center" justify="between" css={{ w: '100%', gap: '$8' }}>
         <Button
@@ -44,7 +46,7 @@ export const EndSessionContent = ({
           css={{ w: '100%', '@md': { display: 'none' } }}
           onClick={() => setShowEndStreamAlert(false)}
         >
-          Cancel
+          Annuler
         </Button>
         <Button
           variant="danger"
@@ -56,7 +58,7 @@ export const EndSessionContent = ({
           id="stopStream"
           data-testid="stop_stream_btn"
         >
-          End {isStreamingOn ? 'Stream' : 'Session'}
+          {isStreamingOn ? 'Terminer le direct' : 'Terminer la session'}
         </Button>
       </Flex>
     </Box>
