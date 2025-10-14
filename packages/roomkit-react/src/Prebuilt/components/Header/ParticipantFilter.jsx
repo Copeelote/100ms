@@ -27,7 +27,7 @@ export const ParticipantFilter = ({ selection, onSelection, isConnected, roles }
       >
         <Flex align="center">
           <Text variant="sm" css={{ ...textEllipsis(80) }}>
-            {selectionValue || CHAT_SELECTOR.EVERYONE}
+            {selectionValue || 'Tout le monde'}
           </Text>
           <Box css={{ ml: '$2', color: '$on_surface_low' }}>
             {open ? <ChevronUpIcon width={14} height={14} /> : <ChevronDownIcon width={14} height={14} />}
@@ -44,7 +44,12 @@ export const ParticipantFilter = ({ selection, onSelection, isConnected, roles }
           w: '$48',
         }}
       >
-        <Item selected={!selection} title="Tout le monde" onSelection={onItemClick} icon={<PeopleIcon />} />
+        <Item
+          selected={!selection}
+          title="Tout le monde"
+          onSelection={() => onItemClick(undefined)}
+          icon={<PeopleIcon />}
+        />
         <Item
           selected={selection?.metadata?.isHandRaised}
           title="Main levée"

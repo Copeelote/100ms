@@ -25,9 +25,11 @@ export const TrackNotifications = () => {
         case HMSNotificationTypes.CHANGE_TRACK_STATE_REQUEST:
           {
             const track = notification.data?.track;
+            console.log('track', track);
+            console.log('notification.data', notification.data);
             if (!notification.data.enabled) {
               ToastManager.addToast({
-                title: `Your ${track.source} ${track.type} was muted by
+              title: `Votre ${track.type} a été coupé par
                   ${notification.data.requestedBy?.name}.`,
               });
             }

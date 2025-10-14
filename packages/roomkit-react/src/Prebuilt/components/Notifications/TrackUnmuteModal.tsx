@@ -28,7 +28,7 @@ export const TrackUnmuteModal = () => {
       case HMSNotificationTypes.ROOM_ENDED:
         ToastManager.addToast({
           title: `${notification.message}. 
-              ${notification.data.reason && `Reason: ${notification.data.reason}`}`,
+              ${notification.data.reason && `Raison : ${notification.data.reason}`}`,
         });
         setMuteNotification(null);
         break;
@@ -50,9 +50,9 @@ export const TrackUnmuteModal = () => {
 
   return (
     <RequestDialog
-      title={`Unmute your ${track.type}?`}
+      title={`Réactiver votre ${track.type} ?`}
       onOpenChange={(value: boolean) => !value && setMuteNotification(null)}
-      body={`${peer?.name} is requesting you to unmute your ${track?.type}.`}
+      body={`${peer?.name} vous demande de réactiver votre ${track?.type}.`}
       onAction={() => {
         hmsActions.setEnabledTrack(track.id, enabled);
         setMuteNotification(null);
