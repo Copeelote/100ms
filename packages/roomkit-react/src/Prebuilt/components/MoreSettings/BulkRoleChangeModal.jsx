@@ -6,6 +6,24 @@ import { DialogContent, DialogRow } from '../../primitives/DialogContent';
 import { DialogDropdownTrigger } from '../../primitives/DropdownTrigger';
 import { useFilteredRoles } from '../../common/hooks';
 
+// Role name translations for display only
+const translateRoleName = roleName => {
+  if (!roleName) return '';
+  const map = {
+    viewer: 'Spectateur',
+    host: 'Hôte',
+    speaker: 'Intervenant',
+    moderator: 'Modérateur',
+    guest: 'Invité',
+    participant: 'Participant',
+    admin: 'Administrateur',
+    broadcaster: 'Diffuseur',
+    'viewer-on-stage': 'Spectateur sur scène',
+  };
+  const key = String(roleName).toLowerCase();
+  return map[key] || roleName;
+};
+
 export const BulkRoleChangeModal = ({ onOpenChange }) => {
   const roles = useFilteredRoles();
   const hmsActions = useHMSActions();
@@ -49,7 +67,11 @@ export const BulkRoleChangeModal = ({ onOpenChange }) => {
           >
             <DialogDropdownTrigger
               ref={ref}
-              title={selectedBulkRole.length === 0 ? 'Sélectionner plusieurs rôles' : selectedBulkRole.toString()}
+              title={
+                selectedBulkRole.length === 0
+                  ? 'Sélectionner plusieurs rôles'
+                  : selectedBulkRole.map(r => translateRoleName(r)).join(', ')
+              }
               css={{
                 w: '70%',
                 p: '$8',
@@ -82,7 +104,7 @@ export const BulkRoleChangeModal = ({ onOpenChange }) => {
                           <CheckIcon width={16} height={16} />
                         </Checkbox.Indicator>
                       </Checkbox.Root>
-                      {role}
+                      {translateRoleName(role)}
                     </Dropdown.CheckboxItem>
                   );
                 })}
@@ -94,7 +116,7 @@ export const BulkRoleChangeModal = ({ onOpenChange }) => {
           <Dropdown.Root open={roleDialog} onOpenChange={value => setRoleDialog(value)}>
             <DialogDropdownTrigger
               ref={roleRef}
-              title={selectedRole || 'Sélectionner un rôle'}
+              title={selectedRole ? translateRoleName(selectedRole) : 'Sélectionner un rôle'}
               css={{
                 w: '70%',
                 p: '$8',
@@ -112,7 +134,7 @@ export const BulkRoleChangeModal = ({ onOpenChange }) => {
                         setErrorMessage('');
                       }}
                     >
-                      {role}
+                      {translateRoleName(role)}
                     </Dropdown.Item>
                   );
                 })}

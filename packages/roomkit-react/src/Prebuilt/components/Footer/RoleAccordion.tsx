@@ -24,6 +24,8 @@ const translateRoleName = (roleName: string): string => {
     'guest': 'Invité',
     'participant': 'Participant',
     'admin': 'Administrateur',
+    'broadcaster': 'Diffuseur',
+    'viewer-on-stage': 'Spectateur sur scène',
   };
   return roleTranslations[roleName.toLowerCase()] || roleName;
 };

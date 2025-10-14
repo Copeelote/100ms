@@ -11,6 +11,23 @@ import { Text } from '../../Text';
 import { config as cssConfig } from '../../Theme';
 import { Tooltip } from '../../Tooltip';
 
+// Role name translations for display only; values passed to SDK remain raw
+const translateRoleName = (roleName: string | undefined): string => {
+  if (!roleName) return '';
+  const roleTranslations: Record<string, string> = {
+    viewer: 'Spectateur',
+    host: 'Hôte',
+    speaker: 'Intervenant',
+    moderator: 'Modérateur',
+    guest: 'Invité',
+    participant: 'Participant',
+    admin: 'Administrateur',
+    broadcaster: 'Diffuseur',
+    'viewer-on-stage': 'Spectateur sur scène',
+  };
+  return roleTranslations[roleName.toLowerCase()] || roleName;
+};
+
 const HighlightTerm = ({ value }: { value: string | undefined }) => {
   return value ? (
     <Tooltip side="top" title={value}>
@@ -70,7 +87,7 @@ const RoleChangeContent = ({
         >
           Changer le rôle de
           <HighlightTerm value={peer.name} />
-          de <HighlightTerm value={peer.roleName} /> à
+          de <HighlightTerm value={translateRoleName(peer.roleName)} /> à
         </Text>
       </Box>
       <Flex
@@ -100,7 +117,7 @@ const RoleChangeContent = ({
               }}
             >
               <Flex align="center" justify="between" css={{ width: '100%' }}>
-                <Text>{selectedRole}</Text>
+                <Text>{translateRoleName(selectedRole)}</Text>
                 {open ? <ChevronUpIcon /> : <ChevronDownIcon />}
               </Flex>
             </Dropdown.Trigger>
@@ -113,7 +130,7 @@ const RoleChangeContent = ({
                   onSelect={() => setRole(role)}
                   css={{ w: `${triggerRef.current?.clientWidth}px` }}
                 >
-                  {role}
+                  {translateRoleName(role)}
                 </Dropdown.Item>
               ))}
             </Dropdown.Content>

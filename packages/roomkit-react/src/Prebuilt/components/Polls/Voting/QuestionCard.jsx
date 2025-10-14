@@ -14,7 +14,7 @@ import { Box, Button, Flex, Text } from '../../../../';
 import { checkCorrectAnswer } from '../../../common/utils';
 import { MultipleChoiceOptions } from '../common/MultipleChoiceOptions';
 import { SingleChoiceOptions } from '../common/SingleChoiceOptions';
-import { QUESTION_TYPE } from '../../../common/constants';
+import { QUESTION_TYPE, QUESTION_TYPE_TITLE } from '../../../common/constants';
 
 export const QuestionCard = ({
   pollID,
@@ -138,7 +138,7 @@ export const QuestionCard = ({
               },
             )
             .otherwise(() => null)}
-          QUESTION {index} SUR {totalQuestions} : {type.toUpperCase()}
+          QUESTION {index} SUR {totalQuestions} : {QUESTION_TYPE_TITLE[type].toUpperCase()}
         </Text>
       </Flex>
 
