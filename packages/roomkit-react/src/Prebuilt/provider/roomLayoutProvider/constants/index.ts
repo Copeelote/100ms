@@ -52,6 +52,8 @@ export const defaultLayout: Layout = {
             },
           },
           emoji_reactions: {},
+          hand_raise: {},
+          virtual_background: {},
         },
       },
     },

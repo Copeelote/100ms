@@ -112,34 +112,34 @@ const convertError = (error: HMSException) => {
   );
   return match([error.action, error.code])
     .with(['GET_TOKEN', 403], () => ({
-      title: 'Psst! This room is currently inactive.',
-      body: 'Please feel free to join another open room for more conversations. Thanks for stopping by!',
+      title: 'Psst ! Cette salle est actuellement inactive.',
+      body: 'N\'hésitez pas à rejoindre une autre salle ouverte pour plus de conversations. Merci d\'être passé !',
     }))
 
     .with(['GET_TOKEN', 404], () => ({
-      title: 'Room code does not exist',
-      body: 'We could not find a room code corresponding to this link.',
+      title: 'Le code de salle n\'existe pas',
+      body: 'Nous n\'avons pas pu trouver un code de salle correspondant à ce lien.',
     }))
     .with(['GET_TOKEN', 2003], () => ({
-      title: 'Endpoint is not reachable',
-      body: `Endpoint is not reachable. ${error.description}.`,
+      title: 'Le point de terminaison n\'est pas accessible',
+      body: `Le point de terminaison n'est pas accessible. ${error.description}.`,
     }))
     .otherwise(() =>
       // @ts-ignore
       match(error.response?.status)
         .with(404, () => ({
-          title: 'Room does not exist',
-          body: 'We could not find a room corresponding to this link.',
+          title: 'La salle n\'existe pas',
+          body: 'Nous n\'avons pas pu trouver une salle correspondant à ce lien.',
         }))
         .with(403, () => ({
-          title: 'Accessing room using this link format is disabled',
-          body: 'You can re-enable this from the developer section in Dashboard.',
+          title: 'L\'accès à la salle avec ce format de lien est désactivé',
+          body: 'Vous pouvez le réactiver depuis la section développeur du tableau de bord.',
         }))
         .otherwise(() => {
           console.error('Token API Error', error);
           return {
-            title: 'Error fetching token',
-            body: 'An error occurred while fetching the app token. Please look into logs for more details.',
+            title: 'Erreur lors de la récupération du token',
+            body: 'Une erreur s\'est produite lors de la récupération du token de l\'application. Veuillez consulter les logs pour plus de détails.',
           };
         }),
     );

@@ -279,6 +279,27 @@ export const AudioVideoToggle = ({ hideOptions = false }: { hideOptions?: boolea
   const localPeer = useHMSStore(selectLocalPeer);
   const { isLocalVideoEnabled, isLocalAudioEnabled, toggleAudio, toggleVideo } = useAVToggle();
   const actions = useHMSActions();
+  
+  // Create fallback toggle functions for users without proper permissions
+  const fallbackToggleAudio = useCallback(async () => {
+    try {
+      await actions.setLocalAudioEnabled(!isLocalAudioEnabled);
+    } catch (err) {
+      console.error('Error toggling audio:', err);
+    }
+  }, [actions, isLocalAudioEnabled]);
+  
+  const fallbackToggleVideo = useCallback(async () => {
+    try {
+      await actions.setLocalVideoEnabled(!isLocalVideoEnabled);
+    } catch (err) {
+      console.error('Error toggling video:', err);
+    }
+  }, [actions, isLocalVideoEnabled]);
+  
+  // Use the original toggle functions if available, otherwise use fallbacks
+  const effectiveToggleAudio = toggleAudio || fallbackToggleAudio;
+  const effectiveToggleVideo = toggleVideo || fallbackToggleVideo;
   const vanillaStore = useHMSVanillaStore();
   const videoTrackId = useHMSStore(selectLocalVideoTrackID);
   const localVideoTrack = useHMSStore(selectVideoTrackByID(videoTrackId));
@@ -319,23 +340,23 @@ export const AudioVideoToggle = ({ hideOptions = false }: { hideOptions?: boolea
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isNoiseCancellationEnabled, localPeer?.audioTrack, inProgress]);
 
-  if (!toggleAudio && !toggleVideo) {
-    return null;
-  }
+  // Always show the component since we have fallback functions
+  // if (!toggleAudio && !toggleVideo) {
+  //   return null;
+  // }
   return (
     <Fragment>
-      {toggleAudio ? (
-        <IconButtonWithOptions
-          disabled={!toggleAudio}
-          hideOptions={hideOptions || !hasAudioDevices}
-          onDisabledClick={toggleAudio}
-          testid="audio_toggle_btn"
-          tooltipMessage={`${isLocalAudioEnabled ? 'Couper le son' : 'Activer le son'} (${isMacOS ? '⌘' : 'ctrl'} + d)`}
-          icon={!isLocalAudioEnabled ? <MicOffIcon /> : <MicOnIcon />}
-          active={isLocalAudioEnabled}
-          onClick={toggleAudio}
-          key="toggleAudio"
-        >
+      <IconButtonWithOptions
+        disabled={!effectiveToggleAudio}
+        hideOptions={hideOptions || !hasAudioDevices}
+        onDisabledClick={effectiveToggleAudio}
+        testid="audio_toggle_btn"
+        tooltipMessage={`${isLocalAudioEnabled ? 'Couper le son' : 'Activer le son'} (${isMacOS ? '⌘' : 'ctrl'} + d)`}
+        icon={!isLocalAudioEnabled ? <MicOffIcon /> : <MicOnIcon />}
+        active={isLocalAudioEnabled}
+        onClick={effectiveToggleAudio}
+        key="toggleAudio"
+      >
           <Dropdown.Group>
             <OptionLabel icon={<MicOnIcon />}>
               <Box css={{ flex: '1 1 0' }}>{!shouldShowAudioOutput ? 'Audio' : 'Microphone'}</Box>
@@ -363,27 +384,24 @@ export const AudioVideoToggle = ({ hideOptions = false }: { hideOptions?: boolea
           <NoiseCancellation />
           <AudioSettings onClick={() => setShowSettings(true)} />
         </IconButtonWithOptions>
-      ) : null}
 
-      {toggleVideo ? (
-        <IconButtonWithOptions
-          disabled={!toggleVideo}
-          hideOptions={hideOptions || !hasVideoDevices}
-          onDisabledClick={toggleVideo}
-          tooltipMessage={`${isLocalVideoEnabled ? 'Couper' : 'Activer'} la vidéo (${isMacOS ? '⌘' : 'ctrl'} + e)`}
-          testid="video_toggle_btn"
-          icon={!isLocalVideoEnabled ? <VideoOffIcon /> : <VideoOnIcon />}
-          key="toggleVideo"
-          active={isLocalVideoEnabled}
-          onClick={toggleVideo}
-        >
-          <Options
-            options={videoInput}
-            selectedDeviceId={selectedDeviceIDs.videoInput}
-            onClick={deviceId => updateDevice({ deviceId, deviceType: DeviceType.videoInput })}
-          />
-        </IconButtonWithOptions>
-      ) : null}
+      <IconButtonWithOptions
+        disabled={!effectiveToggleVideo}
+        hideOptions={hideOptions || !hasVideoDevices}
+        onDisabledClick={effectiveToggleVideo}
+        tooltipMessage={`${isLocalVideoEnabled ? 'Couper' : 'Activer'} la vidéo (${isMacOS ? '⌘' : 'ctrl'} + e)`}
+        testid="video_toggle_btn"
+        icon={!isLocalVideoEnabled ? <VideoOffIcon /> : <VideoOnIcon />}
+        key="toggleVideo"
+        active={isLocalVideoEnabled}
+        onClick={effectiveToggleVideo}
+      >
+        <Options
+          options={videoInput}
+          selectedDeviceId={selectedDeviceIDs.videoInput}
+          onClick={deviceId => updateDevice({ deviceId, deviceType: DeviceType.videoInput })}
+        />
+      </IconButtonWithOptions>
 
       {localVideoTrack?.facingMode && roomState === HMSRoomState.Preview && (isIOS || isAndroid) ? (
         <Tooltip title="Changer de caméra" key="switchCamera">

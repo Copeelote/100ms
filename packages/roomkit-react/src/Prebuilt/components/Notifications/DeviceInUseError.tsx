@@ -63,22 +63,22 @@ export function DeviceInUseError() {
         setShowDeviceInUseModal(false);
       }}
     >
-      <DialogContent title="Device Access Error">
+      <DialogContent title="Erreur d'accès au périphérique">
         <DialogRow>
           <Text variant="body2">
-            We weren't able to access your {deviceType} since it's either in use by another application or is not
-            configured properly. Please follow the following instructions to resolve this issue.
+            Nous n'avons pas pu accéder à votre {deviceType} car il est soit utilisé par une autre application, soit mal
+            configuré. Veuillez suivre les instructions suivantes pour résoudre ce problème.
           </Text>
         </DialogRow>
         <ol>
           <Instruction
-            description={`Please check if the ${deviceType} device(s) are in use by another browser or application and close it.`}
+            description={`Veuillez vérifier si le(s) périphérique(s) ${deviceType} sont utilisés par un autre navigateur ou application et fermez-le.`}
           />
           <Instruction
-            description={`Go to Browser Settings > Privacy and security > Site settings > ${deviceType} and check if your preferred device is selected as default.`}
+            description={`Allez dans Paramètres du navigateur > Confidentialité et sécurité > Paramètres du site > ${deviceType} et vérifiez si votre périphérique préféré est sélectionné par défaut.`}
           />
-          <Instruction description="Try restarting the browser." />
-          <Instruction description="Try disconnecting and reconnecting the external device if your intention is to use one." />
+          <Instruction description="Essayez de redémarrer le navigateur." />
+          <Instruction description="Essayez de déconnecter et reconnecter le périphérique externe si vous souhaitez en utiliser un." />
         </ol>
       </DialogContent>
     </Dialog.Root>

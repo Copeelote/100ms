@@ -1,4 +1,4 @@
-import { HMSPrebuilt, Diagnostics } from '@100mslive/roomkit-react';
+import { HMSPrebuilt, Diagnostics } from '@copeelote/roomkit-react';
 import { getRoomCodeFromUrl } from './utils';
 
 export default function App() {

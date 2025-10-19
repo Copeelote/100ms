@@ -205,11 +205,11 @@ export const VBPicker = ({ backgroundMedia = [] }: { backgroundMedia: VirtualBac
           {background === HMSVirtualBackgroundTypes.BLUR && isBlurSupported ? (
             <Box>
               <Text variant="sm" css={{ color: '$on_surface_high', fontWeight: '$semiBold', mb: '$4' }}>
-                Blur intensity
+                Intensité du flou
               </Text>
               <Flex css={{ w: '100%', justifyContent: 'space-between', alignItems: 'center', gap: '$4' }}>
                 <Text variant="caption" css={{ fontWeight: '$medium', color: '$on_surface_medium' }}>
-                  Low
+                  Faible
                 </Text>
                 <Slider
                   showTooltip={false}
@@ -223,7 +223,7 @@ export const VBPicker = ({ backgroundMedia = [] }: { backgroundMedia: VirtualBac
                   max={1}
                 />
                 <Text variant="caption" css={{ fontWeight: '$medium', color: '$on_surface_medium' }}>
-                  High
+                  Élevé
                 </Text>
               </Flex>
             </Box>
@@ -231,7 +231,7 @@ export const VBPicker = ({ backgroundMedia = [] }: { backgroundMedia: VirtualBac
         </Flex>
 
         <VBCollection
-          title="Backgrounds"
+          title="Arrière-plans"
           options={mediaList.map(mediaURL => ({
             mediaURL,
             value: mediaURL,

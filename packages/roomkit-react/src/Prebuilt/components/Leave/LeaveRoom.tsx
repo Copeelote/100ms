@@ -45,25 +45,25 @@ export const LeaveRoom = ({
   const stopStream = async (stop_reason = '') => {
     try {
       if (permissions?.hlsStreaming) {
-        console.log('Stopping HLS stream');
+        console.log('Arrêt du stream HLS');
         await hmsActions.stopHLSStreaming({ stop_reason });
-        ToastManager.addToast({ title: 'Stopping the stream' });
+        ToastManager.addToast({ title: 'Arrêt du stream' });
       }
     } catch (e) {
-      console.error('Error stopping stream', e);
-      ToastManager.addToast({ title: 'Error in stopping the stream', type: 'error' });
+      console.error('Erreur lors de l\'arrêt du stream', e);
+      ToastManager.addToast({ title: 'Erreur lors de l\'arrêt du stream', type: 'error' });
     }
   };
 
   const endRoom = async () => {
-    await hmsActions.endRoom(false, 'End Room');
+    await hmsActions.endRoom(false, 'Terminer la salle');
   };
 
   const leaveRoom = async (
     options: { endStream?: boolean; sendReason?: boolean } = { endStream: false, sendReason: false },
   ) => {
     if (options.endStream || (hlsState.running && peersWithStreamingRights.length === 1)) {
-      await stopStream(options.sendReason ? 'last publisher left' : '');
+      await stopStream(options.sendReason ? 'dernier éditeur parti' : '');
     }
     await hmsActions.leave();
   };

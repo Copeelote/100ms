@@ -16,10 +16,10 @@ export function AutoplayBlockedModal() {
         resetError();
       }}
     >
-      <DialogContent title="Permission Error" closeable={false}>
+      <DialogContent title="Erreur de permission" closeable={false}>
         <DialogRow>
           <Text variant="md">
-            The browser wants us to get a confirmation for playing the Audio. Please allow audio to proceed.
+            Le navigateur souhaite obtenir une confirmation pour lire l'audio. Veuillez autoriser l'audio pour continuer.
           </Text>
         </DialogRow>
         <DialogRow justify="end">
@@ -30,7 +30,7 @@ export function AutoplayBlockedModal() {
               resetError();
             }}
           >
-            Allow Audio
+            Autoriser l'audio
           </Button>
         </DialogRow>
       </DialogContent>

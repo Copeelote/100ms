@@ -124,7 +124,7 @@ export const RecordStream = ({ record, setRecord, testId }) => {
         <RecordIcon />
       </Text>
       <Text variant="sm" css={{ flex: '1 1 0', mx: '$8' }}>
-        Record the stream
+        Enregistrer le stream
       </Text>
       <Switch checked={record} onCheckedChange={setRecord} data-testid={testId} />
     </Flex>
