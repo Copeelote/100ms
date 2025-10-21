@@ -35,7 +35,7 @@ export const MuteAllContent = (props: {
         onChange={props.setRole}
       />
       <DialogSelect
-        title="Track type"
+        title="Type de piste"
         options={trackTypeOptions}
         selected={props.trackType}
         onChange={props.setTrackType}
@@ -43,7 +43,7 @@ export const MuteAllContent = (props: {
         labelField="label"
       />
       <DialogSelect
-        title="Track source"
+        title="Source de piste"
         options={trackSourceOptions}
         selected={props.selectedSource}
         onChange={props.setSource}

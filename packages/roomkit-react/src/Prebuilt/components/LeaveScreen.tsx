@@ -46,7 +46,7 @@ export const LeaveScreen = () => {
             <Box as="span" css={{ ...textEllipsis(100) }}>
               , {previewPreference.name}
             </Box>
-          )}
+          )}{' '}
           !
         </Text>
         <Flex css={{ mt: '$14', gap: '$10', alignItems: 'center' }}>

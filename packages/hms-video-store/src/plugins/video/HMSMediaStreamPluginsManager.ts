@@ -22,7 +22,7 @@ export class HMSMediaStreamPluginsManager {
       switch (plugin.getName()) {
         case 'HMSEffectsPlugin':
           if (!this.room?.isEffectsEnabled) {
-            const errorMessage = 'Effects Virtual Background is not enabled for this room';
+            const errorMessage = "L'arrière-plan virtuel des effets n'est pas activé pour cette salle";
             if (this.plugins.size === 0) {
               throw Error(errorMessage);
             } else {

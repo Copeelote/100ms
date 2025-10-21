@@ -50,18 +50,18 @@ export function HLSFailureModal() {
             }}
           >
             <Text variant="h6" css={{ fontWeight: '$semiBold' }}>
-              Failed to Go Live
+              Échec de la diffusion en direct
             </Text>
           </Dialog.Title>
           <Text variant="sm" css={{ mb: '$10', color: '$on_surface_medium' }}>
-            Something went wrong and your live broadcast failed. Please try again.
+            Quelque chose s'est mal passé et votre diffusion en direct a échoué. Veuillez réessayer.
           </Text>
           <Flex align="center" justify="between" css={{ w: '100%', gap: '$8' }}>
             <Button outlined variant="standard" css={{ w: '100%' }} onClick={() => setOpenModal(false)}>
-              Dismiss
+              Ignorer
             </Button>
             <Button css={{ w: '100%' }} onClick={startHLS}>
-              Go Live
+              Diffuser en direct
             </Button>
           </Flex>
         </Dialog.Content>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useMedia } from 'react-use';
 import { PeopleAddIcon } from '@100mslive/react-icons';
+import { selectPeerCount, useHMSStore } from '@100mslive/react-sdk';
 import { Flex } from '../../../Layout';
 import { config as cssConfig } from '../../../Theme';
 import { WaitingView } from '../../layouts/WaitingView';
@@ -15,6 +16,7 @@ import { UI_SETTINGS } from '../../common/constants';
 
 export function EqualProminence({ isInsetEnabled = false, peers, onPageChange, onPageSize, edgeToEdge }: LayoutProps) {
   const isMobile = useMedia(cssConfig.media.md);
+  const peerCount = useHMSStore(selectPeerCount);
   let maxTileCount = useUISettings(UI_SETTINGS.maxTileCount);
   maxTileCount = isMobile ? Math.min(maxTileCount, 6) : maxTileCount;
   const pageList = usePagesWithTiles({
@@ -49,7 +51,7 @@ export function EqualProminence({ isInsetEnabled = false, peers, onPageChange, o
           numPages={pagesWithTiles.length}
         />
       )}
-      {pageList.length === 0 ? (
+      {peerCount <= 1 ? (
         <WaitingView
           title="Vous êtes le seul ici"
           subtitle="Détendez-vous en attendant que d'autres vous rejoignent"

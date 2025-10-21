@@ -48,7 +48,6 @@ import {
   useRoomLayoutPreviewScreen,
 } from './provider/roomLayoutProvider/hooks/useRoomLayoutScreen';
 // @ts-ignore: No implicit Any
-import { FeatureFlags } from './services/FeatureFlags';
 // @ts-ignore: No implicit Any
 import { DEFAULT_PORTAL_CONTAINER } from './common/constants';
 
@@ -189,7 +188,7 @@ export const HMSPrebuilt = React.forwardRef<HMSPrebuiltRefType, HMSPrebuiltProps
           }}
         >
           <HMSRoomProvider
-            isHMSStatsOn={FeatureFlags.enableStatsForNerds}
+            isHMSStatsOn={false}
             actions={reactiveStore.current?.hmsActions}
             store={reactiveStore.current?.hmsStore}
             notifications={reactiveStore.current?.hmsNotifications}

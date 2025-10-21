@@ -16,7 +16,7 @@ export const RaiseHand = ({ css }: { css?: CSS }) => {
   }
 
   return (
-    <Tooltip title={isHandRaised ? 'Lower hand' : 'Raise hand'}>
+    <Tooltip title={isHandRaised ? 'Baisser la main' : 'Lever la main'}>
       <IconButton
         data-testid="hand_raise_btn"
         css={css}

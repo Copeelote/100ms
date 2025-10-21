@@ -39,7 +39,7 @@ const Tile = ({ peerId, width = '100%', height = '100%' }: { peerId: string; wid
   const isAudioOnly = useUISettings(UI_SETTINGS.isAudioOnly);
   const [isMouseHovered, setIsMouseHovered] = useState(false);
   const isMobile = useMedia(cssConfig.media.md);
-  const showStatsOnTiles = useUISettings(UI_SETTINGS.showStatsOnTiles);
+  const showStatsOnTiles = false; // Disabled
   const fullscreenRef = useRef<HTMLDivElement | null>(null);
   // fullscreen is for desired state
   const [fullscreen, setFullscreen] = useState(false);

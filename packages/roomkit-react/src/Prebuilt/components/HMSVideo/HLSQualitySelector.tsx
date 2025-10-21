@@ -135,7 +135,7 @@ export function HLSQualitySelector({
             p: '$2',
           }}
         >
-          <Tooltip title="Select Quality" side="top">
+          <Tooltip title="Sélectionner la qualité" side="top">
             <Flex align="center">
               <Box
                 css={{

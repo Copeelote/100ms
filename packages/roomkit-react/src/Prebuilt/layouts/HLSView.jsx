@@ -72,7 +72,7 @@ const HLSView = () => {
   const hlsViewRef = useRef();
   const { elements } = useRoomLayoutConferencingScreen();
   const hlsState = useHMSStore(selectHLSState);
-  const enablHlsStats = useHMSStore(selectAppData(APP_DATA.hlsStats));
+  const enablHlsStats = false; // Disabled
   const notification = useHMSNotifications(HMSNotificationTypes.POLL_STOPPED);
   const hmsActions = useHMSActions();
   const { themeType } = useTheme();

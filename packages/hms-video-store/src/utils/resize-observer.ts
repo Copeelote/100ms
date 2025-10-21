@@ -21,7 +21,7 @@ export class HMSResizeObserverWrapper {
   isSupported() {
     const isSupported = isBrowser && typeof window.ResizeObserver !== 'undefined';
     if (!isSupported) {
-      HMSLogger.w(this.TAG, 'Resize Observer is not supported');
+      HMSLogger.d(this.TAG, 'Resize Observer is not supported');
     }
     return isSupported;
   }

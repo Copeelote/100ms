@@ -162,7 +162,9 @@ export const NoiseCancellation = ({
         }}
       >
         <AudioLevelIcon />
-        <ActionTile.Title>{isNoiseCancellationEnabled ? 'Réduction du bruit activée' : 'Réduire le bruit'}</ActionTile.Title>
+        <ActionTile.Title>
+          {isNoiseCancellationEnabled ? 'Réduction du bruit activée' : 'Réduire le bruit'}
+        </ActionTile.Title>
       </ActionTile.Root>
     );
   }
@@ -324,66 +326,62 @@ export const AudioVideoToggle = ({ hideOptions = false }: { hideOptions?: boolea
   }
   return (
     <Fragment>
-      {toggleAudio ? (
-        <IconButtonWithOptions
-          disabled={!toggleAudio}
-          hideOptions={hideOptions || !hasAudioDevices}
-          onDisabledClick={toggleAudio}
-          testid="audio_toggle_btn"
-          tooltipMessage={`${isLocalAudioEnabled ? 'Couper le son' : 'Activer le son'} (${isMacOS ? '⌘' : 'ctrl'} + d)`}
-          icon={!isLocalAudioEnabled ? <MicOffIcon /> : <MicOnIcon />}
-          active={isLocalAudioEnabled}
-          onClick={toggleAudio}
-          key="toggleAudio"
-        >
-          <Dropdown.Group>
-            <OptionLabel icon={<MicOnIcon />}>
-              <Box css={{ flex: '1 1 0' }}>{!shouldShowAudioOutput ? 'Audio' : 'Microphone'}</Box>
-              {!showMuteIcon && <AudioLevel trackId={localPeer?.audioTrack} />}
-            </OptionLabel>
-            <Options
-              options={audioInput}
-              selectedDeviceId={selectedDeviceIDs.audioInput}
-              onClick={deviceId => updateDevice({ deviceId, deviceType: DeviceType.audioInput })}
-            />
-          </Dropdown.Group>
-          <Dropdown.ItemSeparator css={{ mx: 0 }} />
-          {shouldShowAudioOutput && (
-            <>
-              <AudioOutputLabel deviceId={selectedDeviceIDs.audioOutput || ''} />
-              <Dropdown.Group>
-                <Options
-                  options={audioOutput}
-                  selectedDeviceId={selectedDeviceIDs.audioOutput}
-                  onClick={deviceId => updateDevice({ deviceId, deviceType: DeviceType.audioOutput })}
-                />
-              </Dropdown.Group>
-            </>
-          )}
-          <NoiseCancellation />
-          <AudioSettings onClick={() => setShowSettings(true)} />
-        </IconButtonWithOptions>
-      ) : null}
-
-      {toggleVideo ? (
-        <IconButtonWithOptions
-          disabled={!toggleVideo}
-          hideOptions={hideOptions || !hasVideoDevices}
-          onDisabledClick={toggleVideo}
-          tooltipMessage={`${isLocalVideoEnabled ? 'Couper' : 'Activer'} la vidéo (${isMacOS ? '⌘' : 'ctrl'} + e)`}
-          testid="video_toggle_btn"
-          icon={!isLocalVideoEnabled ? <VideoOffIcon /> : <VideoOnIcon />}
-          key="toggleVideo"
-          active={isLocalVideoEnabled}
-          onClick={toggleVideo}
-        >
+      <IconButtonWithOptions
+        disabled={!toggleAudio}
+        hideOptions={hideOptions || !hasAudioDevices}
+        onDisabledClick={toggleAudio || (() => undefined)}
+        testid="audio_toggle_btn"
+        tooltipMessage={`${isLocalAudioEnabled ? 'Couper le son' : 'Activer le son'} (${isMacOS ? '⌘' : 'ctrl'} + d)`}
+        icon={!isLocalAudioEnabled ? <MicOffIcon /> : <MicOnIcon />}
+        active={isLocalAudioEnabled}
+        onClick={toggleAudio || (() => undefined)}
+        key="toggleAudio"
+      >
+        <Dropdown.Group>
+          <OptionLabel icon={<MicOnIcon />}>
+            <Box css={{ flex: '1 1 0' }}>{!shouldShowAudioOutput ? 'Audio' : 'Microphone'}</Box>
+            {!showMuteIcon && <AudioLevel trackId={localPeer?.audioTrack} />}
+          </OptionLabel>
           <Options
-            options={videoInput}
-            selectedDeviceId={selectedDeviceIDs.videoInput}
-            onClick={deviceId => updateDevice({ deviceId, deviceType: DeviceType.videoInput })}
+            options={audioInput}
+            selectedDeviceId={selectedDeviceIDs.audioInput}
+            onClick={deviceId => updateDevice({ deviceId, deviceType: DeviceType.audioInput })}
           />
-        </IconButtonWithOptions>
-      ) : null}
+        </Dropdown.Group>
+        <Dropdown.ItemSeparator css={{ mx: 0 }} />
+        {shouldShowAudioOutput && (
+          <>
+            <AudioOutputLabel deviceId={selectedDeviceIDs.audioOutput || ''} />
+            <Dropdown.Group>
+              <Options
+                options={audioOutput}
+                selectedDeviceId={selectedDeviceIDs.audioOutput}
+                onClick={deviceId => updateDevice({ deviceId, deviceType: DeviceType.audioOutput })}
+              />
+            </Dropdown.Group>
+          </>
+        )}
+        <NoiseCancellation />
+        <AudioSettings onClick={() => setShowSettings(true)} />
+      </IconButtonWithOptions>
+
+      <IconButtonWithOptions
+        disabled={!toggleVideo}
+        hideOptions={hideOptions || !hasVideoDevices}
+        onDisabledClick={toggleVideo || (() => undefined)}
+        tooltipMessage={`${isLocalVideoEnabled ? 'Couper' : 'Activer'} la vidéo (${isMacOS ? '⌘' : 'ctrl'} + e)`}
+        testid="video_toggle_btn"
+        icon={!isLocalVideoEnabled ? <VideoOffIcon /> : <VideoOnIcon />}
+        key="toggleVideo"
+        active={isLocalVideoEnabled}
+        onClick={toggleVideo || (() => undefined)}
+      >
+        <Options
+          options={videoInput}
+          selectedDeviceId={selectedDeviceIDs.videoInput}
+          onClick={deviceId => updateDevice({ deviceId, deviceType: DeviceType.videoInput })}
+        />
+      </IconButtonWithOptions>
 
       {localVideoTrack?.facingMode && roomState === HMSRoomState.Preview && (isIOS || isAndroid) ? (
         <Tooltip title="Changer de caméra" key="switchCamera">

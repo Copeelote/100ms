@@ -23,7 +23,7 @@ const loadTFLiteModel = async () => {
     //@ts-ignore
     tfLite = await createTFLiteSIMDModule();
   } catch {
-    console.warn('SIMD not supported. You may experience poor virtual background effect.');
+    console.warn("SIMD non pris en charge. Vous pourriez avoir un effet d'arrière-plan virtuel de mauvaise qualité.");
     path = `${BASE_URL}/${TFLITE_JS_FILE}`;
     await loadScript(path);
     // @ts-ignore
