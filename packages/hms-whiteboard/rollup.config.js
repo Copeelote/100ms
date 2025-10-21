@@ -22,10 +22,20 @@ const config = {
     commonjs(),
     css({ output: 'index.css' }),
     esbuild({ format: 'esm' }),
-    resolve(),
+    resolve({
+      preferBuiltins: false,
+      browser: true,
+    }),
     isProduction && terser(),
     typescript({ sourceMap: false }),
   ],
+  onwarn(warning, warn) {
+    // Suppress circular dependency warnings
+    if (warning.code === 'CIRCULAR_DEPENDENCY') {
+      return;
+    }
+    warn(warning);
+  },
 };
 
 export default config;

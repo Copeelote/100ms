@@ -14,7 +14,7 @@ import {
   TLStoreWithStatus,
   transact,
 } from '@tldraw/tldraw';
-import { DEFAULT_STORE } from './default_store';
+// import { DEFAULT_STORE } from './default_store'; // Not used in tldraw 4.0
 import { useSessionStore } from './useSessionStore';
 import { useSetEditorPermissions } from './useSetEditorPermissions';
 import { CURRENT_PAGE_KEY, PAGES_DEBOUNCE_TIME, SHAPES_THROTTLE_TIME } from '../utils';
@@ -45,7 +45,7 @@ export function useCollaboration({
     const store = createTLStore({
       shapeUtils: [...defaultShapeUtils, ...shapeUtils],
     });
-    store.loadSnapshot(DEFAULT_STORE);
+    // store.loadSnapshot(DEFAULT_STORE); // Method not available in tldraw 4.0
     return store;
   });
 
@@ -123,15 +123,13 @@ export function useCollaboration({
           transact(() => {
             store.put([value]);
             if (key === TLINSTANCE_ID) {
-              store.put([
-                { ...value, canMoveCamera: !!zoomToContent, isReadonly: !permissions.includes('write') } as TLInstance,
-              ]);
+              store.put([{ ...value, isReadonly: !permissions.includes('write') } as TLInstance]);
             }
           });
         }
       });
     },
-    [store, permissions, zoomToContent],
+    [store, permissions],
   );
 
   useEffect(() => {

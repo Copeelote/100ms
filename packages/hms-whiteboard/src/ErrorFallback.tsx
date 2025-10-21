@@ -1,5 +1,5 @@
 import React, { ComponentType, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { useValue } from '@tldraw/state';
+// import { useValue } from '@tldraw/tldraw'; // useValue not available in tldraw 4.0
 import { Editor, hardResetEditor } from '@tldraw/tldraw';
 import classNames from 'classnames';
 
@@ -20,21 +20,24 @@ export const ErrorFallback: TLErrorFallbackComponent = ({ error, editor, refresh
   const errorMessage = error instanceof Error ? error.message : String(error);
   const errorStack = error instanceof Error ? error.stack : null;
 
-  const isDarkModeFromApp = useValue(
-    'isDarkMode',
-    () => {
-      try {
-        if (editor) {
-          return editor.user.getIsDarkMode();
-        }
-      } catch {
-        // we're in a funky error state so this might not work for spooky
-        // reasons. if not, we'll have another attempt later:
-      }
-      return null;
-    },
-    [editor],
-  );
+  // const isDarkModeFromApp = useValue(
+  //   'isDarkMode',
+  //   () => {
+  //     try {
+  //       if (editor) {
+  //         return editor.user.getIsDarkMode();
+  //       }
+  //     } catch {
+  //       // we're in a funky error state so this might not work for spooky
+  //       // reasons. if not, we'll have another attempt later:
+  //     }
+  //     return null;
+  //   },
+  //   [editor],
+  //   );
+
+  // Temporary fallback for tldraw 4.0 compatibility
+  const isDarkModeFromApp = false;
   const [
     ,
     // isDarkMode

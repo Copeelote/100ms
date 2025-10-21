@@ -24,7 +24,7 @@ export const useSetEditorPermissions = ({
 
   useEffect(() => {
     // disable scroll and zoom
-    editor?.updateInstanceState({ canMoveCamera: !!zoomToContent });
+    // editor?.updateInstanceState({ canMoveCamera: !!zoomToContent }); // Property not available in tldraw 4.0
 
     if (!permissions) {
       return;
