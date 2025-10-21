@@ -143,7 +143,8 @@ export const VBPicker = ({ backgroundMedia = [] }: { backgroundMedia: VirtualBac
     <Flex css={{ pr: '$6', size: '100%' }} direction="column">
       <Flex align="center" justify="between" css={{ w: '100%', background: '$surface_dim', pb: '$4' }}>
         <Text variant="h6" css={{ color: '$on_surface_high', display: 'flex', alignItems: 'center' }}>
-          Virtual Background {isMobile && loadingEffects ? <Loading size={18} style={{ marginLeft: '0.5rem' }} /> : ''}
+          Arrière-plan virtuel{' '}
+          {isMobile && loadingEffects ? <Loading size={18} style={{ marginLeft: '0.5rem' }} /> : ''}
         </Text>
         <Box
           css={{ color: '$on_surface_high', '&:hover': { color: '$on_surface_medium' }, cursor: 'pointer' }}
@@ -171,10 +172,10 @@ export const VBPicker = ({ backgroundMedia = [] }: { backgroundMedia: VirtualBac
         }}
       >
         <VBCollection
-          title="Effects"
+          title="Effets"
           options={[
             {
-              title: 'No effect',
+              title: 'Aucun effet',
               icon: <CrossCircleIcon style={iconDims} />,
               value: HMSVirtualBackgroundTypes.NONE,
               onClick: async () => {
@@ -187,9 +188,9 @@ export const VBPicker = ({ backgroundMedia = [] }: { backgroundMedia: VirtualBac
               supported: true,
             },
             {
-              title: 'Blur',
+              title: 'Flou',
               icon: <BlurPersonHighIcon style={iconDims} />,
-              value: HMSVirtualBackgroundTypes.BLUR,
+              value: 'Flou',
               onClick: async () => {
                 await VBHandler?.setBlur(blurAmount);
                 hmsActions.setAppData(APP_DATA.background, HMSVirtualBackgroundTypes.BLUR);

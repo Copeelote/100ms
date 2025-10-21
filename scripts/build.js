@@ -34,7 +34,7 @@ async function main() {
     external,
     tsconfig: 'tsconfig.json',
     minify: true,
-    sourcemap: true,
+    sourcemap: false,
   };
   try {
     let esmResult;

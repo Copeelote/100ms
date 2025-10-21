@@ -43,8 +43,6 @@ import { StopRecordingInSheet } from '../../Header/StreamActions';
 // @ts-ignore: No implicit any
 import SettingsModal from '../../Settings/SettingsModal';
 // @ts-ignore: No implicit any
-import { StatsForNerds } from '../../StatsForNerds';
-// @ts-ignore: No implicit any
 import { ToastManager } from '../../Toast/ToastManager';
 // @ts-ignore: No implicit any
 import { ActionTile } from '../ActionTile';
@@ -75,7 +73,6 @@ const MODALS = {
   MORE_SETTINGS: 'moreSettings',
   START_RECORDING: 'startRecording',
   DEVICE_SETTINGS: 'deviceSettings',
-  STATS_FOR_NERDS: 'statsForNerds',
   BULK_ROLE_CHANGE: 'bulkRoleChange',
   MUTE_ALL: 'muteAll',
   EMBED_URL: 'embedUrl',
@@ -96,7 +93,6 @@ export const MwebOptions = ({
   const [openModals, setOpenModals] = useState(new Set());
   const [openOptionsSheet, setOpenOptionsSheet] = useState(false);
   const [openSettingsSheet, setOpenSettingsSheet] = useState(false);
-  const [openStatsForNerdsSheet, setOpenStatsForNerdsSheet] = useState(false);
   const [showEmojiCard, setShowEmojiCard] = useState(false);
   const [showRecordingOn, setShowRecordingOn] = useState(false);
   const toggleParticipants = useSidepaneToggle(SIDE_PANE_OPTIONS.PARTICIPANTS);
@@ -272,15 +268,6 @@ export const MwebOptions = ({
               <SettingsIcon />
               <ActionTile.Title>Paramètres</ActionTile.Title>
             </ActionTile.Root>
-            <ActionTile.Root
-              onClick={() => {
-                setOpenStatsForNerdsSheet(true);
-                setOpenOptionsSheet(false);
-              }}
-            >
-              <InfoIcon />
-              <ActionTile.Title>Stats pour les pros</ActionTile.Title>
-            </ActionTile.Root>
             {isConnected && permissions?.browserRecording ? (
               <ActionTile.Root
                 disabled={isHLSRunning}
@@ -305,8 +292,8 @@ export const MwebOptions = ({
                 <ActionTile.Title>
                   {match({ isBrowserRecordingOn, isRecordingLoading })
                     .with({ isBrowserRecordingOn: true, isRecordingLoading: false }, () => 'Enregistrement en cours')
-                    .with({ isRecordingLoading: true }, () => "Démarrage de l’enregistrement")
-                    .with({ isRecordingLoading: false }, () => "Démarrer l’enregistrement")
+                    .with({ isRecordingLoading: true }, () => "Démarrage de l'enregistrement")
+                    .with({ isRecordingLoading: false }, () => "Démarrer l'enregistrement")
                     .otherwise(() => null)}
                 </ActionTile.Title>
               </ActionTile.Root>
@@ -327,10 +314,6 @@ export const MwebOptions = ({
         </Sheet.Content>
       </Sheet.Root>
       <SettingsModal open={openSettingsSheet} onOpenChange={setOpenSettingsSheet} screenType={screenType} />
-
-      {openStatsForNerdsSheet && (
-        <StatsForNerds open={openStatsForNerdsSheet} onOpenChange={setOpenStatsForNerdsSheet} />
-      )}
 
       {openModals.has(MODALS.MUTE_ALL) && (
         <MuteAllModal onOpenChange={(value: boolean) => updateState(MODALS.MUTE_ALL, value)} isMobile />

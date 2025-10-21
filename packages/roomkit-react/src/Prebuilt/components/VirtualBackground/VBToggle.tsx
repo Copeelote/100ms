@@ -40,10 +40,13 @@ export const VBToggle = () => {
     }
   }, [hmsActions, isAllowedToPublish?.video]);
 
-  // In preview mode, show VB if video is on and effects are enabled
-  // In room mode, also check the server flag
-  const shouldShowVB = isVideoOn && isEffectsEnabled && 
-    (isVBEnabled || roomState === HMSRoomState.Preview);
+  // Show VB if video is on and effects are enabled
+  // In preview mode, always show if conditions are met
+  // In room mode, show if video is on and effects are enabled (regardless of when video was enabled)
+  const shouldShowVB =
+    isVideoOn &&
+    isEffectsEnabled &&
+    (isVBEnabled || roomState === HMSRoomState.Preview || roomState === HMSRoomState.Connected);
 
   if (!shouldShowVB || (!isEffectsEnabled && isSafari)) {
     return null;

@@ -20,7 +20,7 @@ export class HMSIntersectionObserverWrapper {
   isSupported() {
     const isSupported = isBrowser && typeof window.IntersectionObserver !== 'undefined';
     if (!isSupported) {
-      HMSLogger.w(this.TAG, 'IntersectionObserver is not supported, fallback will be used instead');
+      HMSLogger.d(this.TAG, 'IntersectionObserver is not supported, fallback will be used instead');
     }
     return isSupported;
   }

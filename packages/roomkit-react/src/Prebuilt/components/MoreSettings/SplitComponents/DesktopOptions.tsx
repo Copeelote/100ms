@@ -1,30 +1,18 @@
 import React, { Fragment, useState } from 'react';
-import { HMSHLSPlayer } from '@100mslive/hls-player';
 import {
   ConferencingScreen,
   DefaultConferencingScreen_Elements,
   HLSLiveStreamingScreen_Elements,
 } from '@100mslive/types-prebuilt';
-import { match } from 'ts-pattern';
 import {
   HMSTranscriptionMode,
-  selectAppData,
   selectIsTranscriptionAllowedByMode,
   selectIsTranscriptionEnabled,
   selectLocalPeerID,
-  useHMSActions,
   useHMSStore,
 } from '@100mslive/react-sdk';
-import {
-  BrbIcon,
-  CheckIcon,
-  HamburgerMenuIcon,
-  InfoIcon,
-  OpenCaptionIcon,
-  PipIcon,
-  SettingsIcon,
-} from '@100mslive/react-icons';
-import { Checkbox, Dropdown, Flex, Switch, Text, Tooltip } from '../../../..';
+import { BrbIcon, CheckIcon, HamburgerMenuIcon, OpenCaptionIcon, PipIcon, SettingsIcon } from '@100mslive/react-icons';
+import { Dropdown, Flex, Switch, Text, Tooltip } from '../../../..';
 import IconButton from '../../../IconButton';
 // @ts-ignore: No implicit any
 import { PIP } from '../../PIP';
@@ -40,8 +28,6 @@ import SettingsModal from '../../Settings/SettingsModal';
 // @ts-ignore: No implicit any
 import StartRecording from '../../Settings/StartRecording';
 // @ts-ignore: No implicit any
-import { StatsForNerds } from '../../StatsForNerds';
-// @ts-ignore: No implicit any
 import { BulkRoleChangeModal } from '../BulkRoleChangeModal';
 import { CaptionModal } from '../CaptionModal';
 // @ts-ignore: No implicit any
@@ -55,7 +41,7 @@ import { useMyMetadata } from '../../hooks/useMetadata';
 // @ts-ignore: No implicit any
 import { usePIPChat } from '../../PIP/usePIPChat';
 // @ts-ignore: No implicit any
-import { APP_DATA, isMacOS, SIDE_PANE_OPTIONS } from '../../../common/constants';
+import { SIDE_PANE_OPTIONS } from '../../../common/constants';
 
 const MODALS = {
   CHANGE_NAME: 'changeName',
@@ -63,7 +49,6 @@ const MODALS = {
   MORE_SETTINGS: 'moreSettings',
   START_RECORDING: 'startRecording',
   DEVICE_SETTINGS: 'deviceSettings',
-  STATS_FOR_NERDS: 'statsForNerds',
   BULK_ROLE_CHANGE: 'bulkRoleChange',
   MUTE_ALL: 'muteAll',
   EMBED_URL: 'embedUrl',
@@ -78,8 +63,6 @@ export const DesktopOptions = ({
   screenType: keyof ConferencingScreen;
 }) => {
   const localPeerId = useHMSStore(selectLocalPeerID);
-  const hmsActions = useHMSActions();
-  const enablHlsStats = useHMSStore(selectAppData(APP_DATA.hlsStats));
   const [openModals, setOpenModals] = useState(new Set());
   const { isBRBOn, toggleBRB } = useMyMetadata();
   const isPipOn = PictureInPicture.isOn();
@@ -203,46 +186,6 @@ export const DesktopOptions = ({
               Paramètres
             </Text>
           </Dropdown.Item>
-          {match({ screenType, isSupported: HMSHLSPlayer.isSupported() })
-            .with({ screenType: 'hls_live_streaming', isSupported: false }, () => null)
-            .with({ screenType: 'hls_live_streaming', isSupported: true }, () => {
-              return (
-                <Dropdown.Item
-                  onClick={() => hmsActions.setAppData(APP_DATA.hlsStats, !enablHlsStats)}
-                  data-testid="hls_stats"
-                >
-                  <Checkbox.Root
-                    css={{ margin: '$2' }}
-                    checked={enablHlsStats}
-                    onCheckedChange={() => hmsActions.setAppData(APP_DATA.hlsStats, !enablHlsStats)}
-                  >
-                    <Checkbox.Indicator>
-                      <CheckIcon width={16} height={16} />
-                    </Checkbox.Indicator>
-                  </Checkbox.Root>
-                  <Flex justify="between" css={{ width: '100%' }}>
-                    <Text variant="sm" css={{ ml: '$4' }}>
-                      Afficher les statistiques HLS
-                    </Text>
-
-                    <Text variant="sm" css={{ ml: '$4' }}>
-                      {`${isMacOS ? '⌘' : 'ctrl'} + ]`}
-                    </Text>
-                  </Flex>
-                </Dropdown.Item>
-              );
-            })
-            .otherwise(() => (
-              <Dropdown.Item
-                onClick={() => updateState(MODALS.STATS_FOR_NERDS, true)}
-                data-testid="stats_for_nerds_btn"
-              >
-                <InfoIcon />
-                <Text variant="sm" css={{ ml: '$4' }}>
-                  Statistiques détaillées
-                </Text>
-              </Dropdown.Item>
-            ))}
         </Dropdown.Content>
       </Dropdown.Root>
       {openModals.has(MODALS.BULK_ROLE_CHANGE) && (
@@ -261,9 +204,6 @@ export const DesktopOptions = ({
           onOpenChange={(value: boolean) => updateState(MODALS.DEVICE_SETTINGS, value)}
           screenType={screenType}
         />
-      )}
-      {openModals.has(MODALS.STATS_FOR_NERDS) && (
-        <StatsForNerds open onOpenChange={(value: boolean) => updateState(MODALS.STATS_FOR_NERDS, value)} />
       )}
       {openModals.has(MODALS.SELF_ROLE_CHANGE) && (
         <RoleChangeModal

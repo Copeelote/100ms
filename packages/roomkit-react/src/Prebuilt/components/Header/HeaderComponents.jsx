@@ -47,7 +47,7 @@ export const Logo = () => {
   return logo && !hideImage ? (
     <LogoImg
       src={logo}
-      alt="Brand Logo"
+      alt="Logo de marque"
       onError={e => {
         e.target.onerror = null;
         setHideImage(true);

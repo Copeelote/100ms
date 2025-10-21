@@ -92,7 +92,7 @@ const AuthToken = React.memo<{
             alignItems: 'center',
           }}
         >
-          <img src={errorImage} height={80} width={80} alt="Token Error" />
+          <img src={errorImage} height={80} width={80} alt="Erreur de jeton" />
           <Text variant="h4" css={{ textAlign: 'center', mb: '$4', mt: '$10' }}>
             {error.title}
           </Text>
@@ -113,33 +113,33 @@ const convertError = (error: HMSException) => {
   return match([error.action, error.code])
     .with(['GET_TOKEN', 403], () => ({
       title: 'Psst ! Cette salle est actuellement inactive.',
-      body: 'N\'hésitez pas à rejoindre une autre salle ouverte pour plus de conversations. Merci d\'être passé !',
+      body: "N'hésitez pas à rejoindre une autre salle ouverte pour plus de conversations. Merci d'être passé !",
     }))
 
     .with(['GET_TOKEN', 404], () => ({
-      title: 'Le code de salle n\'existe pas',
-      body: 'Nous n\'avons pas pu trouver un code de salle correspondant à ce lien.',
+      title: "Le code de salle n'existe pas",
+      body: "Nous n'avons pas pu trouver un code de salle correspondant à ce lien.",
     }))
     .with(['GET_TOKEN', 2003], () => ({
-      title: 'Le point de terminaison n\'est pas accessible',
+      title: "Le point de terminaison n'est pas accessible",
       body: `Le point de terminaison n'est pas accessible. ${error.description}.`,
     }))
     .otherwise(() =>
       // @ts-ignore
       match(error.response?.status)
         .with(404, () => ({
-          title: 'La salle n\'existe pas',
-          body: 'Nous n\'avons pas pu trouver une salle correspondant à ce lien.',
+          title: "La salle n'existe pas",
+          body: "Nous n'avons pas pu trouver une salle correspondant à ce lien.",
         }))
         .with(403, () => ({
-          title: 'L\'accès à la salle avec ce format de lien est désactivé',
+          title: "L'accès à la salle avec ce format de lien est désactivé",
           body: 'Vous pouvez le réactiver depuis la section développeur du tableau de bord.',
         }))
         .otherwise(() => {
           console.error('Token API Error', error);
           return {
             title: 'Erreur lors de la récupération du token',
-            body: 'Une erreur s\'est produite lors de la récupération du token de l\'application. Veuillez consulter les logs pour plus de détails.',
+            body: "Une erreur s'est produite lors de la récupération du token de l'application. Veuillez consulter les logs pour plus de détails.",
           };
         }),
     );

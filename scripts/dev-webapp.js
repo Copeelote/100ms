@@ -17,7 +17,7 @@ async function main() {
     target: 'es6',
     external,
     metafile: true,
-    sourcemap: true,
+    sourcemap: false,
     loader,
     define,
     plugins: [

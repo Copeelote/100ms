@@ -15,8 +15,8 @@ const config = {
   input: 'src/index.ts',
   external: [...deps, ...peerDeps],
   output: [
-    { file: pkg.main, format: 'cjs', sourcemap: true },
-    { dir: 'dist', format: 'esm', preserveModules: true, preserveModulesRoot: 'src', sourcemap: true },
+    { file: pkg.main, format: 'cjs', sourcemap: false },
+    { dir: 'dist', format: 'esm', preserveModules: true, preserveModulesRoot: 'src', sourcemap: false },
   ],
   plugins: [
     replace({ preventAssignment: true, 'process.env.REACT_SDK_VERSION': JSON.stringify(pkg.version) }),
@@ -24,7 +24,7 @@ const config = {
     esbuild({ format: 'esm' }),
     resolve(),
     isProduction && terser(),
-    typescript({ sourceMap: true }),
+    typescript({ sourceMap: false }),
   ],
 };
 

@@ -33,7 +33,7 @@ async function main() {
       target,
       external,
       treeShaking: true,
-      sourcemap: true,
+      sourcemap: false,
       metafile: true,
       loader,
       define,

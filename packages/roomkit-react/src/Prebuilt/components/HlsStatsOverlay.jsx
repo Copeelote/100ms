@@ -21,18 +21,18 @@ export function HlsStatsOverlay({ hlsStatsState, onClose }) {
       <IconButton css={{ position: 'absolute', top: '$2', right: '$2' }} onClick={onClose}>
         <CrossIcon />
       </IconButton>
-      <HlsStatsRow label="Video size">
+      <HlsStatsRow label="Taille vidéo">
         {` ${hlsStatsState?.videoSize?.width}x${hlsStatsState?.videoSize?.height}`}
       </HlsStatsRow>
-      <HlsStatsRow label="Buffer duration">{hlsStatsState?.bufferedDuration?.toFixed(2)} </HlsStatsRow>
-      <HlsStatsRow label="Connection speed">
+      <HlsStatsRow label="Durée du tampon">{hlsStatsState?.bufferedDuration?.toFixed(2)} </HlsStatsRow>
+      <HlsStatsRow label="Vitesse de connexion">
         {`${(hlsStatsState?.bandwidthEstimate / (1000 * 1000)).toFixed(2)} Mbps`}
       </HlsStatsRow>
-      <HlsStatsRow label="Bitrate">{`${(hlsStatsState?.bitrate / (1000 * 1000)).toFixed(2)} Mbps`}</HlsStatsRow>
-      <HlsStatsRow label="distance from live">
+      <HlsStatsRow label="Débit binaire">{`${(hlsStatsState?.bitrate / (1000 * 1000)).toFixed(2)} Mbps`}</HlsStatsRow>
+      <HlsStatsRow label="distance du direct">
         {getDurationFromSeconds(hlsStatsState.distanceFromLive / 1000)}
       </HlsStatsRow>
-      <HlsStatsRow label="Dropped frames">{hlsStatsState?.droppedFrames}</HlsStatsRow>
+      <HlsStatsRow label="Images supprimées">{hlsStatsState?.droppedFrames}</HlsStatsRow>
     </Flex>
   );
 }

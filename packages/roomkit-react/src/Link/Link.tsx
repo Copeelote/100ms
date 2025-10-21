@@ -35,7 +35,7 @@ export interface LinkProps extends React.ComponentProps<typeof LinkComponent> {
 }
 
 export const Link = ({ iconSide = 'left', icon, color = 'primary', children, ...rest }: LinkProps) => {
-  const Icon = icon ? icons[icon] : React.Fragment;
+  const Icon = icon ? icons[icon] : 'span';
   const renderedIcon = icon ? (
     <Flex as="span">
       <Icon height={13.33} width={13.33} />{' '}
