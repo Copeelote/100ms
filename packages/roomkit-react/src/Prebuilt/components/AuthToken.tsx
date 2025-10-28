@@ -8,12 +8,13 @@ import { Text } from '../../Text';
 import { useHMSPrebuiltContext } from '../AppContext';
 import { PrebuiltStates } from '../AppStateContext';
 // @ts-ignore: No implicit Any
-import errorImage from '../images/transaction_error.svg';
-// @ts-ignore: No implicit Any
 import { useSetAppDataByKey } from './AppData/useUISettings';
 // @ts-ignore: No implicit Any
 import { UserPreferencesKeys } from './hooks/useUserPreferences';
 import { APP_DATA } from '../common/constants';
+
+// @ts-ignore: No implicit Any
+const errorImage = new URL('../images/transaction_error.svg', import.meta.url).href;
 
 /**
  * query params exposed -
