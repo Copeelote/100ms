@@ -1,5 +1,6 @@
 {
   "name": "@copeelote/roomkit-react",
+  "description": "A React component library for 100ms Prebuilt components",
   "source": "src/index.ts",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -18,6 +19,7 @@
     "url": "https://github.com/100mslive/web-sdks.git",
     "directory": "packages/roomkit-react"
   },
+  
   "files": [
     "dist",
     "src"

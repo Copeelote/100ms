@@ -1,12 +1,11 @@
 import React, { Fragment, useState } from 'react';
 import { useScreenShare } from '@100mslive/react-sdk';
 import { StarIcon, VerticalMenuIcon } from '@100mslive/react-icons';
+import PDFShareImg from './../../images/pdf-share.png';
+import ScreenShareImg from './../../images/screen-share.png';
 import { Box, Dropdown, Flex, IconButton, Text, Tooltip } from '../../../';
 import { ShareMenuIcon } from '../ShareMenuIcon';
 import { PDFFileOptions } from './pdfFileOptions';
-
-const PDFShareImg = new URL('./../../images/pdf-share.png', import.meta.url).href;
-const ScreenShareImg = new URL('./../../images/screen-share.png', import.meta.url).href;
 
 const MODALS = {
   SHARE: 'share',

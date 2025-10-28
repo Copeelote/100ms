@@ -9,12 +9,11 @@ import {
 } from '@100mslive/react-sdk';
 import { Button, config as cssConfig, Dialog, Flex, Text } from '../../..';
 // @ts-ignore: No implicit Any
+import androidPermissionAlert from '../../images/android-perm-1.png';
+// @ts-ignore: No implicit Any
+import iosPermissions from '../../images/ios-perm-0.png';
+// @ts-ignore: No implicit Any
 import { isAndroid, isIOS } from '../../common/constants';
-
-// @ts-ignore: No implicit Any
-const androidPermissionAlert = new URL('../../images/android-perm-1.png', import.meta.url).href;
-// @ts-ignore: No implicit Any
-const iosPermissions = new URL('../../images/ios-perm-0.png', import.meta.url).href;
 
 export function PermissionErrorNotificationModal() {
   const notification = useHMSNotifications(HMSNotificationTypes.ERROR);
