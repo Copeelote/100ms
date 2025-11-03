@@ -510,7 +510,9 @@ const ParticipantMoreActions = ({ peerId, role }: { peerId: string; role: string
                   }
                 }}
               >
-                <PeopleRemoveIcon />
+                <Box css={{ c: '$alert_error_default' }}>
+                  <PeopleRemoveIcon />
+                </Box>
                 <Text variant="sm" css={{ ml: '$4', fontWeight: '$semiBold', c: '$alert_error_default' }}>
                   Bannir le participant
                 </Text>
