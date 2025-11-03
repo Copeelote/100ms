@@ -1,5 +1,5 @@
 {
-  "name": "@copeelote/roomkit-react",
+  "name": "copeelote-roomkit-react",
   "description": "A React component library for 100ms Prebuilt components",
   "source": "src/index.ts",
   "main": "dist/index.cjs.js",
@@ -11,13 +11,16 @@
     "prebuilt",
     "roomkit"
   ],
-  "version": "0.3.44",
+  "version": "0.3.47",
   "author": "100ms",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/100mslive/web-sdks.git",
     "directory": "packages/roomkit-react"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "dist",
