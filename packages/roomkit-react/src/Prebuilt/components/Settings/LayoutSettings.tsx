@@ -58,7 +58,12 @@ export const LayoutSettings = () => {
           />
         </Flex>
       </Flex>
-      <SwitchWithLabel label="Mode audio uniquement" id="audioOnlyMode" checked={isAudioOnly} onChange={toggleIsAudioOnly} />
+      <SwitchWithLabel
+        label="Mode audio uniquement"
+        id="audioOnlyMode"
+        checked={isAudioOnly}
+        onChange={toggleIsAudioOnly}
+      />
       <SwitchWithLabel
         label="Miroir de la vidéo locale"
         id="mirrorMode"

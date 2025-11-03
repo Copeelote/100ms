@@ -185,7 +185,7 @@ const SimulcastLayers = ({ trackId }: { trackId: HMSTrackID }) => {
         );
       })}
       <StyledMenuTile.ItemButton className={dragClassName}>
-          <Text as="span" variant="xs" css={{ color: '$on_surface_medium' }}>
+        <Text as="span" variant="xs" css={{ color: '$on_surface_medium' }}>
           Diffusion actuelle :
           <Text
             as="span"

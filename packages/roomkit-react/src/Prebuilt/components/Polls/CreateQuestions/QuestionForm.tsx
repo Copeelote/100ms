@@ -262,7 +262,9 @@ export const QuestionForm = ({
           title={
             options.length < 2
               ? 'Au moins deux options doivent être ajoutées'
-              : `Veuillez remplir tous les champs ${isQuiz ? 'et indiquer la ou les bonnes réponses' : ''} pour continuer`
+              : `Veuillez remplir tous les champs ${
+                  isQuiz ? 'et indiquer la ou les bonnes réponses' : ''
+                } pour continuer`
           }
           boxCss={{ maxWidth: '$40' }}
         >

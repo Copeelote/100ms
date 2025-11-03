@@ -33,7 +33,9 @@ export const ErrorNotifications = () => {
         });
       } else {
         ToastManager.addToast({
-          title: message || 'Nous n\'avons pas pu vous reconnecter. Quand vous serez de nouveau en ligne, essayez de rejoindre la salle.',
+          title:
+            message ||
+            "Nous n'avons pas pu vous reconnecter. Quand vous serez de nouveau en ligne, essayez de rejoindre la salle.",
           close: false,
         });
       }

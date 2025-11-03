@@ -19,7 +19,8 @@ export function AutoplayBlockedModal() {
       <DialogContent title="Erreur de permission" closeable={false}>
         <DialogRow>
           <Text variant="md">
-            Le navigateur souhaite obtenir une confirmation pour lire l'audio. Veuillez autoriser l'audio pour continuer.
+            Le navigateur souhaite obtenir une confirmation pour lire l'audio. Veuillez autoriser l'audio pour
+            continuer.
           </Text>
         </DialogRow>
         <DialogRow justify="end">

@@ -36,8 +36,8 @@ export const EndSessionContent = ({
       </Flex>
       <Text variant="sm" css={{ color: '$on_surface_medium', mb: '$8', mt: '$4' }}>
         {isStreamingOn
-          ? "Le direct prendra fin pour tout le monde. Cette action est irréversible."
-          : "La session prendra fin pour tout le monde. Cette action est irréversible."}
+          ? 'Le direct prendra fin pour tout le monde. Cette action est irréversible.'
+          : 'La session prendra fin pour tout le monde. Cette action est irréversible.'}
       </Text>
       <Flex align="center" justify="between" css={{ w: '100%', gap: '$8' }}>
         <Button

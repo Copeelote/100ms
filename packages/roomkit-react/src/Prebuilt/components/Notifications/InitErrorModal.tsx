@@ -7,7 +7,7 @@ import { ErrorDialog } from '../../primitives/DialogContent';
 export const InitErrorModal = () => {
   const notification = useHMSNotifications(HMSNotificationTypes.ERROR);
   const [showModal, setShowModal] = useState(false);
-  const [info, setInfo] = useState({ title: 'Erreur d\'initialisation', description: '' });
+  const [info, setInfo] = useState({ title: "Erreur d'initialisation", description: '' });
 
   useEffect(() => {
     const data = notification?.data;
@@ -17,15 +17,15 @@ export const InitErrorModal = () => {
     let description;
     let title;
     if (data.description.includes('role is invalid')) {
-      description = 'Ce rôle n\'existe pas pour la salle donnée. Réessayez avec un rôle valide.';
+      description = "Ce rôle n'existe pas pour la salle donnée. Réessayez avec un rôle valide.";
       title = 'Rôle invalide';
     } else if (data.description.includes('room is not active')) {
       title = 'Salle désactivée';
       description =
-        'Cette salle est désactivée et ne peut pas être rejointe. Pour activer la salle, utilisez le tableau de bord 100ms ou l\'API.';
+        "Cette salle est désactivée et ne peut pas être rejointe. Pour activer la salle, utilisez le tableau de bord 100ms ou l'API.";
     } else {
       description = data.description;
-      title = 'Erreur d\'initialisation';
+      title = "Erreur d'initialisation";
     }
     setInfo({ title, description });
     setShowModal(true);

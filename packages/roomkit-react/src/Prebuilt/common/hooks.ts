@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useMedia } from 'react-use';
 import { HMSHLSPlayer } from '@100mslive/hls-player';
-import { JoinForm_JoinBtnType } from '@100mslive/types-prebuilt/elements/join_form';
+//import { JoinForm_JoinBtnType } from '@100mslive/types-prebuilt/elements/join_form';
 import {
   HMSPeer,
   HMSRecording,
@@ -24,7 +24,7 @@ import {
 // @ts-ignore: No implicit any
 import { ToastManager } from '../components/Toast/ToastManager';
 import { config } from '../../Theme';
-import { useRoomLayout } from '../provider/roomLayoutProvider';
+//import { useRoomLayout } from '../provider/roomLayoutProvider';
 // @ts-ignore
 import { useSetAppDataByKey } from '../components/AppData/useUISettings';
 import { useRoomLayoutConferencingScreen } from '../provider/roomLayoutProvider/hooks/useRoomLayoutScreen';
@@ -90,12 +90,11 @@ export const useDefaultChatSelection = () => {
 };
 
 export const useShowStreamingUI = () => {
-  const layout = useRoomLayout();
-  const { join_form } = layout?.screens?.preview?.default?.elements || {};
-  return join_form?.join_btn_type === JoinForm_JoinBtnType.JOIN_BTN_TYPE_JOIN_AND_GO_LIVE;
+  //const layout = useRoomLayout();
+  //const { join_form } = layout?.screens?.preview?.default?.elements || {};
+  //return join_form?.join_btn_type === JoinForm_JoinBtnType.JOIN_BTN_TYPE_JOIN_AND_GO_LIVE;
+  return false;
 };
-
-
 // The search results should not have role name matches
 export const useParticipants = (params?: { metadata?: { isHandRaised?: boolean }; role?: string; search?: string }) => {
   const isConnected = useHMSStore(selectIsConnectedToRoom);

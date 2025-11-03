@@ -113,7 +113,10 @@ export const MessageType = ({
   const localPeerRoleName = useHMSStore(selectLocalPeerRoleName);
   if (receiver) {
     return (
-      <MessageTypeContainer left={hasCurrentUserSent ? `${peerName ? `à ${peerName}` : ''}` : 'à Vous'} right="(Privé)" />
+      <MessageTypeContainer
+        left={hasCurrentUserSent ? `${peerName ? `à ${peerName}` : ''}` : 'à Vous'}
+        right="(Privé)"
+      />
     );
   }
 

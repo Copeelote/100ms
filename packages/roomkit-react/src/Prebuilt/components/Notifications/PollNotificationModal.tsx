@@ -33,7 +33,9 @@ export const PollNotificationModal = () => {
           const pollStartedBy = vanillaStore.getState(selectPeerNameByID(notification.data.startedBy)) || 'Participant';
 
           const pollToastID = ToastManager.addToast({
-            title: `${pollStartedBy} a lancé un ${notification.data.type === 'quiz' ? 'quiz' : 'sondage'} : ${notification.data.title}`,
+            title: `${pollStartedBy} a lancé un ${notification.data.type === 'quiz' ? 'quiz' : 'sondage'} : ${
+              notification.data.title
+            }`,
             action: (
               <Button
                 onClick={() => togglePollView(notification.data.id)}

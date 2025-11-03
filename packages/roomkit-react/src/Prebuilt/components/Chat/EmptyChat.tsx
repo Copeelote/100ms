@@ -36,7 +36,6 @@ export const EmptyChat = () => {
       justify="center"
     >
       <Box>
-
         <Text variant="h5" css={{ mt: '$8', c: '$on_surface_high' }}>
           {canSendMessages ? 'Commencer une conversation' : 'Aucun message pour le moment'}
         </Text>

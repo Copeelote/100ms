@@ -1,18 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { useClickAway } from 'react-use';
 import { ConferencingScreen, DefaultConferencingScreen_Elements } from '@100mslive/types-prebuilt';
-import { match } from 'ts-pattern';
 import {
   HMSTranscriptionMode,
-  selectIsConnectedToRoom,
   selectIsLocalVideoEnabled,
   selectIsTranscriptionAllowedByMode,
   selectIsTranscriptionEnabled,
   selectPeerCount,
-  selectPermissions,
   useHMSActions,
   useHMSStore,
-  useRecordingStreaming,
+  // useRecordingStreaming,
 } from '@100mslive/react-sdk';
 import {
   BrbIcon,
@@ -27,11 +24,10 @@ import {
   PeopleIcon,
   QuizActiveIcon,
   QuizIcon,
-  RecordIcon,
   SettingsIcon,
   VirtualBackgroundIcon,
 } from '@100mslive/react-icons';
-import { Box, Loading, Tooltip } from '../../../..';
+import { Box, Tooltip } from '../../../..';
 import { Sheet } from '../../../../Sheet';
 // @ts-ignore: No implicit any
 import IconButton from '../../../IconButton';
@@ -47,12 +43,9 @@ import { ToastManager } from '../../Toast/ToastManager';
 // @ts-ignore: No implicit any
 import { ActionTile } from '../ActionTile';
 import { CaptionModal } from '../CaptionModal';
-// @ts-ignore: No implicit any
 import { ChangeNameModal } from '../ChangeNameModal';
-// @ts-ignore: No implicit any
 import { MuteAllModal } from '../MuteAllModal';
 import { useRoomLayoutHeader } from '../../../provider/roomLayoutProvider/hooks/useRoomLayoutScreen';
-import { useSheetToggle } from '../../AppData/useSheet';
 // @ts-ignore: No implicit any
 import { usePollViewToggle, useSidepaneToggle } from '../../AppData/useSidepane';
 // @ts-ignore: No implicit Any
@@ -61,10 +54,9 @@ import { useSetIsCaptionEnabled, useShowPolls } from '../../AppData/useUISetting
 import { useDropdownList } from '../../hooks/useDropdownList';
 import { useMyMetadata } from '../../hooks/useMetadata';
 import { useUnreadPollQuizPresent } from '../../hooks/useUnreadPollQuizPresent';
-import { useLandscapeHLSStream, useMobileHLSStream, useRecordingHandler } from '../../../common/hooks';
+import { useLandscapeHLSStream, useMobileHLSStream /*, useRecordingHandler*/ } from '../../../common/hooks';
 // @ts-ignore: No implicit any
 import { getFormattedCount } from '../../../common/utils';
-// @ts-ignore: No implicit any
 import { SHEET_OPTIONS, SIDE_PANE_OPTIONS } from '../../../common/constants';
 
 const MODALS = {
@@ -87,9 +79,9 @@ export const MwebOptions = ({
   screenType: keyof ConferencingScreen;
 }) => {
   const hmsActions = useHMSActions();
-  const permissions = useHMSStore(selectPermissions);
-  const isConnected = useHMSStore(selectIsConnectedToRoom);
-  const { isBrowserRecordingOn, isStreamingOn, isHLSRunning } = useRecordingStreaming();
+  // const permissions = useHMSStore(selectPermissions);
+  // const isConnected = useHMSStore(selectIsConnectedToRoom);
+  // const { isBrowserRecordingOn, isStreamingOn, isHLSRunning } = useRecordingStreaming();
   const [openModals, setOpenModals] = useState(new Set());
   const [openOptionsSheet, setOpenOptionsSheet] = useState(false);
   const [openSettingsSheet, setOpenSettingsSheet] = useState(false);
@@ -103,12 +95,12 @@ export const MwebOptions = ({
   const { isBRBOn, toggleBRB, isHandRaised, toggleHandRaise } = useMyMetadata();
   const { unreadPollQuiz, setUnreadPollQuiz } = useUnreadPollQuizPresent();
   const { title, description } = useRoomLayoutHeader();
-  const toggleDetailsSheet = useSheetToggle(SHEET_OPTIONS.ROOM_DETAILS);
+  const toggleDetailsSheet = useSidepaneToggle(SHEET_OPTIONS.ROOM_DETAILS);
   const isMobileHLSStream = useMobileHLSStream();
   const isLandscapeHLSStream = useLandscapeHLSStream();
   const toggleVB = useSidepaneToggle(SIDE_PANE_OPTIONS.VB);
   const isLocalVideoEnabled = useHMSStore(selectIsLocalVideoEnabled);
-  const { startRecording, isRecordingLoading } = useRecordingHandler();
+  // const { startRecording, isRecordingLoading } = useRecordingHandler();
   const isTranscriptionAllowed = useHMSStore(selectIsTranscriptionAllowedByMode(HMSTranscriptionMode.CAPTION));
   const isTranscriptionEnabled = useHMSStore(selectIsTranscriptionEnabled);
 
@@ -268,6 +260,7 @@ export const MwebOptions = ({
               <SettingsIcon />
               <ActionTile.Title>Paramètres</ActionTile.Title>
             </ActionTile.Root>
+            {/* Recording tile disabled
             {isConnected && permissions?.browserRecording ? (
               <ActionTile.Root
                 disabled={isHLSRunning}
@@ -298,6 +291,7 @@ export const MwebOptions = ({
                 </ActionTile.Title>
               </ActionTile.Root>
             ) : null}
+            */}
 
             {title || description ? (
               <ActionTile.Root

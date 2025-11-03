@@ -4,8 +4,11 @@ import {
   HMSRoomState,
   selectFullAppData,
   selectHLSState,
+  selectLocalPeer,
+  selectPeers,
   selectRoomState,
   selectRTMPState,
+  selectSessionStore,
   useAVToggle,
   useHMSActions,
   useHMSStore,
@@ -14,7 +17,7 @@ import {
 import { config as cssConfig } from '../../../Theme';
 import { LayoutMode } from '../Settings/LayoutSettings';
 import { useRoomLayoutConferencingScreen } from '../../provider/roomLayoutProvider/hooks/useRoomLayoutScreen';
-//@ts-ignore
+// @ts-ignore
 import { UserPreferencesKeys, useUserPreferences } from '../hooks/useUserPreferences';
 // @ts-ignore
 import { useIsSidepaneTypeOpen, useSidepaneToggle } from './useSidepane';
@@ -24,6 +27,7 @@ import {
   APP_DATA,
   CHAT_SELECTOR,
   POLL_STATE,
+  SESSION_STORE_KEY,
   SIDE_PANE_OPTIONS,
   UI_MODE_GRID,
   UI_SETTINGS,
@@ -152,7 +156,12 @@ export const AppData = React.memo(() => {
     }
   }, [hmsActions, toggleVB, isLocalVideoEnabled, defaultMediaURL]);
 
-  return <ResetStreamingStart />;
+  return (
+    <>
+      <ResetStreamingStart />
+      <EnforceBannedPeers />
+    </>
+  );
 });
 
 /**
@@ -204,5 +213,34 @@ const ResetStreamingStart = () => {
       }
     }
   }, [isRTMPRunning, setRTMPStarted, rtmpStarted, rtmpError, isBrowserRecordingOn, isStreamingOpen, toggleStreaming]);
+  return null;
+};
+
+const EnforceBannedPeers = () => {
+  const actions = useHMSActions();
+  const bannedIdsStore: string[] | null = useHMSStore(selectSessionStore(SESSION_STORE_KEY.CHAT_PEER_BLACKLIST));
+  const bannedIdsMemo = useMemo<string[]>(
+    () => (Array.isArray(bannedIdsStore) ? bannedIdsStore : []),
+    [bannedIdsStore],
+  );
+  const peers = useHMSStore(selectPeers);
+  const localPeer = useHMSStore(selectLocalPeer);
+
+  useEffect(() => {
+    const run = async () => {
+      for (const peer of peers || []) {
+        if (!peer || peer.isLocal) continue;
+        if (peer.customerUserId && bannedIdsMemo.includes(peer.customerUserId)) {
+          try {
+            await actions.removePeer(peer.id, 'Banned');
+          } catch (_) {
+            /* no-op */
+          }
+        }
+      }
+    };
+    run();
+  }, [actions, peers, localPeer?.id, bannedIdsMemo]);
+
   return null;
 };

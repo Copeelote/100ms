@@ -26,7 +26,7 @@ export const ChatNotifications = () => {
     const notification = {
       id: uuid(),
       icon: chatState.enabled ? <ChatUnreadIcon /> : <ChatIcon />,
-      title: `Chat ${chatState.enabled ? 'resumed' : 'paused'} by ${chatState.updatedBy?.userName}`,
+      title: `Discussion ${chatState.enabled ? 'reprise' : 'mise en pause'} par ${chatState.updatedBy?.userName}`,
     };
     ToastManager.addToast(notification);
   }, [chatState, localPeerId]);

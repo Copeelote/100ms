@@ -66,7 +66,8 @@ export const MwebLandscapePrompt = () => {
               </Text>
             </Flex>
             <Text variant="sm" css={{ color: '$on_surface_medium', mb: '$8', mt: '$4' }}>
-              Nous ne prenons pas en charge le mode paysage pour le moment ; veuillez utiliser l’application en mode portrait pour une meilleure expérience.
+              Nous ne prenons pas en charge le mode paysage pour le moment ; veuillez utiliser l’application en mode
+              portrait pour une meilleure expérience.
             </Text>
             <Flex align="center" justify="between" css={{ w: '100%', gap: '$8' }}>
               <Button outlined variant="standard" css={{ w: '100%' }} onClick={() => setShowMwebLandscapePrompt(false)}>

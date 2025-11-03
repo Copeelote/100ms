@@ -18,13 +18,13 @@ import { getFormattedCount } from '../../common/utils';
 // Role name translations
 const translateRoleName = (roleName: string): string => {
   const roleTranslations: Record<string, string> = {
-    'viewer': 'Spectateur',
-    'host': 'Hôte',
-    'speaker': 'Intervenant',
-    'moderator': 'Modérateur',
-    'guest': 'Invité',
-    'participant': 'Participant',
-    'admin': 'Administrateur',
+    viewer: 'Spectateur',
+    host: 'Hôte',
+    speaker: 'Intervenant',
+    moderator: 'Modérateur',
+    guest: 'Invité',
+    participant: 'Participant',
+    admin: 'Administrateur',
   };
   return roleTranslations[roleName.toLowerCase()] || roleName;
 };
@@ -113,7 +113,10 @@ export const PaginatedParticipants = ({ roleName, onBack }: { roleName: string; 
           <CrossIcon />
         </IconButton>
       </Flex>
-      <ParticipantSearch onSearch={(search: string) => setSearch(search)} placeholder={`Rechercher ${translateRoleName(roleName)}`} />
+      <ParticipantSearch
+        onSearch={(search: string) => setSearch(search)}
+        placeholder={`Rechercher ${translateRoleName(roleName)}`}
+      />
       <Flex direction="column" css={{ border: '1px solid $border_default', borderRadius: '$1', flex: '1 1 0' }}>
         <Flex align="center" css={{ height: ROW_HEIGHT, borderBottom: '1px solid $border_default', px: '$8' }}>
           <Text css={{ fontSize: '$space$7' }}>

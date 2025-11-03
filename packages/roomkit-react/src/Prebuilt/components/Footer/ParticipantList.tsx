@@ -4,14 +4,18 @@ import {
   HMSPeer,
   HMSPeerType,
   HMSRoleName,
+  selectAudioTrackByPeerID,
   selectAvailableRoleNames,
   selectHandRaisedPeers,
   selectHasPeerHandRaised,
   selectIsLargeRoom,
   selectIsPeerAudioEnabled,
   selectLocalPeerID,
+  selectPeerByID,
   selectPeerCount,
   selectPermissions,
+  selectSessionStore,
+  useHMSActions,
   useHMSStore,
 } from '@100mslive/react-sdk';
 import {
@@ -21,7 +25,9 @@ import {
   CrossIcon,
   HandIcon,
   MicOffIcon,
+  MicOnIcon,
   PeopleIcon,
+  PeopleRemoveIcon,
   PersonSettingsIcon,
   SearchIcon,
   VerticalMenuIcon,
@@ -37,11 +43,12 @@ import { useRoomLayoutConferencingScreen } from '../../provider/roomLayoutProvid
 // @ts-ignore: No implicit Any
 import { useIsSidepaneTypeOpen, useSidepaneToggle } from '../AppData/useSidepane';
 import { useSidepaneResetOnLayoutUpdate } from '../AppData/useSidepaneResetOnLayoutUpdate';
+import { useChatBlacklist } from '../hooks/useChatBlacklist';
 import { usePeerOnStageActions } from '../hooks/usePeerOnStageActions';
 import { useParticipants } from '../../common/hooks';
 // @ts-ignore: No implicit Any
 import { getFormattedCount } from '../../common/utils';
-import { SIDE_PANE_OPTIONS } from '../../common/constants';
+import { SESSION_STORE_KEY, SIDE_PANE_OPTIONS } from '../../common/constants';
 
 export const ParticipantList = ({
   offStageRoles = [],
@@ -121,8 +128,49 @@ export const ParticipantList = ({
             </Flex>
           ) : null}
         </VirtualizedParticipants>
+        <BannedUsersList />
       </Flex>
     </Fragment>
+  );
+};
+
+const BannedUsersList = () => {
+  const actions = useHMSActions();
+  const permissions = useHMSStore(selectPermissions);
+  const bannedIds: string[] = useHMSStore(selectSessionStore(SESSION_STORE_KEY.CHAT_PEER_BLACKLIST)) || [];
+
+  const unban = async (id: string) => {
+    const next = (bannedIds || []).filter(x => x !== id);
+    await actions.sessionStore.set(SESSION_STORE_KEY.CHAT_PEER_BLACKLIST, next);
+  };
+
+  if (!permissions?.removeOthers) {
+    return null;
+  }
+  return (
+    <Box css={{ bg: '$surface_default', r: '$1', p: '$6' }}>
+      <Text variant="sm" css={{ fontWeight: '$semiBold', c: '$on_surface_high' }}>
+        Utilisateurs bannis ({bannedIds.length})
+      </Text>
+      {bannedIds.length === 0 ? (
+        <Text variant="caption" css={{ c: '$on_surface_medium' }}>
+          Aucun utilisateur banni
+        </Text>
+      ) : (
+        <Flex direction="column" css={{ mt: '$4', gap: '$2' }}>
+          {bannedIds.map(id => (
+            <Flex key={id} align="center" justify="between" css={{ bg: '$surface_bright', r: '$1', p: '$4' }}>
+              <Text variant="sm" css={{ c: '$on_surface_high' }}>
+                {id}
+              </Text>
+              <Button variant="standard" onClick={() => unban(id)}>
+                Réintégrer
+              </Button>
+            </Flex>
+          ))}
+        </Flex>
+      )}
+    </Box>
   );
 };
 
@@ -360,6 +408,10 @@ const HandRaisedAccordionParticipantActions = ({ peerId, role }: { peerId: strin
 };
 
 const ParticipantMoreActions = ({ peerId, role }: { peerId: string; role: string }) => {
+  const actions = useHMSActions();
+  const permissions = useHMSStore(selectPermissions);
+  const audioTrack = useHMSStore(selectAudioTrackByPeerID(peerId));
+  const peer = useHMSStore(selectPeerByID(peerId));
   const {
     open,
     setOpen,
@@ -372,6 +424,9 @@ const ParticipantMoreActions = ({ peerId, role }: { peerId: string; role: string
   const canChangeRole = !!useHMSStore(selectPermissions)?.changeRole;
   const [openRoleChangeModal, setOpenRoleChangeModal] = useState(false);
   const roles = useHMSStore(selectAvailableRoleNames);
+  const canMuteAudio = audioTrack?.enabled ? permissions?.mute : permissions?.unmute;
+  const { blacklistItem } = useChatBlacklist(SESSION_STORE_KEY.CHAT_PEER_BLACKLIST);
+  const canBan = !!permissions?.removeOthers && peer?.roleName !== 'broadcaster';
 
   return (
     <>
@@ -409,11 +464,55 @@ const ParticipantMoreActions = ({ peerId, role }: { peerId: string; role: string
               </Dropdown.Item>
             ) : null}
 
+            {canMuteAudio && (
+              <Dropdown.Item
+                css={{ bg: '$surface_default' }}
+                onClick={async () => {
+                  if (audioTrack) {
+                    try {
+                      await actions.setRemoteTrackEnabled(audioTrack.id, !audioTrack.enabled);
+                    } catch (error) {
+                      // no-op
+                    }
+                  }
+                }}
+              >
+                {audioTrack?.enabled ? <MicOffIcon /> : <MicOnIcon />}
+                <Text variant="sm" css={{ ml: '$4', fontWeight: '$semiBold', c: '$on_surface_high' }}>
+                  {audioTrack?.enabled ? 'Couper le son' : 'Demander réactivation'}
+                </Text>
+              </Dropdown.Item>
+            )}
+
             {canChangeRole && roles.length > 1 ? (
               <Dropdown.Item css={{ bg: '$surface_default' }} onClick={() => setOpenRoleChangeModal(true)}>
                 <PersonSettingsIcon />
                 <Text variant="sm" css={{ ml: '$4', fontWeight: '$semiBold', c: '$on_surface_high' }}>
                   Changer de rôle
+                </Text>
+              </Dropdown.Item>
+            ) : null}
+            {canBan ? (
+              <Dropdown.Item
+                css={{ bg: '$surface_default' }}
+                onClick={async () => {
+                  if (peer?.customerUserId) {
+                    try {
+                      await blacklistItem(peer.customerUserId);
+                    } catch (_) {
+                      /* no-op */
+                    }
+                  }
+                  try {
+                    await actions.removePeer(peerId, 'Banned by moderator');
+                  } catch (_) {
+                    /* no-op */
+                  }
+                }}
+              >
+                <PeopleRemoveIcon />
+                <Text variant="sm" css={{ ml: '$4', fontWeight: '$semiBold', c: '$alert_error_default' }}>
+                  Bannir le participant
                 </Text>
               </Dropdown.Item>
             ) : null}

@@ -1,21 +1,24 @@
-import React, { useCallback, useState } from 'react';
-import { selectHLSState, useHMSActions, useHMSStore, useRecordingStreaming } from '@100mslive/react-sdk';
+import React, { useState /*, useCallback*/ } from 'react';
+import { selectHLSState, useHMSStore /*, useHMSActions, useRecordingStreaming*/ } from '@100mslive/react-sdk';
 import { Button } from '../../../Button';
 import { Flex } from '../../../Layout';
 import { Dialog } from '../../../Modal';
 import { Text } from '../../../Text';
+// commented streaming retry helpers kept for future re-enable
+// import { useSetAppDataByKey } from '../AppData/useUISettings';
+// import { APP_DATA } from '../../common/constants';
 // @ts-ignore: No implicit Any
-import { useSetAppDataByKey } from '../AppData/useUISettings';
+// import { useSetAppDataByKey } from '../AppData/useUISettings';
 // @ts-ignore: No implicit Any
-import { APP_DATA } from '../../common/constants';
+// import { APP_DATA } from '../../common/constants';
 
 export function HLSFailureModal() {
   const hlsError = useHMSStore(selectHLSState).error || false;
   const [openModal, setOpenModal] = useState(!!hlsError);
-  const hmsActions = useHMSActions();
+  /*  const hmsActions = useHMSActions();
   const { isRTMPRunning } = useRecordingStreaming();
   const [isHLSStarted, setHLSStarted] = useSetAppDataByKey(APP_DATA.hlsStarted);
-  const startHLS = useCallback(async () => {
+ const startHLS = useCallback(async () => {
     try {
       if (isHLSStarted || isRTMPRunning) {
         return;
@@ -26,7 +29,7 @@ export function HLSFailureModal() {
       console.error(error);
       setHLSStarted(false);
     }
-  }, [hmsActions, isHLSStarted, setHLSStarted, isRTMPRunning]);
+  }, [hmsActions, isHLSStarted, setHLSStarted, isRTMPRunning]);*/
 
   return hlsError ? (
     <Dialog.Root
@@ -60,9 +63,10 @@ export function HLSFailureModal() {
             <Button outlined variant="standard" css={{ w: '100%' }} onClick={() => setOpenModal(false)}>
               Ignorer
             </Button>
-            <Button css={{ w: '100%' }} onClick={startHLS}>
-              Diffuser en direct
-            </Button>
+            {/*  <Button css={{ w: '100%' }} onClick={startHLS}>
+                Diffuser en direct
+              </Button>*/}
+            {/* Retry streaming disabled */}
           </Flex>
         </Dialog.Content>
       </Dialog.Portal>

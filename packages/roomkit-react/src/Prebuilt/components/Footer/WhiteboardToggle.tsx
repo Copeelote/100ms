@@ -22,7 +22,7 @@ export const WhiteboardToggle = () => {
       key="whiteboard"
       title={
         peerSharing
-          ? "Impossible d’ouvrir le tableau blanc lors de l’affichage d’un écran partagé"
+          ? 'Impossible d’ouvrir le tableau blanc lors de l’affichage d’un écran partagé'
           : `${open ? 'Fermer' : 'Ouvrir'} le tableau blanc`
       }
     >

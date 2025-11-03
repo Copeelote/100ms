@@ -50,13 +50,13 @@ export const LeaveRoom = ({
         ToastManager.addToast({ title: 'Arrêt du stream' });
       }
     } catch (e) {
-      console.error('Erreur lors de l\'arrêt du stream', e);
-      ToastManager.addToast({ title: 'Erreur lors de l\'arrêt du stream', type: 'error' });
+      console.error("Erreur lors de l'arrêt du stream", e);
+      ToastManager.addToast({ title: "Erreur lors de l'arrêt du stream", type: 'error' });
     }
   };
 
   const endRoom = async () => {
-    await hmsActions.endRoom(false, 'Terminer la salle');
+    await hmsActions.endRoom(true, 'Terminer la salle');
   };
 
   const leaveRoom = async (

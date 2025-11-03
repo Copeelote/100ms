@@ -42,7 +42,7 @@ import { FlyingEmoji } from './plugins/FlyingEmoji';
 import { RemoteStopScreenshare } from './plugins/RemoteStopScreenshare';
 // @ts-ignore: No implicit Any
 import { useIsNotificationDisabled } from './components/AppData/useUISettings';
-import { useAutoStartStreaming } from './components/hooks/useAutoStartStreaming';
+//import { useAutoStartStreaming } from './components/hooks/useAutoStartStreaming';
 import {
   useRoomLayoutLeaveScreen,
   useRoomLayoutPreviewScreen,
@@ -258,7 +258,8 @@ HMSPrebuilt.displayName = 'HMSPrebuilt';
 const AppStates = ({ activeState }: { activeState: PrebuiltStates }) => {
   const { isPreviewScreenEnabled } = useRoomLayoutPreviewScreen();
   const { isLeaveScreenEnabled } = useRoomLayoutLeaveScreen();
-  useAutoStartStreaming();
+  // Streaming auto-start disabled
+  // useAutoStartStreaming();
 
   return match({ activeState, isPreviewScreenEnabled, isLeaveScreenEnabled })
     .with({ activeState: PrebuiltStates.PREVIEW, isPreviewScreenEnabled: true }, () => <PreviewScreen />)

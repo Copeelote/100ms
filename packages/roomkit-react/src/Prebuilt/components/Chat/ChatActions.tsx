@@ -89,7 +89,7 @@ export const ChatActions = ({
     } catch (e) {
       console.log(e);
       ToastManager.addToast({
-        title: "Impossible de copier le message",
+        title: 'Impossible de copier le message',
       });
     }
   }, [message]);
@@ -189,7 +189,7 @@ export const ChatActions = ({
               alignItems: 'center',
             }}
           >
-           Options
+            Options
             <Sheet.Close css={{ color: '$on_surface_high' }} onClick={e => setOpenSheet(false, e)}>
               <CrossIcon />
             </Sheet.Close>

@@ -4,23 +4,28 @@ import { HMSRecordingState } from '@100mslive/hms-video-store';
 import {
   HMSRoomState,
   selectHLSState,
-  selectIsConnectedToRoom,
+  // selectIsConnectedToRoom, // re-enable if StartRecording is used
   selectPermissions,
   selectRecordingState,
   selectRoomState,
-  useHMSActions,
   useHMSStore,
   useRecordingStreaming,
 } from '@100mslive/react-sdk';
 import { AlertTriangleIcon, CrossIcon, PauseCircleIcon, RecordIcon } from '@100mslive/react-icons';
-import { Box, Button, config as cssConfig, Flex, HorizontalDivider, Loading, Popover, Text, Tooltip } from '../../..';
+import { Box, Button, config as cssConfig, Flex, HorizontalDivider, Text, Tooltip } from '../../..';
 import { Sheet } from '../../../Sheet';
-// @ts-ignore
-import { ToastManager } from '../Toast/ToastManager';
 import { useRoomLayoutConferencingScreen } from '../../provider/roomLayoutProvider/hooks/useRoomLayoutScreen';
-import { useRecordingHandler } from '../../common/hooks';
 // @ts-ignore
 import { formatTime } from '../../common/utils';
+
+// Re-enable this component and related imports to restore Start/Stop Recording in header
+/*
+import { Popover, Loading } from '../../..';
+// @ts-ignore
+import { ToastManager } from '../Toast/ToastManager';
+import { useRecordingHandler } from '../../common/hooks';
+import { useHMSActions } from '@100mslive/react-sdk';
+*/
 
 export const getRecordingText = (
   {
@@ -163,79 +168,13 @@ export const RecordingPauseStatus = () => {
   return null;
 };
 
-const StartRecording = () => {
-  const permissions = useHMSStore(selectPermissions);
-  const [open, setOpen] = useState(false);
-  const { startRecording, recordingStarted } = useRecordingHandler();
-  const { isBrowserRecordingOn, isStreamingOn, isHLSRunning } = useRecordingStreaming();
-  const hmsActions = useHMSActions();
-  if (!permissions?.browserRecording || isHLSRunning) {
-    return null;
-  }
-  if (isBrowserRecordingOn) {
-    return (
-      <Popover.Root open={open} onOpenChange={setOpen}>
-        <Popover.Trigger asChild>
-          <Button variant="danger" data-testid="stop_recording" icon outlined onClick={() => setOpen(true)}>
-            <RecordIcon />
-            <Text as="span" css={{ '@md': { display: 'none' }, color: 'currentColor' }}>
-              Arrêter l’enregistrement
-            </Text>
-          </Button>
-        </Popover.Trigger>
-        <Popover.Portal>
-          <Popover.Content align="end" sideOffset={8} css={{ w: '$64' }}>
-            <Text variant="body1" css={{ color: '$on_surface_medium' }}>
-              Voulez-vous vraiment terminer l’enregistrement ?
-            </Text>
-            <Button
-              data-testid="stop_recording_confirm"
-              variant="danger"
-              icon
-              css={{ ml: 'auto' }}
-              onClick={async () => {
-                try {
-                  await hmsActions.stopRTMPAndRecording();
-                } catch (error) {
-                  const err = error as Error;
-                  ToastManager.addToast({
-                    title: err.message,
-                    variant: 'error',
-                  });
-                }
-                setOpen(false);
-              }}
-            >
-              Arrêter
-            </Button>
-          </Popover.Content>
-        </Popover.Portal>
-      </Popover.Root>
-    );
-  }
-  return (
-    <Button
-      data-testid="start_recording"
-      variant="standard"
-      icon
-      disabled={recordingStarted || isStreamingOn}
-      onClick={async () => {
-        await startRecording();
-      }}
-    >
-      {recordingStarted ? <Loading size={24} color="currentColor" /> : <RecordIcon />}
-      <Text as="span" css={{ '@md': { display: 'none' }, color: 'currentColor' }}>
-        {recordingStarted ? 'Démarrage de l\u2019enregistrement…' : 'Démarrer l\u2019enregistrement'}
-      </Text>
-    </Button>
-  );
-};
+// StartRecording control removed – streaming/recording start disabled
 
 /**
  * @description only start recording button will be shown.
  */
 export const StreamActions = () => {
-  const isConnected = useHMSStore(selectIsConnectedToRoom);
+  // const isConnected = useHMSStore(selectIsConnectedToRoom);
   const isMobile = useMedia(cssConfig.media.md);
   const roomState = useHMSStore(selectRoomState);
 
@@ -248,7 +187,8 @@ export const StreamActions = () => {
           {roomState !== HMSRoomState.Preview ? <LiveStatus /> : null}
         </Flex>
       )}
-      {isConnected && !isMobile ? <StartRecording /> : null}
+      {/* Re-enable to show Start/Stop recording in header */}
+      {/* {isConnected && !isMobile ? <StartRecording /> : null} */}
     </Flex>
   );
 };

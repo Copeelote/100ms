@@ -29,7 +29,7 @@ export const TrackNotifications = () => {
             console.log('notification.data', notification.data);
             if (!notification.data.enabled) {
               ToastManager.addToast({
-              title: `Votre ${track.type} a été coupé par
+                title: `Votre ${track.type} a été coupé par
                   ${notification.data.requestedBy?.name}.`,
               });
             }

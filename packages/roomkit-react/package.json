@@ -19,7 +19,6 @@
     "url": "https://github.com/100mslive/web-sdks.git",
     "directory": "packages/roomkit-react"
   },
-  
   "files": [
     "dist",
     "src"

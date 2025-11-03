@@ -79,7 +79,7 @@ export class HMSNotifications<T extends HMSGenericTypes = { sessionStore: Record
       HMSNotificationTypes.DEVICE_CHANGE_UPDATE,
       request,
       request.error ? HMSNotificationSeverity.ERROR : HMSNotificationSeverity.INFO,
-      `Selected ${request.type} device - ${request.selection?.label}`,
+      `Périphérique ${request.type} sélectionné - ${request.selection?.label}`,
     );
     this.emitEvent(notification);
   }
@@ -90,7 +90,7 @@ export class HMSNotifications<T extends HMSGenericTypes = { sessionStore: Record
       request.roomEnded || !peerName ? HMSNotificationTypes.ROOM_ENDED : HMSNotificationTypes.REMOVED_FROM_ROOM,
       request,
       HMSNotificationSeverity.INFO,
-      `${request.roomEnded ? `Room ended` : 'Removed from room'} ${peerName ? `by ${peerName}` : ''}`,
+      `${request.roomEnded ? 'Salle terminée' : 'Retiré de la salle'} ${peerName ? `par ${peerName}` : ''}`,
     );
     this.emitEvent(notification);
   }

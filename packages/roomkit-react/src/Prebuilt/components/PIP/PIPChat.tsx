@@ -49,17 +49,17 @@ export const PIPChat = () => {
     useHMSStore(selectSessionStore(SESSION_STORE_KEY.CHAT_STATE)) || {};
   const isLocalPeerBlacklisted = useIsPeerBlacklisted({ local: true });
   const { elements } = useRoomLayoutConferencingScreen();
-  const message_placeholder = elements?.chat?.message_placeholder || 'Send a message';
+  const message_placeholder = elements?.chat?.message_placeholder || 'Envoyer un message';
   const canSendChatMessages =
     !!elements?.chat?.public_chat_enabled ||
     !!elements?.chat?.roles_whitelist?.length ||
     !!elements?.chat?.private_chat_enabled;
 
   const getChatStatus = useCallback(() => {
-    if (isLocalPeerBlacklisted) return "You've been blocked from sending messages";
+    if (isLocalPeerBlacklisted) return 'Vous avez été bloqué pour l’envoi de messages';
     if (!isChatEnabled)
-      return `Chat has been paused by ${
-        chatStateUpdatedBy.peerId === localPeerID ? 'you' : chatStateUpdatedBy?.userName
+      return `La discussion a été mise en pause par ${
+        chatStateUpdatedBy.peerId === localPeerID ? 'vous' : chatStateUpdatedBy?.userName
       }`;
     return message_placeholder;
   }, [
@@ -97,7 +97,7 @@ export const PIPChat = () => {
               css={{ cursor: 'pointer' }}
               style={{ color: 'white', background: 'gray', padding: '4px', borderRadius: '4px' }}
             >
-              {unreadMessageCount === 1 ? 'New message' : `${unreadMessageCount} new messages`}
+              {unreadMessageCount === 1 ? 'Nouveau message' : `${unreadMessageCount} nouveaux messages`}
             </Text>
           </Box>
         ) : (
@@ -139,7 +139,7 @@ export const PIPChat = () => {
                   <Flex style={{ flexGrow: 1, gap: '2px', alignItems: 'center' }}>
                     {message.senderName === 'You' || !message.senderName ? (
                       <Text as="span" variant="sub2" css={{ color: '$on_surface_high', fontWeight: '$semiBold' }}>
-                        {message.senderName || 'Anonymous'}
+                        {message.senderName || 'Anonyme'}
                       </Text>
                     ) : (
                       <Tooltip title={message.senderName} side="top" align="start">
@@ -201,7 +201,9 @@ export const PIPChat = () => {
                   borderRadius: '4px',
                   padding: '0 2px',
                 }}
-                defaultValue={elements.chat?.public_chat_enabled ? 'Tout le monde' : elements.chat?.roles_whitelist?.[0]}
+                defaultValue={
+                  elements.chat?.public_chat_enabled ? 'Tout le monde' : elements.chat?.roles_whitelist?.[0]
+                }
               >
                 {elements.chat?.roles_whitelist?.map(role => (
                   <option key={role} value={role}>
@@ -279,12 +281,12 @@ const MessageTitle = ({
     <>
       {recipientRoles ? (
         <Text as="span" variant="sub2" css={{ color: '$on_surface_high', fontWeight: '$semiBold' }}>
-          to {recipientRoles} (Group)
+          à {recipientRoles} (Groupe)
         </Text>
       ) : null}
       {recipientPeer ? (
         <Text as="span" variant="sub2" css={{ color: '$on_surface_high', fontWeight: '$semiBold' }}>
-          to {recipientPeer === localPeerID ? 'You' : peerName} (DM)
+          à {recipientPeer === localPeerID ? 'Vous' : peerName} (Message privé)
         </Text>
       ) : null}
     </>

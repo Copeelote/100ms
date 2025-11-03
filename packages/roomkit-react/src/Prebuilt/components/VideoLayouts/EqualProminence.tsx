@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useMedia } from 'react-use';
-import { PeopleAddIcon } from '@100mslive/react-icons';
 import { selectPeerCount, useHMSStore } from '@100mslive/react-sdk';
+import { PeopleAddIcon } from '@100mslive/react-icons';
 import { Flex } from '../../../Layout';
 import { config as cssConfig } from '../../../Theme';
 import { WaitingView } from '../../layouts/WaitingView';

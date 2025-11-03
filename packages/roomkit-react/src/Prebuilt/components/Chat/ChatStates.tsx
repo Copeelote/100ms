@@ -34,18 +34,19 @@ export const ChatPaused = () => {
     >
       <Box>
         <Text variant="sm" css={{ fontWeight: '$semiBold', color: '$on_surface_high' }}>
-          Chat paused
+          Discussion en pause
         </Text>
         <Text
           variant="xs"
           css={{ color: '$on_surface_medium', maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis' }}
         >
-          Chat has been paused by {chatStateUpdatedBy?.peerId === localPeer?.id ? 'you' : chatStateUpdatedBy?.userName}
+          La discussion a été mise en pause par{' '}
+          {chatStateUpdatedBy?.peerId === localPeer?.id ? 'vous' : chatStateUpdatedBy?.userName}
         </Text>
       </Box>
       {can_disable_chat ? (
         <Button css={{ fontWeight: '$semiBold', fontSize: '$sm', borderRadius: '$2' }} onClick={unPauseChat}>
-          Resume
+          Reprendre
         </Button>
       ) : (
         <></>
@@ -66,7 +67,7 @@ export const ChatBlocked = () => {
       css={{ borderRadius: '$1', bg: '$surface_default', p: '$4 $4 $4 $8', w: '100%' }}
     >
       <Text variant="sm" css={{ color: '$on_surface_medium', textAlign: 'center', w: '100%' }}>
-        You've been blocked from sending messages
+        Vous avez été bloqué pour l’envoi de messages
       </Text>
     </Flex>
   );

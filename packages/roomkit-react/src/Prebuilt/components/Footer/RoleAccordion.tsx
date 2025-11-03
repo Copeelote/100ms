@@ -17,14 +17,14 @@ import { getFormattedCount } from '../../common/utils';
 // Role name translations
 const translateRoleName = (roleName: string): string => {
   const roleTranslations: Record<string, string> = {
-    'viewer': 'Spectateur',
-    'host': 'Hôte',
-    'speaker': 'Intervenant',
-    'moderator': 'Modérateur',
-    'guest': 'Invité',
-    'participant': 'Participant',
-    'admin': 'Administrateur',
-    'broadcaster': 'Diffuseur',
+    viewer: 'Spectateur',
+    host: 'Hôte',
+    speaker: 'Intervenant',
+    moderator: 'Modérateur',
+    guest: 'Invité',
+    participant: 'Participant',
+    admin: 'Administrateur',
+    broadcaster: 'Diffuseur',
     'viewer-on-stage': 'Spectateur sur scène',
   };
   return roleTranslations[roleName.toLowerCase()] || roleName;
@@ -130,7 +130,8 @@ export const RoleAccordion = ({
             variant="sm"
             css={{ fontWeight: '$semiBold', textTransform: 'capitalize', color: '$on_surface_medium' }}
           >
-            {translateRoleName(roleName)} {`(${getFormattedCount(isLargeRoom && isOffStageRole ? total : peerList.length)})`}
+            {translateRoleName(roleName)}{' '}
+            {`(${getFormattedCount(isLargeRoom && isOffStageRole ? total : peerList.length)})`}
           </Text>
           <RoleOptions roleName={roleName} peerList={peersInAccordion} />
         </Flex>
