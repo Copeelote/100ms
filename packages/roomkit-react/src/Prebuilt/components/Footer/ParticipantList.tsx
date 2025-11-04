@@ -504,7 +504,7 @@ const ParticipantMoreActions = ({ peerId, role }: { peerId: string; role: string
                     }
                   }
                   try {
-                    await actions.removePeer(peerId, 'Banned by moderator');
+                    await actions.removePeer(peerId, 'Banni par le modérateur');
                   } catch (_) {
                     /* no-op */
                   }

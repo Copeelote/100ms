@@ -26,10 +26,14 @@ export const TrackUnmuteModal = () => {
     switch (notification?.type) {
       case HMSNotificationTypes.REMOVED_FROM_ROOM:
       case HMSNotificationTypes.ROOM_ENDED:
-        ToastManager.addToast({
-          title: `${notification.message}. 
-              ${notification.data.reason && `Raison : ${notification.data.reason}`}`,
-        });
+        {
+          const base =
+            notification.type === HMSNotificationTypes.ROOM_ENDED
+              ? 'La session est terminée'
+              : 'Vous avez été retiré de la session';
+          const reason = notification?.data?.reason ? ` Raison : ${notification.data.reason}` : '';
+          ToastManager.addToast({ title: `${base}.${reason}` });
+        }
         setMuteNotification(null);
         break;
       case HMSNotificationTypes.CHANGE_TRACK_STATE_REQUEST:

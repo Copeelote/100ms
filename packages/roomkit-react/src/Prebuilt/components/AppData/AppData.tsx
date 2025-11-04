@@ -232,7 +232,7 @@ const EnforceBannedPeers = () => {
         if (!peer || peer.isLocal) continue;
         if (peer.customerUserId && bannedIdsMemo.includes(peer.customerUserId)) {
           try {
-            await actions.removePeer(peer.id, 'Banned');
+            await actions.removePeer(peer.id, 'Banni');
           } catch (_) {
             /* no-op */
           }

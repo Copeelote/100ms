@@ -31,31 +31,35 @@ export const useFetchRoomLayout = ({
     }
     const [layout] = (layoutResp.current?.data || []).filter(layout => layout.role === role);
     if (layout) {
-      setLayout(layout);
+      // Preserve logo from original layout if role-specific layout doesn't have one
+      const layoutWithLogo = {
+        ...layout,
+        logo: layout.logo || originalLayout.current?.logo,
+      };
+      setLayout(layoutWithLogo);
     }
   }, []);
   useEffect(() => {
-      if (isFetchInProgress.current || !authToken) {
-        return;
-      }
-      isFetchInProgress.current = true;
-        layoutResp.current = {
-          data: [defaultLayout],
-        };
-      let layoutForRole = layoutResp.current?.data?.[0];
-      if (!layoutForRole) {
-        console.error(
-          '[Room Layout API]: Unable to figure out room layout from API response. Resorting to default layout.',
-        );
-        layoutForRole = defaultLayout;
-      }
-      const layout = layoutForRole;
-      if (!originalLayout.current) {
-        originalLayout.current = layout;
-      }
-      setLayout(layout);
-      isFetchInProgress.current = false;
-  
+    if (isFetchInProgress.current || !authToken) {
+      return;
+    }
+    isFetchInProgress.current = true;
+    layoutResp.current = {
+      data: [defaultLayout],
+    };
+    let layoutForRole = layoutResp.current?.data?.[0];
+    if (!layoutForRole) {
+      console.error(
+        '[Room Layout API]: Unable to figure out room layout from API response. Resorting to default layout.',
+      );
+      layoutForRole = defaultLayout;
+    }
+    const layout = layoutForRole;
+    if (!originalLayout.current) {
+      originalLayout.current = layout;
+    }
+    setLayout(layout);
+    isFetchInProgress.current = false;
   }, [authToken, endpoint]);
 
   return { layout, updateRoomLayoutForRole, setOriginalLayout };
