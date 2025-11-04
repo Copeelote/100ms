@@ -20,6 +20,8 @@ import { Avatar, Box, config as cssConfig, Flex, flexCenter, styled, StyledVideo
 import { AudioLevel } from '../../../AudioLevel';
 import { useHMSPrebuiltContext } from '../../AppContext';
 import IconButton from '../../IconButton';
+// @ts-ignore: No implicit Any
+import clicWhite from '../../images/clic-white-1.png';
 import SidePane from '../../layouts/SidePane';
 import { AudioVideoToggle, NoiseCancellation } from '../AudioVideoToggle';
 import Chip from '../Chip';
@@ -137,6 +139,7 @@ const PreviewJoin = ({
         {toggleVideo ? null : <Box />}
         <Flex direction="column" justify="center" css={{ w: '100%', maxWidth: '600px', gap: '$8' }}>
           <Logo />
+          <Box as="img" src={clicWhite} alt="illustration" css={{ mx: 'auto', w: '96px', h: 'auto' }} />
           <Text variant="h4" css={{ wordBreak: 'break-word', textAlign: 'center' }}>
             {previewHeader.title}
           </Text>
