@@ -44,6 +44,20 @@ import { defaultPreviewPreference, UserPreferencesKeys, useUserPreferences } fro
 import { calculateAvatarAndAttribBoxSize, getFormattedCount } from '../../common/utils';
 import { APP_DATA, UI_SETTINGS } from '../../common/constants';
 
+// Helper function to decode role from JWT token
+const getRoleFromToken = (token?: string): string | null => {
+  if (!token) return null;
+  try {
+    const parts = token.split('.');
+    if (parts.length !== 3) return null;
+    const payloadStr = atob(parts[1]);
+    const payload = JSON.parse(payloadStr);
+    return payload.role || null;
+  } catch {
+    return null;
+  }
+};
+
 const getParticipantChipContent = (peerCount = 0) => {
   if (peerCount === 0) {
     return 'Vous êtes le premier à rejoindre';
@@ -86,12 +100,14 @@ const PreviewJoin = ({
   const { endpoints } = useHMSPrebuiltContext();
   const { peerCount } = useParticipants();
   const loadingEffects = useHMSStore(selectAppData(APP_DATA.loadingEffects));
+  const role = asRole || getRoleFromToken(authToken);
+  const isBroadcaster = role === 'broadcaster';
   const { enableJoin, preview, join } = usePreviewJoin({
     name,
     token: authToken,
     initEndpoint: endpoints?.init,
     initialSettings: {
-      isAudioMuted: skipPreview || previewPreference.isAudioMuted,
+      isAudioMuted: !isBroadcaster,
       isVideoMuted: skipPreview || previewPreference.isVideoMuted,
       speakerAutoSelectionBlacklist: ['Yeti Stereo Microphone'],
     },

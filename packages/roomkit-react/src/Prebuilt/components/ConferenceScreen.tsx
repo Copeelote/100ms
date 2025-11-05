@@ -35,6 +35,20 @@ import { useAuthToken, useSetAppDataByKey } from './AppData/useUISettings';
 import { useLandscapeHLSStream, useMobileHLSStream } from '../common/hooks';
 import { APP_DATA } from '../common/constants';
 
+// Helper function to decode role from JWT token
+const getRoleFromToken = (token?: string): string | null => {
+  if (!token) return null;
+  try {
+    const parts = token.split('.');
+    if (parts.length !== 3) return null;
+    const payloadStr = atob(parts[1]);
+    const payload = JSON.parse(payloadStr);
+    return payload.role || null;
+  } catch {
+    return null;
+  }
+};
+
 export const ConferenceScreen = () => {
   const { userName, endpoints, onJoin: onJoinFunc } = useHMSPrebuiltContext();
   const screenProps = useRoomLayoutConferencingScreen();
@@ -65,6 +79,8 @@ export const ConferenceScreen = () => {
       roomState !== HMSRoomState.Connecting &&
       !autoRoomJoined.current
     ) {
+      const role = getRoleFromToken(authTokenInAppData);
+      const isBroadcaster = role === 'broadcaster';
       hmsActions
         .join({
           userName: userName || uuid(),
@@ -72,7 +88,7 @@ export const ConferenceScreen = () => {
           initEndpoint: endpoints?.init,
           rememberDeviceSelection: true,
           settings: {
-            isAudioMuted: !isPreviewScreenEnabled,
+            isAudioMuted: !isBroadcaster,
             isVideoMuted: !isPreviewScreenEnabled,
             speakerAutoSelectionBlacklist: ['Yeti Stereo Microphone'],
           },
