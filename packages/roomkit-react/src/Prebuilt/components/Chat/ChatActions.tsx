@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 import { HMSMessage, selectLocalPeerName, selectPermissions, useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import {
   CopyIcon,
-  CrossCircleIcon,
   CrossIcon,
   EyeCloseIcon,
   PeopleRemoveIcon,
@@ -21,7 +20,7 @@ import { Tooltip } from '../../../Tooltip';
 import { ToastManager } from '../Toast/ToastManager';
 import { MwebChatOption } from './MwebChatOption';
 import { useRoomLayoutConferencingScreen } from '../../provider/roomLayoutProvider/hooks/useRoomLayoutScreen';
-import { useChatBlacklist, useIsPeerBlacklisted } from '../hooks/useChatBlacklist';
+import { useChatBlacklist } from '../hooks/useChatBlacklist';
 import { usePinnedMessages } from '../hooks/usePinnedMessages';
 import { SESSION_STORE_KEY } from '../../common/constants';
 
@@ -56,22 +55,18 @@ export const ChatActions = ({
   setOpenSheet: (value: boolean, e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }) => {
   const { elements } = useRoomLayoutConferencingScreen();
-  const { can_hide_message = false, can_block_user = false } = elements?.chat?.real_time_controls || {};
+  const { can_hide_message = false } = elements?.chat?.real_time_controls || {};
   const { roles_whitelist = [] } = elements?.chat || {};
 
   const [open, setOpen] = useState(false);
   const actions = useHMSActions();
   const canRemoveOthers = useHMSStore(selectPermissions)?.removeOthers;
-  const { blacklistItem: blacklistPeer } = useChatBlacklist(SESSION_STORE_KEY.CHAT_PEER_BLACKLIST);
   const localPeerName = useHMSStore(selectLocalPeerName);
   const { setPinnedMessages, unpinBlacklistedMessages } = usePinnedMessages();
 
   const { blacklistItem: blacklistMessage, blacklistedIDs: blacklistedMessageIDs } = useChatBlacklist(
     SESSION_STORE_KEY.CHAT_MESSAGE_BLACKLIST,
   );
-
-  const isSenderBlocked = useIsPeerBlacklisted({ peerCustomerUserId: message.senderUserId });
-
   const updatePinnedMessages = useCallback(
     (messageID = '') => {
       const blacklistedMessageIDSet = new Set([...(blacklistedMessageIDs || []), messageID]);
@@ -141,17 +136,6 @@ export const ChatActions = ({
         updatePinnedMessages(message.id);
       },
       show: !!can_hide_message,
-    },
-    block: {
-      text: 'Bloquer du chat',
-      icon: <CrossCircleIcon style={iconStyle} />,
-      onClick: async () => {
-        if (message.senderUserId) {
-          blacklistPeer(message.senderUserId);
-        }
-      },
-      color: '$alert_error_default',
-      show: !!can_block_user && !sentByLocalPeer && !isSenderBlocked,
     },
     remove: {
       text: 'Retirer le participant',
@@ -258,7 +242,7 @@ export const ChatActions = ({
           </Tooltip>
         ) : null}
 
-        {options.block.show || options.hide.show || options.remove.show ? (
+        {options.hide.show || options.remove.show ? (
           <Tooltip boxCss={tooltipBoxCSS} title="Plus d'actions">
             <Dropdown.Trigger asChild>
               <IconButton>
@@ -279,19 +263,6 @@ export const ChatActions = ({
               {options.hide.icon}
               <Text variant="sm" css={{ ml: '$4', fontWeight: '$semiBold' }}>
                 {options.hide.text}
-              </Text>
-            </Dropdown.Item>
-          ) : null}
-
-          {options.block.show ? (
-            <Dropdown.Item
-              data-testid="block_peer_btn"
-              onClick={options.block.onClick}
-              css={{ color: options.block.color }}
-            >
-              {options.block.icon}
-              <Text variant="sm" css={{ ml: '$4', color: 'inherit', fontWeight: '$semiBold' }}>
-                {options.block.text}
               </Text>
             </Dropdown.Item>
           ) : null}
