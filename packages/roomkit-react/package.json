@@ -36,6 +36,7 @@
   },
   "sideEffects": false,
   "scripts": {
+    "prepare": "yarn build",
     "prestart": "rm -rf dist && yarn types:build",
     "start": "concurrently \"yarn dev\" \"yarn types\"",
     "dev": "node ../../scripts/dev",

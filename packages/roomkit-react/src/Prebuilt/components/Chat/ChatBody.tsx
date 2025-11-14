@@ -1,7 +1,16 @@
-import React, { Fragment, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  Fragment,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { useMedia } from 'react-use';
 import AutoSizer from 'react-virtualized-auto-sizer';
-import { VariableSizeList } from 'react-window';
+import { VariableSizeList as VariableSizeListComponent } from 'react-window';
+import type { VariableSizeList as VariableSizeListInstance } from 'react-window';
 import {
   HMSMessage,
   HMSPeerID,
@@ -31,8 +40,9 @@ import { usePinnedBy } from '../hooks/usePinnedBy';
 import { formatTime } from './utils';
 import { CHAT_SELECTOR, SESSION_STORE_KEY } from '../../common/constants';
 
+const VariableSizeList = VariableSizeListComponent as unknown as React.ComponentType<any>;
 const rowHeights: Record<number, { size: number; id: string }> = {};
-let listInstance: VariableSizeList | null = null; //eslint-disable-line
+let listInstance: VariableSizeListInstance | null = null; //eslint-disable-line
 function getRowHeight(index: number) {
   // 72 will be default row height for any message length
   return rowHeights[index]?.size || 72;
@@ -354,7 +364,7 @@ const MessageWrapper = React.memo(
 );
 
 const VirtualizedChatMessages = React.forwardRef<
-  VariableSizeList,
+  VariableSizeListInstance,
   { messages: HMSMessage[]; scrollToBottom: (count: number) => void }
 >(({ messages, scrollToBottom }, listRef) => {
   const hmsActions = useHMSActions();
@@ -378,7 +388,7 @@ const VirtualizedChatMessages = React.forwardRef<
       >
         {({ height, width }: { height: number; width: number }) => (
           <VariableSizeList
-            ref={node => {
+            ref={(node: VariableSizeListInstance | null) => {
               if (node) {
                 // @ts-ignore
                 listRef.current = node;
@@ -394,7 +404,7 @@ const VirtualizedChatMessages = React.forwardRef<
               overflowX: 'hidden',
             }}
             itemKey={itemKey}
-            onItemsRendered={({ visibleStartIndex, visibleStopIndex }) => {
+            onItemsRendered={({ visibleStartIndex, visibleStopIndex }: { visibleStartIndex: number; visibleStopIndex: number }) => {
               for (let i = visibleStartIndex; i <= visibleStopIndex; i++) {
                 if (!messages[i].read) {
                   hmsActions.setMessageRead(true, messages[i].id);
@@ -410,7 +420,7 @@ const VirtualizedChatMessages = React.forwardRef<
   );
 });
 
-export const ChatBody = React.forwardRef<VariableSizeList, { scrollToBottom: (count: number) => void }>(
+export const ChatBody = React.forwardRef<VariableSizeListInstance, { scrollToBottom: (count: number) => void }>(
   ({ scrollToBottom }: { scrollToBottom: (count: number) => void }, listRef) => {
     const messages = useHMSStore(selectHMSMessages);
     const blacklistedMessageIDs = useHMSStore(selectSessionStore(SESSION_STORE_KEY.CHAT_MESSAGE_BLACKLIST));

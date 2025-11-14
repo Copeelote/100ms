@@ -85,20 +85,19 @@ const PasswordIcons = React.forwardRef<HTMLDivElement, PropsWithChildren<Compone
   },
 );
 
-const ReactInput: React.FC<PropsWithRef<ComponentProps<typeof Input> & { showPassword?: boolean; css?: CSS }>> =
-  React.forwardRef<
-    HTMLInputElement,
-    PropsWithRef<ComponentProps<typeof Input> & { showPassword?: boolean; css?: CSS }>
-  >(({ showPassword = false, css, ...props }, ref) => {
-    return (
-      <Input
-        css={{ flexGrow: 1, width: '100%', ...css }}
-        type={showPassword ? 'text' : 'password'}
-        {...props}
-        ref={ref}
-      />
-    );
-  });
+const ReactInput = React.forwardRef<
+  HTMLInputElement,
+  PropsWithRef<ComponentProps<typeof Input> & { showPassword?: boolean; css?: CSS }>
+>(({ showPassword = false, css, ...props }, ref) => {
+  return (
+    <Input
+      css={{ flexGrow: 1, width: '100%', ...css }}
+      type={showPassword ? 'text' : 'password'}
+      {...props}
+      ref={ref}
+    />
+  );
+});
 
 export const PasswordInput = {
   Root: PasswordRoot,

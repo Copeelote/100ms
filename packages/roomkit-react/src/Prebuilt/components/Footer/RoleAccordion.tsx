@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useMeasure } from 'react-use';
-import { FixedSizeList } from 'react-window';
+import { FixedSizeList as FixedSizeListComponent } from 'react-window';
 import { HMSPeer, selectIsLargeRoom, useHMSStore, usePaginatedParticipants } from '@100mslive/react-sdk';
 import { AddIcon, ChevronRightIcon, CrossIcon } from '@100mslive/react-icons';
 import { Accordion } from '../../../Accordion';
@@ -56,6 +56,8 @@ export const VirtualizedParticipantItem = React.memo(
     );
   },
 );
+
+const FixedSizeList = FixedSizeListComponent as unknown as React.ComponentType<any>;
 
 export const RoleAccordion = ({
   peerList = [],

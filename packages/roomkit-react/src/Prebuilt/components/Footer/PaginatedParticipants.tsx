@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useMeasure } from 'react-use';
-import { VariableSizeList } from 'react-window';
+import { VariableSizeList as VariableSizeListComponent } from 'react-window';
 import { selectIsConnectedToRoom, useHMSStore, usePaginatedParticipants } from '@100mslive/react-sdk';
 import { ChevronLeftIcon, CrossIcon } from '@100mslive/react-icons';
 import { IconButton } from '../../../IconButton';
@@ -80,6 +80,8 @@ const VirtualizedParticipantItem = React.memo(
   },
 );
 
+const VariableSizeList = VariableSizeListComponent as unknown as React.ComponentType<any>;
+
 export const PaginatedParticipants = ({ roleName, onBack }: { roleName: string; onBack: () => void }) => {
   const { peers, total, hasNext, loadPeers, loadMorePeers } = usePaginatedParticipants({ role: roleName, limit: 20 });
   const [search, setSearch] = useState<string>('');
@@ -125,7 +127,7 @@ export const PaginatedParticipants = ({ roleName, onBack }: { roleName: string; 
         </Flex>
         <Box css={{ flex: '1 1 0', overflowY: 'auto', overflowX: 'hidden', mr: '-$10' }}>
           <VariableSizeList
-            itemSize={index => (index === filteredPeers.length + 1 ? 16 : ROW_HEIGHT)}
+            itemSize={(index: number) => (index === filteredPeers.length + 1 ? 16 : ROW_HEIGHT)}
             itemData={{ peerList: filteredPeers, hasNext: hasNext(), loadMorePeers, isConnected: isConnected === true }}
             itemKey={itemKey}
             itemCount={filteredPeers.length + 1}
